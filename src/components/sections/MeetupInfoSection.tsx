@@ -1,4 +1,3 @@
-
 import { MapPin, CalendarDays, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -17,14 +16,14 @@ const MeetupInfoSection = () => {
                 <CalendarDays className="h-6 w-6 text-brand-orange mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-primary">When?</h3>
-                  <p className="text-muted-foreground">Every Thursday Evening</p>
+                  <p className="text-muted-foreground">Every Thursday</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Clock className="h-6 w-6 text-brand-orange mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-primary">Time?</h3>
-                  <p className="text-muted-foreground">6:00 PM - 8:00 PM</p>
+                  <p className="text-muted-foreground">9:00 AM - 1:00 PM (unless otherwise noted)</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

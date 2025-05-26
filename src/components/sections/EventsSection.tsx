@@ -1,13 +1,13 @@
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, Users, ArrowRight } from "lucide-react";
+import { Calendar, Users, ArrowRight } from "lucide-react"; // Users icon is imported but not used, consider removing if not planned.
 
 const upcomingEvents = [
   {
     date: "Every Thursday",
     title: "Weekly Startup Social",
-    description: "Our regular informal hangout. Connect, share, and unwind with fellow innovators over coffee and snacks.",
+    description: "Our regular informal hangout (typically 9 AM - 1 PM). Connect, share, and unwind with fellow innovators over coffee and snacks.", // Updated description
     type: "Social Meetup",
     location: "Creative Nomad Studios"
   },
