@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Lightbulb, Zap, HeartHandshake } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -28,7 +27,7 @@ const MissionSection = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Our Mission: Empowering Orillia's Innovators</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Startup Orillia is dedicated to fostering a supportive and dynamic environment where anyone building something in Orillia—startups, side hustles, freelancers, and indie creators—can thrive. We believe in giving back: all proceeds from our events are donated to <a href="https://www.sharingplaceorillia.ca/" target="_blank" rel="noopener noreferrer" className="text-brand-orange hover:underline font-semibold">The Sharing Place Food Centre</a>.
+            Startup Orillia is dedicated to fostering a supportive and dynamic environment where anyone building something in Orillia—startups, side hustles, freelancers, and indie creators—can thrive. We believe in giving back: all proceeds from our events are donated to <a href="https://www.sharingplaceorillia.ca/" target="_blank" rel="noopener noreferrer" className="text-brand-orange hover:underline font-semibold">The Sharing Place Food Centre</a>. Suggested donation for attendees is $10-20.
           </p>
           <div className="mt-6 flex justify-center animate-fade-in-up" style={{ animationDelay: `0.2s` }}>
             <Badge variant="outline" className="text-base flex items-center gap-2 py-2 px-4 border-brand-teal text-brand-teal hover:bg-brand-teal/10">
