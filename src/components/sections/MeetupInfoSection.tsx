@@ -1,5 +1,7 @@
-import { MapPin, CalendarDays, Clock } from "lucide-react";
+
+import { MapPin, CalendarDays, Clock, Coffee, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 const MeetupInfoSection = () => {
   return (
@@ -33,6 +35,14 @@ const MeetupInfoSection = () => {
                   <p className="text-muted-foreground">Creative Nomad Studios, 23 Mississaga St W, Orillia, ON</p>
                 </div>
               </div>
+            </div>
+            <div className="mb-8 flex flex-wrap gap-3">
+              <Badge variant="secondary" className="flex items-center gap-2 py-1.5 px-3 text-sm">
+                <Coffee className="h-4 w-4" /> Free Coffee & Snacks
+              </Badge>
+              <Badge variant="secondary" className="flex items-center gap-2 py-1.5 px-3 text-sm">
+                <Users className="h-4 w-4" /> All Welcome
+              </Badge>
             </div>
             <Button size="lg" className="bg-brand-teal hover:bg-brand-teal/90 text-white" asChild>
               <a href="https://www.google.com/maps/search/?api=1&query=Creative+Nomad+Studios+Orillia" target="_blank" rel="noopener noreferrer">

@@ -20,7 +20,9 @@ export default {
 		},
 		extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'], // Add Poppins as default sans-serif
+        sans: ['Inter', 'sans-serif'], // Default body font
+        heading: ['Montserrat', 'sans-serif'], // Default heading font
+        handcrafted: ['Quicksand', 'sans-serif'], // Bonus handcrafted font
       },
 			colors: {
 				border: 'hsl(var(--border))',

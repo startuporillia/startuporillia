@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <Sparkles className="h-7 w-7 text-primary" />
-          <span className="font-bold text-xl">Startup Orillia</span>
+          <span className="font-bold text-xl font-handcrafted">Startup Orillia</span>
         </Link>
 
         <nav className="hidden md:flex gap-6 items-center">
@@ -48,7 +48,7 @@ const Navbar = () => {
               <div className="grid gap-4 py-6">
                 <Link to="/" className="flex items-center gap-2 mb-4">
                   <Sparkles className="h-6 w-6 text-primary" />
-                  <span className="font-bold text-lg">Startup Orillia</span>
+                  <span className="font-bold text-lg font-handcrafted">Startup Orillia</span>
                 </Link>
                 {navItems.map((item) => (
                   <a

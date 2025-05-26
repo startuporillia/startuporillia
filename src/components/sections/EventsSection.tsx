@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, Users, ArrowRight } from "lucide-react"; // Users icon is imported but not used, consider removing if not planned.
+import { Calendar, ArrowRight } from "lucide-react"; // Removed Users icon
 
 const upcomingEvents = [
   {

@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Lightbulb, Zap, HeartHandshake } from "lucide-react"; // Added HeartHandshake for charity
+import { Users, Lightbulb, Zap, HeartHandshake } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const MissionSection = () => {
   const features = [
@@ -15,7 +16,7 @@ const MissionSection = () => {
       description: "Gain insights from guest speakers, participate in workshops, and grow your skills.",
     },
     {
-      icon: <Zap className="h-10 w-10 text-primary" />, // Kept original icon, consider if a more community one fits better overall
+      icon: <Zap className="h-10 w-10 text-primary" />,
       title: "Support Local Innovation",
       description: "Be part of a movement that champions local talent and drives Orillia's entrepreneurial ecosystem.",
     },
@@ -29,10 +30,15 @@ const MissionSection = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Startup Orillia is dedicated to fostering a supportive and dynamic environment where anyone building something in Orillia—startups, side hustles, freelancers, and indie creators—can thrive. We believe in giving back: all proceeds from our events are donated to <a href="https://www.sharingplaceorillia.ca/" target="_blank" rel="noopener noreferrer" className="text-brand-orange hover:underline font-semibold">The Sharing Place Food Centre</a>.
           </p>
+          <div className="mt-6 flex justify-center animate-fade-in-up" style={{ animationDelay: `0.2s` }}>
+            <Badge variant="outline" className="text-base flex items-center gap-2 py-2 px-4 border-brand-teal text-brand-teal hover:bg-brand-teal/10">
+              <HeartHandshake className="h-5 w-5" /> All event proceeds are donated!
+            </Badge>
+          </div>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Card key={index} className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300 animate-fade-in-up" style={{ animationDelay: `${0.1 * (index + 1)}s` }}>
+            <Card key={index} className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300 animate-fade-in-up" style={{ animationDelay: `${0.1 * (index + 3)}s` }}> {/* Adjusted animation delay */}
               <CardHeader>
                 <div className="flex justify-center mb-4">{feature.icon}</div>
                 <CardTitle className="text-xl font-semibold text-primary">{feature.title}</CardTitle>
