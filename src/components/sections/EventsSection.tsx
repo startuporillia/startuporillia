@@ -5,9 +5,9 @@ import { Calendar, Users, ArrowRight } from "lucide-react";
 
 const upcomingEvents = [
   {
-    date: "Every Wednesday",
+    date: "Every Thursday",
     title: "Weekly Startup Social",
-    description: "Our regular casual meetup. Connect, share, and unwind with fellow innovators.",
+    description: "Our regular informal hangout. Connect, share, and unwind with fellow innovators over coffee and snacks.",
     type: "Social Meetup",
     location: "Creative Nomad Studios"
   },

@@ -1,5 +1,5 @@
 
-import { Sparkles } from "lucide-react";
+import { Sparkles, MessageCircle } from "lucide-react"; // Added MessageCircle for WhatsApp
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -13,6 +13,17 @@ const Footer = () => {
         <p className="text-sm">
           Fostering innovation and collaboration in Orillia's vibrant entrepreneurial community.
         </p>
+        <div className="mt-4 mb-2">
+            <a 
+                href="https://chat.whatsapp.com/yourgroupinvite" // Replace with actual WhatsApp group link
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center gap-2 text-sm text-brand-teal hover:text-brand-teal/80 font-medium"
+            >
+                <MessageCircle className="h-5 w-5" />
+                Join our WhatsApp Group
+            </a>
+        </div>
         <p className="text-sm mt-1">
           &copy; {currentYear} Startup Orillia. All rights reserved.
         </p>

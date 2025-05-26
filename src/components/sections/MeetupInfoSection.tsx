@@ -10,14 +10,14 @@ const MeetupInfoSection = () => {
           <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Join Our Weekly Meetups!</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Every week, Startup Orillia hosts an open and informal meetup for anyone passionate about building, creating, and innovating in our city. It's the perfect place to connect, share, and get inspired.
+              Every week, Startup Orillia hosts an informal hangout for anyone passionate about building, creating, and innovating in our city. Expect coffee, snacks, good conversation, and a chance to build real connections. It's the perfect place to connect, share, and get inspired.
             </p>
             <div className="space-y-4 mb-8">
               <div className="flex items-start gap-3">
                 <CalendarDays className="h-6 w-6 text-brand-orange mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-primary">When?</h3>
-                  <p className="text-muted-foreground">Every Wednesday Evening</p>
+                  <p className="text-muted-foreground">Every Thursday Evening</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
