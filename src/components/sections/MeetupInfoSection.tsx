@@ -1,4 +1,3 @@
-
 import { MapPin, CalendarDays, Clock, Coffee, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,23 +8,23 @@ const MeetupInfoSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Join Our Weekly Meetups!</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Join Our Monthly Meetups!</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Every week, Startup Orillia hosts an informal hangout for anyone passionate about building, creating, and innovating in our city. Expect coffee, snacks, good conversation, and a chance to build real connections. It's the perfect place to connect, share, and get inspired.
+              Every month, Startup Orillia hosts an informal hangout for anyone passionate about building, creating, and innovating in our city. Join us on the first Thursday of each month for coffee, snacks, good conversation, and a chance to build real connections. It's the perfect place to connect, share, and get inspired.
             </p>
             <div className="space-y-4 mb-8">
               <div className="flex items-start gap-3">
                 <CalendarDays className="h-6 w-6 text-brand-orange mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-primary">When?</h3>
-                  <p className="text-muted-foreground">Every Thursday</p>
+                  <p className="text-muted-foreground">First Thursday of every month</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Clock className="h-6 w-6 text-brand-orange mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-primary">Time?</h3>
-                  <p className="text-muted-foreground">9:00 AM - 1:00 PM (unless otherwise noted)</p>
+                  <p className="text-muted-foreground">9:00 AM - 1:00 PM</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -35,6 +34,11 @@ const MeetupInfoSection = () => {
                   <p className="text-muted-foreground">Creative Nomad Studios, 23 Mississaga St W, Orillia, ON</p>
                 </div>
               </div>
+            </div>
+            <div className="mb-8">
+              <p className="text-sm text-muted-foreground italic">
+                Please check Upcoming Events below to confirm and register
+              </p>
             </div>
             <div className="mb-8 flex flex-wrap gap-3">
               <Badge variant="secondary" className="flex items-center gap-2 py-1.5 px-3 text-sm">

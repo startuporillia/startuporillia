@@ -1,4 +1,3 @@
-
 import { Sparkles, MessageCircle } from "lucide-react"; // Added MessageCircle for WhatsApp
 
 const Footer = () => {
@@ -15,7 +14,7 @@ const Footer = () => {
         </p>
         <div className="mt-4 mb-2">
             <a 
-                href="https://chat.whatsapp.com/yourgroupinvite" // Replace with actual WhatsApp group link
+                href="https://chat.whatsapp.com/LndY1VnetIrE8IgBUtbU9F"
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="inline-flex items-center gap-2 text-sm text-brand-teal hover:text-brand-teal/80 font-medium"
