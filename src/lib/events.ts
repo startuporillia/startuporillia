@@ -4,6 +4,7 @@ export interface Event {
   description: string;
   time: string;
   location: string;
+  cost: string;
 }
 
 export const upcomingEvents: Event[] = [
@@ -12,7 +13,8 @@ export const upcomingEvents: Event[] = [
     title: "Startup Orillia Coworking Day",
     description: "Join us for coffee, coworking, and conversation with the Startup Orillia community.",
     time: "9:00 AM - 1:00 PM EDT",
-    location: "Creative Nomad Studios"
+    location: "Creative Nomad Studios",
+    cost: "Free! (Sponsored by Creative Nomad Studios)"
   }
 ];
 
@@ -22,14 +24,16 @@ export const pastEvents: Event[] = [
     title: "Startup Orillia Coworking Day",
     description: "A great day of coffee, coworking, and conversation with the Startup Orillia community.",
     time: "9:00 AM - 1:00 PM EDT",
-    location: "Creative Nomad Studios, 23 Mississaga Street West Orillia, ON L3V 3A5"
+    location: "Creative Nomad Studios, 23 Mississaga Street West Orillia, ON L3V 3A5",
+    cost: "Free! (Sponsored by Creative Nomad Studios)"
   },
   {
     date: "Wednesday, June 26",
     title: "Startup Orillia Coworking Day",
     description: "Another fantastic session of coffee, coworking, and conversation with the Startup Orillia community.",
     time: "9:00 AM - 1:00 PM EDT",
-    location: "Creative Nomad Studios, 23 Mississaga Street West Orillia, ON L3V 3A5"
+    location: "Creative Nomad Studios, 23 Mississaga Street West Orillia, ON L3V 3A5",
+    cost: "Free! (Sponsored by Creative Nomad Studios)"
   }
 ];
 

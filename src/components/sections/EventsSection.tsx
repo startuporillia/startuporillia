@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Calendar, ArrowRight, MapPin, Clock, CheckCircle, MessageCircle, Users, Bell } from "lucide-react";
+import { Calendar, ArrowRight, MapPin, Clock, CheckCircle, MessageCircle, Users, Bell, DollarSign } from "lucide-react";
 import { useState } from "react";
 import { upcomingEvents, pastEvents } from "../../lib/events";
 
@@ -104,6 +104,10 @@ const EventsSection = () => {
                   <MapPin className="h-5 w-5 text-brand-orange mt-1 flex-shrink-0" />
                   <p className="text-muted-foreground">{event.location}</p>
                 </div>
+                <div className="flex items-start gap-3">
+                  <DollarSign className="h-5 w-5 text-green-500 mt-1 flex-shrink-0" />
+                  <p className="text-muted-foreground font-medium text-green-600">{event.cost}</p>
+                </div>
               </CardContent>
               <div className="p-6 pt-0">
                 <RSVPInstructions />
@@ -137,6 +141,10 @@ const EventsSection = () => {
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-green-500 mt-1 flex-shrink-0" />
                   <p className="text-muted-foreground">{event.location}</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <DollarSign className="h-5 w-5 text-green-500 mt-1 flex-shrink-0" />
+                  <p className="text-muted-foreground font-medium text-green-600">{event.cost}</p>
                 </div>
               </CardContent>
               <div className="p-6 pt-0">

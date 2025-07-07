@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ArrowRight, MessageCircle, Users, Bell, Calendar, Clock, MapPin } from "lucide-react";
+import { ArrowRight, MessageCircle, Users, Bell, Calendar, Clock, MapPin, DollarSign } from "lucide-react";
 import { useState } from "react";
 import { getNextMeetup } from "../../lib/events";
 
@@ -97,6 +97,10 @@ const NextMeetupCard = () => {
         <div className="flex items-start gap-2 text-muted-foreground">
           <MapPin className="h-4 w-4 text-brand-orange mt-0.5 flex-shrink-0" />
           <span className="text-xs">{nextMeetup.location}</span>
+        </div>
+        <div className="flex items-center gap-2 text-green-600 font-medium">
+          <DollarSign className="h-4 w-4" />
+          <span className="text-xs">{nextMeetup.cost}</span>
         </div>
       </div>
     </div>
