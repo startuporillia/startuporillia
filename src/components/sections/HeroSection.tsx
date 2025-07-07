@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ArrowRight, MessageCircle, Users, Bell, Calendar, Clock, MapPin } from "lucide-react";
 import { useState } from "react";
-import { getNextMeetup } from "@/lib/events";
+import { getNextMeetup } from "../../lib/events";
 
 const RSVPInstructions = () => {
   const [isOpen, setIsOpen] = useState(false);

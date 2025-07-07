@@ -20,4 +20,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   base: '/',
+  esbuild: {
+    target: 'es2022',
+  },
 }));
