@@ -10,7 +10,10 @@ This is the official website for Startup Orillia, a vibrant community for entrep
 
 ### Prerequisites
 
-- Node.js & npm - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Bun** (recommended) - [install Bun](https://bun.sh/docs/installation)
+- **Node.js v16+** (alternative) - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+> **Note**: This project uses modern JavaScript features that require Node.js v16 or higher. Bun is recommended for better performance and compatibility.
 
 ### Getting Started
 
@@ -21,6 +24,16 @@ git clone https://github.com/yourusername/startuporillia.git
 # Navigate to the project directory
 cd startuporillia
 
+# Install dependencies (using Bun)
+bun install
+
+# Start the development server
+bun run dev
+```
+
+**Alternative with Node.js:**
+
+```sh
 # Install dependencies
 npm install
 
@@ -28,12 +41,32 @@ npm install
 npm run dev
 ```
 
+**If you encounter Node.js version issues, use:**
+
+```sh
+bunx --bun vite
+```
+
 ### Available Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+- `bun run dev` - Start development server
+- `bun run build` - Build for production
+- `bun run preview` - Preview production build
+- `bun run lint` - Run ESLint
+
+### Development Server
+
+Once started, the development server will be available at:
+
+- **http://localhost:5173** (default)
+- **http://localhost:8080** (if 5173 is busy)
+
+The server includes:
+
+- ✅ Hot reload on file changes
+- ✅ TypeScript compilation
+- ✅ Tailwind CSS processing
+- ✅ Error overlay for debugging
 
 ## Technologies Used
 
@@ -42,14 +75,15 @@ npm run dev
 - React
 - shadcn-ui
 - Tailwind CSS
+- Bun (package manager)
 
 ## Deployment
 
 The site is deployed using GitHub Pages. To deploy:
 
 ```sh
-npm run build
-npm run deploy
+bun run build
+bun run deploy
 ```
 
 ## Contributing
