@@ -10,10 +10,10 @@ This is the official website for Startup Orillia, a vibrant community for entrep
 
 ### Prerequisites
 
-- **Bun** (recommended) - [install Bun](https://bun.sh/docs/installation)
-- **Node.js v16+** (alternative) - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Node.js v18+** (recommended) - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **npm v8+** (comes with Node.js)
 
-> **Note**: This project uses modern JavaScript features that require Node.js v16 or higher. Bun is recommended for better performance and compatibility.
+> **Note**: This project uses modern JavaScript features that require Node.js v18 or higher. We recommend using nvm to manage Node.js versions.
 
 ### Getting Started
 
@@ -24,16 +24,6 @@ git clone https://github.com/yourusername/startuporillia.git
 # Navigate to the project directory
 cd startuporillia
 
-# Install dependencies (using Bun)
-bun install
-
-# Start the development server
-bun run dev
-```
-
-**Alternative with Node.js:**
-
-```sh
 # Install dependencies
 npm install
 
@@ -41,18 +31,12 @@ npm install
 npm run dev
 ```
 
-**If you encounter Node.js version issues, use:**
-
-```sh
-bunx --bun vite
-```
-
 ### Available Scripts
 
-- `bun run dev` - Start development server
-- `bun run build` - Build for production
-- `bun run preview` - Preview production build
-- `bun run lint` - Run ESLint
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
 ### Development Server
 
@@ -75,16 +59,18 @@ The server includes:
 - React
 - shadcn-ui
 - Tailwind CSS
-- Bun (package manager)
+- npm (package manager)
 
 ## Deployment
 
 The site is deployed using GitHub Pages. To deploy:
 
 ```sh
-bun run build
-bun run deploy
+npm run build
+npm run deploy
 ```
+
+> **Note**: With Node.js v20+, the build process should work without any version compatibility warnings.
 
 ## Contributing
 
