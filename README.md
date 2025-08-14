@@ -6,6 +6,13 @@ This is the official website for Startup Orillia, a vibrant community for entrep
 
 **Live Site**: https://startuporillia.ca
 
+### Features
+
+- **Homepage**: Community information, upcoming meetups, and mission
+- **Pitch Day**: Dedicated landing page for Startup Orillia's inaugural pitch event
+- **Events**: Information about regular meetups and special events
+- **Gallery**: Photos from past events and community gatherings
+
 ## Development
 
 ### Prerequisites

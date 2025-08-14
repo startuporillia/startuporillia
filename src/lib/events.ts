@@ -9,7 +9,7 @@ export interface Event {
 
 export const upcomingEvents: Event[] = [
   {
-    date: "Tuesday, August 20",
+    date: "Wednesday, August 20",
     title: "Startup Orillia Coworking Day",
     description: "Join us for coffee, coworking, and conversation with the Startup Orillia community.",
     time: "9:00 AM - 1:00 PM EDT",
