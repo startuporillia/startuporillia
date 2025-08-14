@@ -23,15 +23,30 @@ const Navbar = () => {
         </Link>
 
         <nav className="hidden md:flex gap-6 items-center">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-            >
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            // Use Link for internal routes, anchor for hash links
+            if (item.href.startsWith('/')) {
+              return (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {item.label}
+                </Link>
+              );
+            } else {
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {item.label}
+                </a>
+              );
+            }
+          })}
           <Button asChild>
             <a href="#rsvp">RSVP Now</a>
           </Button>
@@ -51,15 +66,30 @@ const Navbar = () => {
                   <Sparkles className="h-6 w-6 text-primary" />
                   <span className="font-bold text-lg font-handcrafted">Startup Orillia</span>
                 </Link>
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="text-base font-medium text-foreground transition-colors hover:text-primary py-2"
-                  >
-                    {item.label}
-                  </a>
-                ))}
+                {navItems.map((item) => {
+                  // Use Link for internal routes, anchor for hash links
+                  if (item.href.startsWith('/')) {
+                    return (
+                      <Link
+                        key={item.label}
+                        to={item.href}
+                        className="text-base font-medium text-foreground transition-colors hover:text-primary py-2"
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  } else {
+                    return (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        className="text-base font-medium text-foreground transition-colors hover:text-primary py-2"
+                      >
+                        {item.label}
+                      </a>
+                    );
+                  }
+                })}
                 <Button asChild className="mt-4">
                   <a href="#rsvp">RSVP Now</a>
                 </Button>
