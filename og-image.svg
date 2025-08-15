@@ -1,0 +1,53 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F26522;stop-opacity:0.1" />
+      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#008080;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="50" fill="#F26522" opacity="0.1"/>
+  <circle cx="1100" cy="530" r="80" fill="#008080" opacity="0.1"/>
+  <circle cx="200" cy="500" r="30" fill="#F26522" opacity="0.2"/>
+  
+  <!-- Main content area -->
+  <rect x="100" y="100" width="1000" height="430" rx="20" fill="white" opacity="0.95" stroke="#F26522" stroke-width="2"/>
+  
+  <!-- Logo/Icon -->
+  <g transform="translate(150, 150)">
+    <circle cx="30" cy="30" r="25" fill="#F26522"/>
+    <path d="M15 30 L25 20 L35 30 L25 40 Z" fill="white"/>
+    <circle cx="25" cy="25" r="3" fill="white"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#333">
+    Startup Orillia
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#666">
+    Community & Meetups
+  </text>
+  
+  <!-- Description -->
+  <text x="600" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#555" max-width="800">
+    A vibrant, grassroots community for entrepreneurs, tech professionals, and innovators
+  </text>
+  
+  <!-- Call to action -->
+  <rect x="450" y="380" width="300" height="50" rx="25" fill="#F26522"/>
+  <text x="600" y="415" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">
+    Join Our Community
+  </text>
+  
+  <!-- URL -->
+  <text x="600" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#888">
+    startuporillia.ca
+  </text>
+</svg>
