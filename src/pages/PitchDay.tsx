@@ -299,21 +299,7 @@ const PitchDay = () => {
                 </div>
             </section>
 
-            {/* Contact Section */}
-            <section className="py-16 md:py-24 bg-secondary/30">
-                <div className="container mx-auto px-4 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Questions?</h2>
-                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-                        Have questions about Pitch Day that aren't answered above? We'd love to hear from you.
-                    </p>
-                    <Button size="lg" variant="outline" className="border-brand-teal text-brand-teal hover:bg-brand-teal/10" asChild>
-                        <a href="mailto:hello@startuporillia.ca">
-                            <Mail className="mr-2 h-5 w-5" />
-                            Contact Us
-                        </a>
-                    </Button>
-                </div>
-            </section>
+
         </>
     );
 };
