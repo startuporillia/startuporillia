@@ -1,27 +1,10 @@
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { X, Rocket } from "lucide-react";
+import { Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const AnnouncementBanner = () => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        // Check if banner was dismissed
-        const isDismissed = localStorage.getItem("pitch-day-banner-dismissed");
-        if (!isDismissed) {
-            setIsVisible(true);
-        }
-    }, []);
-
-    const handleDismiss = () => {
-        setIsVisible(false);
-        localStorage.setItem("pitch-day-banner-dismissed", "true");
-    };
-
-    if (!isVisible) {
-        return null;
-    }
+    // Banner is always visible - no dismissal functionality
+    const isVisible = true;
 
     return (
         <div className="bg-gradient-to-r from-brand-orange to-brand-teal text-white">
@@ -38,7 +21,7 @@ const AnnouncementBanner = () => {
                             </span>
                         </div>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center">
                         <Button
                             size="sm"
                             variant="secondary"
@@ -48,15 +31,6 @@ const AnnouncementBanner = () => {
                             <Link to="/pitch-day">
                                 Learn more & apply
                             </Link>
-                        </Button>
-                        <Button
-                            size="sm"
-                            variant="ghost"
-                            className="text-white hover:bg-white/20 p-1 h-8 w-8"
-                            onClick={handleDismiss}
-                            aria-label="Dismiss announcement"
-                        >
-                            <X className="h-4 w-4" />
                         </Button>
                     </div>
                 </div>

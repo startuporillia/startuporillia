@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ArrowRight, MessageCircle, Users, Bell, Calendar, Clock, MapPin, DollarSign } from "lucide-react";
+import { ArrowRight, MessageCircle, Users, Bell, Calendar, Clock, MapPin, DollarSign, Rocket } from "lucide-react";
 import { useState } from "react";
 import { getNextMeetup } from "../../lib/events";
+import { Link } from "react-router-dom";
 
 const RSVPInstructions = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,13 +53,13 @@ const RSVPInstructions = () => {
             </div>
           ))}
           <div className="pt-4 border-t">
-            <Button 
-              className="w-full bg-brand-teal hover:bg-brand-teal/90 text-white" 
+            <Button
+              className="w-full bg-brand-teal hover:bg-brand-teal/90 text-white"
               asChild
             >
-              <a 
-                href="https://chat.whatsapp.com/LndY1VnetIrE8IgBUtbU9F" 
-                target="_blank" 
+              <a
+                href="https://chat.whatsapp.com/LndY1VnetIrE8IgBUtbU9F"
+                target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
               >
@@ -75,7 +76,7 @@ const RSVPInstructions = () => {
 
 const NextMeetupCard = () => {
   const nextMeetup = getNextMeetup();
-  
+
   if (!nextMeetup) {
     return null;
   }
@@ -114,6 +115,24 @@ const HeroSection = () => {
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-primary mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
           Welcome to <span className="font-handcrafted bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-teal">Startup Orillia</span>
         </h1>
+
+        {/* Pitch Day Banner */}
+        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <div className="bg-gradient-to-r from-brand-orange to-brand-teal text-white rounded-lg p-4 max-w-2xl mx-auto shadow-lg">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <Rocket className="h-6 w-6" />
+              <span className="font-bold text-lg">🚀 Announcing Startup Orillia Pitch Day</span>
+            </div>
+            <p className="text-sm mb-4 opacity-90">
+              Showcase your startup, get feedback from local angels and experienced founders, and potentially raise some money.
+            </p>
+            <Button size="sm" className="bg-white text-brand-orange hover:bg-white/90 font-semibold" asChild>
+              <Link to="/pitch-day">
+                Learn more & apply
+              </Link>
+            </Button>
+          </div>
+        </div>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
           A vibrant, grassroots community for Orillia's entrepreneurs, tech professionals, innovators, and small business dreamers. Let's build something amazing, together.
         </p>
@@ -124,10 +143,10 @@ const HeroSection = () => {
             Meetups every month at Creative Nomad Studios!
           </p>
           <div className="mt-4">
-            <a 
+            <a
               href="https://chat.whatsapp.com/LndY1VnetIrE8IgBUtbU9F"
-              target="_blank" 
-              rel="noopener noreferrer" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-brand-teal hover:text-brand-teal/80 font-medium"
             >
               <MessageCircle className="h-5 w-5" />
