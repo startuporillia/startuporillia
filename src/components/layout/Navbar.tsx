@@ -12,7 +12,7 @@ const Navbar = () => {
     { label: "Events", href: "#events" },
     { label: "Gallery", href: "#gallery" },
     { label: "Launched Startups", href: "/launched-startups" },
-    { label: "Pitch Day", href: "/pitch-day" },
+    // { label: "Pitch Day", href: "/pitch-day" }, // Temporarily hidden
   ];
 
   return (
