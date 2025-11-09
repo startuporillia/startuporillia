@@ -11,6 +11,7 @@ const Navbar = () => {
     { label: "Meetups", href: "#meetups" },
     { label: "Events", href: "#events" },
     { label: "Gallery", href: "#gallery" },
+    { label: "Launched Startups", href: "/launched-startups" },
     // { label: "Pitch Day", href: "/pitch-day" }, // Temporarily hidden
   ];
 
