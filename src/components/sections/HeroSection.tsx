@@ -116,8 +116,8 @@ const HeroSection = () => {
           Welcome to <span className="font-handcrafted bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-teal">Startup Orillia</span>
         </h1>
 
-        {/* Pitch Day Banner */}
-        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+        {/* Pitch Day Banner - Temporarily Hidden */}
+        {/* <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           <div className="bg-gradient-to-r from-brand-orange to-brand-teal text-white rounded-lg p-4 max-w-2xl mx-auto shadow-lg">
             <div className="flex items-center justify-center gap-3 mb-3">
               <Rocket className="h-6 w-6" />
@@ -132,7 +132,7 @@ const HeroSection = () => {
               </Link>
             </Button>
           </div>
-        </div>
+        </div> */}
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
           A vibrant, grassroots community for Orillia's entrepreneurs, tech professionals, innovators, and small business dreamers. Let's build something amazing, together.
         </p>
