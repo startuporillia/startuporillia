@@ -9,7 +9,7 @@ export interface Event {
 
 export const upcomingEvents: Event[] = [
   {
-    date: "Wednesday, November 5",
+    date: "Tuesday, January 27",
     title: "Startup Orillia Coworking Day",
     description: "Join us for coffee, coworking, and conversation with the Startup Orillia community.",
     time: "9:00 AM - 1:00 PM EST",
@@ -19,6 +19,14 @@ export const upcomingEvents: Event[] = [
 ];
 
 export const pastEvents: Event[] = [
+  {
+    date: "Wednesday, November 5",
+    title: "Startup Orillia Coworking Day",
+    description: "Join us for coffee, coworking, and conversation with the Startup Orillia community.",
+    time: "9:00 AM - 1:00 PM EST",
+    location: "Creative Nomad Studios",
+    cost: "Free! (Sponsored by Creative Nomad Studios)"
+  },
   {
     date: "Wednesday, August 20",
     title: "Startup Orillia Coworking Day",
