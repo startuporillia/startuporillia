@@ -1,5 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowUpRight } from "lucide-react";
 
 const LaunchedStartups = () => {
   const startups = [
@@ -43,48 +42,47 @@ const LaunchedStartups = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+        <div className="max-w-2xl mx-auto text-center mb-16">
+          <h1 className="text-primary mb-4">
             Startups We've Launched
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground">
             Discover the innovative companies that have grown from our community.
             Each of these startups represents the entrepreneurial spirit of Orillia.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {startups.map((startup) => (
-            <Card
+            <a
               key={startup.id}
-              className="group hover:shadow-xl transition-all duration-300 overflow-hidden"
+              href={startup.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-card rounded-2xl border border-border/50 overflow-hidden hover:shadow-lg hover:border-brand-orange/30 transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="relative h-48 bg-muted/30 flex items-center justify-center p-8 overflow-hidden">
+              {/* Logo container with white background */}
+              <div className="h-44 bg-white flex items-center justify-center p-8 border-b border-border/30">
                 <img
                   src={startup.image}
                   alt={startup.name}
-                  className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  className="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
                 />
               </div>
-              <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  {startup.name}
-                  <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                </CardTitle>
-                <CardDescription>{startup.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <a
-                  href={startup.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                >
-                  Visit Website
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              </CardContent>
-            </Card>
+
+              {/* Content */}
+              <div className="p-6">
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <h3 className="text-lg font-heading font-semibold text-primary group-hover:text-brand-orange transition-colors">
+                    {startup.name}
+                  </h3>
+                  <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-brand-orange transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0" />
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {startup.description}
+                </p>
+              </div>
+            </a>
           ))}
         </div>
       </div>

@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ArrowRight, MessageCircle, Users, Bell, Calendar, Clock, MapPin, DollarSign, Rocket } from "lucide-react";
+import { ArrowRight, MessageCircle, Users, Bell, Calendar, Clock, MapPin, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { getNextMeetup } from "../../lib/events";
-import { Link } from "react-router-dom";
 
 const RSVPInstructions = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,32 +28,33 @@ const RSVPInstructions = () => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button size="lg" className="bg-brand-orange hover:bg-brand-orange/90 text-white group">
-          RSVP for Our Next Meetup <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+        <Button size="lg" className="bg-brand-orange hover:bg-brand-orange-light text-white font-medium px-8 py-6 text-base rounded-xl shadow-lg shadow-brand-orange/20 hover:shadow-xl hover:shadow-brand-orange/25 transition-all duration-300 group">
+          RSVP for Next Coworking Day
+          <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md border-border/50">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold text-primary">How to RSVP for Our Meetups</DialogTitle>
+          <DialogTitle className="text-xl font-heading font-semibold text-primary">How to Join Us</DialogTitle>
           <DialogDescription className="text-muted-foreground">
             Follow these simple steps to join our community and RSVP for upcoming events.
           </DialogDescription>
         </DialogHeader>
-        <div className="space-y-6 py-4">
+        <div className="space-y-5 py-4">
           {steps.map((step, index) => (
             <div key={index} className="flex items-start gap-4">
-              <div className="flex-shrink-0 mt-1">
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-secondary flex items-center justify-center">
                 {step.icon}
               </div>
               <div className="flex-1">
-                <h4 className="font-semibold text-primary mb-1">{step.title}</h4>
-                <p className="text-sm text-muted-foreground">{step.description}</p>
+                <h4 className="font-medium text-primary mb-1">{step.title}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
               </div>
             </div>
           ))}
-          <div className="pt-4 border-t">
+          <div className="pt-4 border-t border-border/50">
             <Button
-              className="w-full bg-brand-teal hover:bg-brand-teal/90 text-white"
+              className="w-full bg-brand-teal hover:bg-brand-teal-light text-white font-medium py-5"
               asChild
             >
               <a
@@ -82,26 +82,30 @@ const NextMeetupCard = () => {
   }
 
   return (
-    <div className="bg-white/50 backdrop-blur-sm border border-brand-orange/20 rounded-lg p-4 mb-6 max-w-md mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-      <div className="text-center mb-3">
-        <h3 className="text-lg font-semibold text-primary mb-1">Next Meetup</h3>
-        <div className="flex items-center justify-center text-sm text-brand-orange font-medium mb-2">
-          <Calendar className="h-4 w-4 mr-2" />
+    <div className="relative bg-card border border-border/50 rounded-2xl p-6 mb-8 max-w-sm mx-auto shadow-sm opacity-0 animate-scale-in" style={{ animationDelay: '0.5s' }}>
+      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+        <span className="inline-flex items-center gap-1.5 bg-brand-orange text-white text-xs font-medium px-3 py-1 rounded-full">
+          <Sparkles className="h-3 w-3" />
+          Next Coworking Day
+        </span>
+      </div>
+      <div className="text-center pt-2">
+        <div className="flex items-center justify-center gap-2 text-lg font-heading font-semibold text-primary mb-4">
+          <Calendar className="h-5 w-5 text-brand-orange" />
           {nextMeetup.date}
         </div>
-      </div>
-      <div className="space-y-2 text-sm">
-        <div className="flex items-center gap-2 text-muted-foreground">
-          <Clock className="h-4 w-4 text-brand-orange" />
-          <span>{nextMeetup.time}</span>
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          <div className="flex items-center gap-2 text-muted-foreground bg-secondary/50 rounded-lg px-3 py-2">
+            <Clock className="h-4 w-4 text-brand-teal" />
+            <span>{nextMeetup.time}</span>
+          </div>
+          <div className="flex items-center gap-2 text-brand-teal font-medium bg-brand-teal/10 rounded-lg px-3 py-2">
+            <span>Free</span>
+          </div>
         </div>
-        <div className="flex items-start gap-2 text-muted-foreground">
-          <MapPin className="h-4 w-4 text-brand-orange mt-0.5 flex-shrink-0" />
-          <span className="text-xs">{nextMeetup.location}</span>
-        </div>
-        <div className="flex items-center gap-2 text-green-600 font-medium">
-          <DollarSign className="h-4 w-4" />
-          <span className="text-xs">{nextMeetup.cost}</span>
+        <div className="flex items-center justify-center gap-2 text-muted-foreground text-xs mt-3">
+          <MapPin className="h-3.5 w-3.5 text-brand-orange" />
+          <span>Creative Nomad Studios, Orillia</span>
         </div>
       </div>
     </div>
@@ -110,48 +114,57 @@ const NextMeetupCard = () => {
 
 const HeroSection = () => {
   return (
-    <section id="home" className="bg-gradient-to-br from-primary/5 via-background to-secondary/20 py-20 md:py-32">
-      <div className="container mx-auto px-4 text-center">
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-primary mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-          Welcome to <span className="font-handcrafted bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-teal">Startup Orillia</span>
-        </h1>
+    <section id="home" className="relative overflow-hidden grain-overlay">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-cream via-background to-background" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-orange/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-teal/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4" />
 
-        {/* Pitch Day Banner - Temporarily Hidden */}
-        {/* <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          <div className="bg-gradient-to-r from-brand-orange to-brand-teal text-white rounded-lg p-4 max-w-2xl mx-auto shadow-lg">
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <Rocket className="h-6 w-6" />
-              <span className="font-bold text-lg">🚀 Announcing Startup Orillia Pitch Day</span>
-            </div>
-            <p className="text-sm mb-4 opacity-90">
-              Showcase your startup, get feedback from local angels and experienced founders, and potentially raise some money.
-            </p>
-            <Button size="sm" className="bg-white text-brand-orange hover:bg-white/90 font-semibold" asChild>
-              <Link to="/pitch-day">
-                Learn more & apply
-              </Link>
-            </Button>
-          </div>
-        </div> */}
-        <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          A vibrant, grassroots community for Orillia's entrepreneurs, tech professionals, innovators, and small business dreamers. Let's build something amazing, together.
-        </p>
-        <div id="rsvp" className="animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-          <NextMeetupCard />
-          <RSVPInstructions />
-          <p className="text-xs text-muted-foreground mt-3">
-            Meetups every month at Creative Nomad Studios!
+      <div className="relative container mx-auto px-4 py-24 md:py-32 lg:py-40">
+        <div className="max-w-3xl mx-auto text-center">
+          {/* Main headline */}
+          <h1 className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+            <span className="block text-4xl md:text-5xl lg:text-6xl font-heading font-semibold text-primary mb-2">
+              Welcome to
+            </span>
+            <span className="block text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gradient">
+              Startup Orillia
+            </span>
+          </h1>
+
+          {/* Tagline */}
+          <p className="mt-8 text-xl md:text-2xl text-primary/80 font-medium tracking-tight opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            Orillia's community of founders and builders.
+            <br className="hidden sm:block" />
+            <span className="text-brand-orange">Show up.</span>{' '}
+            <span className="text-brand-teal">Work together.</span>{' '}
+            <span className="text-primary">Ship.</span>
           </p>
-          <div className="mt-4">
-            <a
-              href="https://chat.whatsapp.com/LndY1VnetIrE8IgBUtbU9F"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-brand-teal hover:text-brand-teal/80 font-medium"
-            >
-              <MessageCircle className="h-5 w-5" />
-              Join our WhatsApp Group
-            </a>
+
+          {/* Description */}
+          <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+            For people actively building startups, products, or tools — and who care about launching, learning, and getting them into the world.
+          </p>
+
+          {/* CTA Section */}
+          <div id="rsvp" className="mt-12">
+            <NextMeetupCard />
+
+            <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+              <RSVPInstructions />
+            </div>
+
+            <div className="mt-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.7s' }}>
+              <a
+                href="https://chat.whatsapp.com/LndY1VnetIrE8IgBUtbU9F"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-brand-teal transition-colors font-medium"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Or join our WhatsApp community directly
+              </a>
+            </div>
           </div>
         </div>
       </div>

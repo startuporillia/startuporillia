@@ -20,9 +20,9 @@ export default {
 		},
 		extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // Default body font
-        heading: ['Montserrat', 'sans-serif'], // Default heading font
-        handcrafted: ['Quicksand', 'sans-serif'], // Bonus handcrafted font
+        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        heading: ['Fraunces', 'Georgia', 'serif'],
+        display: ['Fraunces', 'Georgia', 'serif'],
       },
 			colors: {
 				border: 'hsl(var(--border))',
@@ -38,9 +38,13 @@ export default {
 					DEFAULT: 'hsl(var(--secondary))', // Default: 210 40% 96.1% (Very Light Gray)
 					foreground: 'hsl(var(--secondary-foreground))' // Default: 222.2 47.4% 11.2% (Dark Blue)
 				},
-        brand: { // Adding some brand specific colors for potential use
-          orange: '#F26522', // A vibrant orange
-          teal: '#008080',   // A friendly teal
+        brand: {
+          orange: '#E85A1B',
+          'orange-light': '#FF7A3D',
+          teal: '#0D7377',
+          'teal-light': '#14A3A8',
+          cream: '#FAF7F2',
+          'cream-dark': '#F0EBE3',
         },
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -98,18 +102,38 @@ export default {
         'fade-in-up': {
           '0%': {
             opacity: '0',
-            transform: 'translateY(20px)'
+            transform: 'translateY(24px)'
           },
           '100%': {
             opacity: '1',
             transform: 'translateY(0)'
           },
         },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        'scale-in': {
+          '0%': { opacity: '0', transform: 'scale(0.95)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        'slide-in-right': {
+          '0%': { opacity: '0', transform: 'translateX(20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-8px)' },
+        },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
+        'fade-in-up': 'fade-in-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+        'fade-in': 'fade-in 0.5s ease-out forwards',
+        'scale-in': 'scale-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+        'slide-in-right': 'slide-in-right 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+        'float': 'float 6s ease-in-out infinite',
 			}
 		}
 	},
