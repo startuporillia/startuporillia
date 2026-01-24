@@ -82,7 +82,7 @@ const NextMeetupCard = () => {
   }
 
   return (
-    <div className="relative bg-card border border-border/50 rounded-2xl p-6 mb-8 max-w-sm mx-auto shadow-sm opacity-0 animate-scale-in" style={{ animationDelay: '0.5s' }}>
+    <div className="relative bg-card border border-border/50 rounded-2xl p-6 mb-8 max-w-sm mx-auto shadow-sm animate-scale-in" style={{ animationDelay: '0.4s' }}>
       <div className="absolute -top-3 left-1/2 -translate-x-1/2">
         <span className="inline-flex items-center gap-1.5 bg-brand-orange text-white text-xs font-medium px-3 py-1 rounded-full">
           <Sparkles className="h-3 w-3" />
@@ -122,8 +122,8 @@ const HeroSection = () => {
 
       <div className="relative container mx-auto px-4 py-24 md:py-32 lg:py-40">
         <div className="max-w-3xl mx-auto text-center">
-          {/* Main headline */}
-          <h1 className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+          {/* Main headline - no animation delay for LCP */}
+          <h1>
             <span className="block text-4xl md:text-5xl lg:text-6xl font-heading font-semibold text-primary mb-2">
               Welcome to
             </span>
@@ -133,7 +133,7 @@ const HeroSection = () => {
           </h1>
 
           {/* Tagline */}
-          <p className="mt-8 text-xl md:text-2xl text-primary/80 font-medium tracking-tight opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <p className="mt-8 text-xl md:text-2xl text-primary/80 font-medium tracking-tight">
             Orillia's community of founders and builders.
             <br className="hidden sm:block" />
             <span className="text-brand-orange">Show up.</span>{' '}
@@ -141,8 +141,8 @@ const HeroSection = () => {
             <span className="text-primary">Ship.</span>
           </p>
 
-          {/* Description */}
-          <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+          {/* Description - this is the LCP element, must be visible immediately */}
+          <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
             For people actively building startups, products, or tools — and who care about launching, learning, and getting them into the world.
           </p>
 
@@ -150,11 +150,11 @@ const HeroSection = () => {
           <div id="rsvp" className="mt-12">
             <NextMeetupCard />
 
-            <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
               <RSVPInstructions />
             </div>
 
-            <div className="mt-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.7s' }}>
+            <div className="mt-6 animate-fade-in" style={{ animationDelay: '0.6s' }}>
               <a
                 href="https://chat.whatsapp.com/LndY1VnetIrE8IgBUtbU9F"
                 target="_blank"
