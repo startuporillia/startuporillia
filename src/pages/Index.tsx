@@ -1,5 +1,6 @@
 
 import HeroSection from "@/components/sections/HeroSection";
+import CommunityBuzzSection from "@/components/sections/CommunityBuzzSection";
 import MissionSection from "@/components/sections/MissionSection";
 import LogoSliderSection from "@/components/sections/LogoSliderSection";
 import MeetupInfoSection from "@/components/sections/MeetupInfoSection";
@@ -10,6 +11,7 @@ const Index = () => {
   return (
     <>
       <HeroSection />
+      <CommunityBuzzSection />
       <MissionSection />
       <LogoSliderSection />
       <MeetupInfoSection />
