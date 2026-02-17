@@ -6,7 +6,7 @@ const MeetupInfoSection = () => {
     {
       icon: <CalendarDays className="h-5 w-5" />,
       label: "When",
-      value: "Monthly (see events below)",
+      value: "Last Tuesday of every month",
     },
     {
       icon: <Clock className="h-5 w-5" />,

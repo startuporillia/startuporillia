@@ -107,6 +107,9 @@ const NextMeetupCard = () => {
           <MapPin className="h-3.5 w-3.5 text-brand-orange" />
           <span>Creative Nomad Studios, Orillia</span>
         </div>
+        <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
+          Bring your laptop, grab a coffee, and come co-work alongside other founders and builders. Meet people, swap ideas, or just get stuff done.
+        </p>
       </div>
     </div>
   );
