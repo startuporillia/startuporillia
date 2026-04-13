@@ -33,7 +33,7 @@ const MissionSection = () => {
         <div className="max-w-2xl mx-auto text-center mb-16">
           <h2 className="text-primary mb-6">Why We Exist</h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Building outside a major tech hub can be isolating. Startup Orillia creates a consistent place to show up, work alongside other builders, and actually make progress — together.
+            Building outside a major tech hub can be isolating. Startup Orillia creates a consistent place to show up, work alongside other builders, and actually make progress. Together.
           </p>
           <p className="mt-4 text-sm text-muted-foreground/70 font-medium">
             New projects, collaborations, and startups are already emerging from the community.

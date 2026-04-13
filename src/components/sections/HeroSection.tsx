@@ -137,7 +137,7 @@ const HeroSection = () => {
 
           {/* Tagline */}
           <p className="mt-8 text-xl md:text-2xl text-primary/80 font-medium tracking-tight">
-            Orillia's community of founders and builders.
+            Orillia's community of founders and builders.{' '}
             <br className="hidden sm:block" />
             <span className="text-brand-orange">Show up.</span>{' '}
             <span className="text-brand-teal">Work together.</span>{' '}
@@ -146,17 +146,13 @@ const HeroSection = () => {
 
           {/* Description - this is the LCP element, must be visible immediately */}
           <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            For people actively building startups, products, or tools — and who care about getting them into the world.
+            For people building startups, products, or tools, and for those using AI to move their work forward.
           </p>
 
           {/* Credibility line */}
           <p className="mt-4 text-sm text-muted-foreground/80 font-medium tracking-wide">
-            30+ builders. 15–25 meet monthly. Projects already in motion.
+            30+ builders. Monthly meetups. Projects in motion.
           </p>
-          <p className="mt-2 text-xs text-muted-foreground/60 tracking-wide">
-            New projects forming. Tools being built. Momentum growing.
-          </p>
-
           {/* CTA Section */}
           <div id="rsvp" className="mt-12">
             <NextMeetupCard />

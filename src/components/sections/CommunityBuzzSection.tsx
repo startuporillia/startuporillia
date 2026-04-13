@@ -5,7 +5,7 @@ const CommunityBuzzSection = () => {
     {
       emoji: "🤖",
       topic: "AI tools & workflows",
-      detail: "From $40 to $600+/mo — what's actually worth it",
+      detail: "From $40 to $600+/mo. What's actually worth it?",
     },
     {
       emoji: "🔧",
@@ -27,7 +27,7 @@ const CommunityBuzzSection = () => {
   const stats = [
     { value: "30+", label: "Active builders" },
     { value: "Monthly", label: "Coworking sessions" },
-    { value: "5", label: "Startups launched" },
+    { value: "5+", label: "Projects launched" },
   ];
 
   return (
