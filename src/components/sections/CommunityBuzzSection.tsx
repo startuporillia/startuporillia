@@ -4,28 +4,28 @@ const CommunityBuzzSection = () => {
   const recentTopics = [
     {
       emoji: "🤖",
-      topic: "AI tool stacks & costs",
-      detail: "Comparing Claude, Cursor, Antigravity — spending ranges from $40 to $600+/mo",
+      topic: "AI tools & workflows",
+      detail: "From $40 to $600+/mo — what's actually worth it",
     },
     {
       emoji: "🔧",
-      topic: "Multi-agent workflows",
-      detail: "Building Claude Code skills, parallel agents, and vibe coding setups",
+      topic: "Multi-agent systems",
+      detail: "Claude Code, parallel agents, real-world setups",
     },
     {
       emoji: "🎨",
       topic: "Projects in progress",
-      detail: "AI image/video generation tools, SMB procurement apps, and more",
+      detail: "SMB tools, AI media, internal systems",
     },
     {
       emoji: "🎓",
-      topic: "AI workshops & training",
-      detail: "Ethical AI use, practical workflows, and hands-on sessions for all skill levels",
+      topic: "Practical AI adoption",
+      detail: "How people are actually using this in their work",
     },
   ];
 
   const stats = [
-    { value: "25+", label: "Active builders" },
+    { value: "30+", label: "Active builders" },
     { value: "Monthly", label: "Coworking sessions" },
     { value: "5", label: "Startups launched" },
   ];
@@ -41,10 +41,10 @@ const CommunityBuzzSection = () => {
             </div>
             <div>
               <h2 className="text-xl md:text-2xl font-heading font-semibold text-primary">
-                What We're Talking About
+                What People Are Building
               </h2>
               <p className="text-sm text-muted-foreground">
-                Recent conversations from our WhatsApp community
+                Projects in progress and conversations from the community
               </p>
             </div>
           </div>

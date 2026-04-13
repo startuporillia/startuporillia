@@ -17,10 +17,10 @@ const LogoSliderSection = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
           <div>
             <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-2">
-              Startups We've Launched
+              Startups & Projects from the Community
             </h2>
             <p className="text-muted-foreground">
-              Meet some of the innovative companies in our community
+              Products and companies being built by members
             </p>
           </div>
           <Link

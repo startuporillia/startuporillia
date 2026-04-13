@@ -146,7 +146,15 @@ const HeroSection = () => {
 
           {/* Description - this is the LCP element, must be visible immediately */}
           <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            For people actively building startups, products, or tools — and who care about launching, learning, and getting them into the world.
+            For people actively building startups, products, or tools — and who care about getting them into the world.
+          </p>
+
+          {/* Credibility line */}
+          <p className="mt-4 text-sm text-muted-foreground/80 font-medium tracking-wide">
+            30+ builders. 15–25 meet monthly. Projects already in motion.
+          </p>
+          <p className="mt-2 text-xs text-muted-foreground/60 tracking-wide">
+            New projects forming. Tools being built. Momentum growing.
           </p>
 
           {/* CTA Section */}

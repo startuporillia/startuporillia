@@ -16,7 +16,7 @@ const Footer = () => {
               <span className="font-heading font-semibold text-lg text-primary">Startup Orillia</span>
             </div>
             <p className="text-sm text-muted-foreground text-center md:text-left">
-              For founders and builders who care about shipping.
+              For founders and builders who care about shipping — and doing it together.
             </p>
           </div>
 
