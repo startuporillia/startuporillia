@@ -7,10 +7,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import PitchDay from "./pages/PitchDay";
 import LaunchedStartups from "./pages/LaunchedStartups";
+import EventsPage from "./pages/Events";
+import WorkshopsPage from "./pages/Workshops";
+import ContactPage from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import AnnouncementBanner from "./components/layout/AnnouncementBanner";
+import ScrollToTop from "./components/layout/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -20,12 +24,16 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <div className="flex flex-col min-h-screen font-sans">
           <AnnouncementBanner />
           <Navbar />
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/events" element={<EventsPage />} />
+              <Route path="/workshops" element={<WorkshopsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
               <Route path="/pitch-day" element={<PitchDay />} />
               <Route path="/startups" element={<LaunchedStartups />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

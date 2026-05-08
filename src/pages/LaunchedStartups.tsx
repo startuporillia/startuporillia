@@ -44,11 +44,10 @@ const LaunchedStartups = () => {
       <div className="container mx-auto px-4 py-16 md:py-24">
         <div className="max-w-2xl mx-auto text-center mb-16">
           <h1 className="text-primary mb-4">
-            Startups We've Launched
+            Things people are building
           </h1>
           <p className="text-lg text-muted-foreground">
-            Discover the innovative companies that have grown from our community.
-            Each of these startups represents the entrepreneurial spirit of Orillia.
+            Side projects, startups, experiments, and tools being built by people in the Startup Orillia community.
           </p>
         </div>
 

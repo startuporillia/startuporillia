@@ -4,20 +4,20 @@ const MissionSection = () => {
   const features = [
     {
       icon: <Users className="h-7 w-7" />,
-      title: "Show Up & Work Together",
-      description: "A consistent time and place to work on your thing alongside other builders. The proximity keeps you accountable.",
+      title: "Show up & work together",
+      description: "A consistent time and place to work on your thing alongside other builders. Proximity keeps the momentum going.",
       color: "brand-teal",
     },
     {
       icon: <Lightbulb className="h-7 w-7" />,
-      title: "Learn & Grow",
-      description: "Get unstuck through peer support. Share what's working, ask for help, and learn from others who get what you're building.",
+      title: "Learn from each other",
+      description: "Workshops and casual conversation with people in the trenches. Real lessons, not theatre.",
       color: "brand-orange",
     },
     {
       icon: <Zap className="h-7 w-7" />,
-      title: "Connect & Collaborate",
-      description: "Meet other founders, find collaborators, and tap into Orillia's growing builder ecosystem.",
+      title: "Connect & collaborate",
+      description: "Meet founders, operators, and freelancers. Find collaborators, customers, or just better friends.",
       color: "primary",
     },
   ];
@@ -31,17 +31,23 @@ const MissionSection = () => {
 
       <div className="container mx-auto px-4 relative">
         <div className="max-w-2xl mx-auto text-center mb-16">
-          <h2 className="text-primary mb-6">Why We Exist</h2>
+          <h2 className="text-primary mb-6">Why this exists</h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Building outside a major tech hub can be isolating. Startup Orillia creates a consistent place to show up, work alongside other builders, and actually make progress. Together.
-          </p>
-          <p className="mt-4 text-sm text-muted-foreground/70 font-medium">
-            New projects, collaborations, and startups are already emerging from the community.
+            Interesting people are building and improving things all over Orillia: businesses, workflows, tools, side projects, creative work, and ideas. Startup Orillia exists to create more opportunities for those people to find each other, collaborate, and keep momentum going.
           </p>
           <div className="mt-8 inline-flex items-center gap-2 bg-brand-teal/10 text-brand-teal px-5 py-2.5 rounded-full text-sm font-medium">
             <HeartHandshake className="h-4 w-4" />
             <span>
-              Generously sponsored by{' '}
+              Supported by the{' '}
+              <a
+                href="https://www.orillia.ca/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-brand-teal-light transition-colors"
+              >
+                City of Orillia
+              </a>
+              {' '}and{' '}
               <a
                 href="https://creativenomad.ca/"
                 target="_blank"

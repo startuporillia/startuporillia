@@ -13,7 +13,7 @@ const PitchDay = () => {
 
     // Set page title and meta description
     useEffect(() => {
-        document.title = "Startup Orillia — Pitch Day | Apply to Pitch or Join the Panel";
+        document.title = "Startup Orillia: Pitch Day | Apply to Pitch or Join the Panel";
 
         // Update meta description
         const metaDescription = document.querySelector('meta[name="description"]');
@@ -41,7 +41,7 @@ const PitchDay = () => {
         },
         {
             question: "Is my intellectual property safe?",
-            answer: "This is a public pitch event—only share what you're comfortable with. Consider your pitch as a public presentation and protect any sensitive information accordingly."
+            answer: "This is a public pitch event. Only share what you're comfortable with. Consider your pitch as a public presentation and protect any sensitive information accordingly."
         },
         {
             question: "What does 'Showcase Only' mean?",
@@ -77,7 +77,7 @@ const PitchDay = () => {
                         </Badge>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-primary mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-                        Startup Orillia — <span className="font-handcrafted bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-teal">Pitch Day</span>
+                        Startup Orillia: <span className="font-handcrafted bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-brand-teal">Pitch Day</span>
                     </h1>
                     <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                         Showcase your startup, get feedback from local angels and experienced founders, and potentially raise money.

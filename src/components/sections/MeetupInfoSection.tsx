@@ -29,7 +29,7 @@ const MeetupInfoSection = () => {
           <div>
             <h2 className="text-primary mb-6">Monthly Coworking Days</h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Every month, we gather to work on our projects together. Bring your laptop, your current problem, or just show up. The value comes from consistency—being around others who are actively building.
+              Every month, we gather to work on our projects together. Bring your laptop, your current problem, or just show up. The value comes from consistency: being around others who are actively building.
             </p>
 
             {/* Details grid */}

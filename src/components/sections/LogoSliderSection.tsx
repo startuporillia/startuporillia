@@ -14,20 +14,24 @@ const LogoSliderSection = () => {
   return (
     <section className="py-16 md:py-20 bg-card border-y border-border/30">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
           <div>
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-orange uppercase tracking-wider mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
+              Things people are building
+            </span>
             <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-2">
-              Startups & Projects from the Community
+              Real projects from the community
             </h2>
             <p className="text-muted-foreground">
-              Products and companies being built by members
+              Startups, tools, and side projects shipped by people in the room.
             </p>
           </div>
           <Link
             to="/startups"
-            className="inline-flex items-center gap-2 text-sm font-medium text-brand-orange hover:text-brand-orange-light transition-colors group"
+            className="inline-flex items-center gap-2 text-sm font-medium text-brand-orange hover:text-brand-orange-light transition-colors group whitespace-nowrap"
           >
-            View all startups
+            View all projects
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
         </div>

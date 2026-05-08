@@ -1,24 +1,19 @@
-
 import HeroSection from "@/components/sections/HeroSection";
-import CommunityBuzzSection from "@/components/sections/CommunityBuzzSection";
-import MissionSection from "@/components/sections/MissionSection";
+import WhatsHappeningSection from "@/components/sections/WhatsHappeningSection";
+import WorkshopsSection from "@/components/sections/WorkshopsSection";
 import LogoSliderSection from "@/components/sections/LogoSliderSection";
-import MeetupInfoSection from "@/components/sections/MeetupInfoSection";
-import EventsSection from "@/components/sections/EventsSection";
-// import NetworkSection from "@/components/sections/NetworkSection";
-// import GallerySection from "@/components/sections/GallerySection";
+import CommunitySection from "@/components/sections/CommunitySection";
+import MissionSection from "@/components/sections/MissionSection";
 
 const Index = () => {
   return (
     <>
       <HeroSection />
-      <CommunityBuzzSection />
-      <MissionSection />
+      <WhatsHappeningSection />
+      <WorkshopsSection />
       <LogoSliderSection />
-      <MeetupInfoSection />
-      <EventsSection />
-      {/* <NetworkSection /> */}
-      {/* <GallerySection /> */}
+      <CommunitySection />
+      <MissionSection />
     </>
   );
 };

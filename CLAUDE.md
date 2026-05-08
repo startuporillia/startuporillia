@@ -1,14 +1,14 @@
 # Startup Orillia Website
 
-React + Vite + TypeScript SPA deployed to GitHub Pages.
+React + Vite + TypeScript SPA deployed to Vercel.
 
 ## Stack
 
 - **Build**: Vite
 - **UI**: React 18, Tailwind CSS, shadcn/ui (Radix primitives)
-- **Routing**: React Router DOM
+- **Routing**: React Router DOM (SPA — `vercel.json` rewrites all paths to `/index.html`)
 - **Date logic**: date-fns
-- **Deploy**: `npm run deploy` (gh-pages)
+- **Deploy**: `npm run deploy` (`vercel --prod`); auto-deploys via Vercel Git integration on push to `main`
 
 ## Events / Meetup System
 
@@ -56,7 +56,7 @@ To change the day or frequency, edit the `generateUpcomingCoworkingDays` functio
 ## Build & Deploy
 
 ```sh
-npm run dev      # local dev server
+npm run dev      # local dev server (port 8080)
 npm run build    # production build to dist/
-npm run deploy   # build + deploy to GitHub Pages
+npm run deploy   # deploy to Vercel production (vercel --prod)
 ```
