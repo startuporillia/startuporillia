@@ -3,7 +3,8 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const LogoSliderSection = () => {
-  const logos = [
+  const logos: { id: number; src?: string; alt: string; url: string }[] = [
+    { id: 7, alt: "SuperFun Orillia", url: "https://superfun.startuporillia.ca" },
     { id: 1, src: "/Startup Logos/1.png", alt: "INVSBL", url: "https://goinvsbl.com" },
     { id: 2, src: "/Startup Logos/2.png", alt: "PropertyBrush AI", url: "https://propertybrushai.com" },
     { id: 3, src: "/Startup Logos/3.png", alt: "CompHub", url: "http://comphub.ca" },
@@ -50,11 +51,17 @@ const LogoSliderSection = () => {
               rel="noopener noreferrer"
               className="flex items-center justify-center h-20 w-44 bg-white rounded-xl border border-border/40 shadow-sm hover:border-brand-orange/40 hover:shadow-md transition-all duration-300 p-4 group"
             >
-              <img
-                src={logo.src}
-                alt={logo.alt}
-                className="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-              />
+              {logo.src ? (
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                />
+              ) : (
+                <span className="font-heading font-bold text-base text-primary tracking-tight text-center group-hover:text-brand-orange transition-colors">
+                  {logo.alt}
+                </span>
+              )}
             </a>
           ))}
         </InfiniteSlider>

@@ -1,4 +1,4 @@
-import { Wrench, Users, Clock, Megaphone, Ticket, MapPin, ArrowRight, Mail, Calendar, MessageCircle, Lightbulb } from "lucide-react";
+import { Wrench, Users, Clock, Megaphone, Ticket, MapPin, ArrowRight, Mail, Calendar, MessageCircle, Lightbulb, Link as LinkIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { upcomingEvents, EVENT_TYPE_LABEL } from "../lib/events";
@@ -174,7 +174,7 @@ const WorkshopsPage = () => {
       </section>
 
       {/* Run a workshop */}
-      <section id="run-a-workshop" className="bg-secondary/30 border-y border-border/40">
+      <section id="run-a-workshop" className="bg-secondary/30 border-y border-border/40 scroll-mt-24">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-5xl mx-auto">
             <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 items-start">
@@ -183,8 +183,16 @@ const WorkshopsPage = () => {
                   <Megaphone className="h-3.5 w-3.5" />
                   For workshop leads
                 </span>
-                <h2 className="text-primary mb-5">
-                  Interested in running a workshop?
+                <h2 className="text-primary mb-5 flex items-center gap-2 flex-wrap">
+                  <span>Interested in running a workshop?</span>
+                  <Link
+                    to="/workshops#run-a-workshop"
+                    className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-card text-muted-foreground hover:bg-brand-teal/10 hover:text-brand-teal transition-colors"
+                    aria-label="Copy link to this section"
+                    title="Link to this section"
+                  >
+                    <LinkIcon className="h-4 w-4" />
+                  </Link>
                 </h2>
                 <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">
                   If you've got something to teach (AI workflows, founder lessons, product, design, growth, anything builders care about), we'll handle the rest.
@@ -222,14 +230,22 @@ const WorkshopsPage = () => {
             </div>
 
             {/* Workshop ideas */}
-            <div className="mt-16 pt-12 border-t border-border/50">
+            <div id="ideas" className="mt-16 pt-12 border-t border-border/50 scroll-mt-24">
               <div className="max-w-2xl mb-10">
                 <span className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-orange uppercase tracking-wider mb-3">
                   <Lightbulb className="h-3.5 w-3.5" />
                   Workshop ideas
                 </span>
-                <h2 className="text-primary mb-3">
-                  Workshops we'd love to see
+                <h2 className="text-primary mb-3 flex items-center gap-2 flex-wrap">
+                  <span>Workshops we'd love to see</span>
+                  <Link
+                    to="/workshops#ideas"
+                    className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-secondary/60 text-muted-foreground hover:bg-brand-orange/10 hover:text-brand-orange transition-colors"
+                    aria-label="Copy link to this section"
+                    title="Link to this section"
+                  >
+                    <LinkIcon className="h-4 w-4" />
+                  </Link>
                 </h2>
                 <div className="space-y-3 text-base md:text-lg text-muted-foreground leading-relaxed">
                   <p>

@@ -5,7 +5,15 @@ const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    if (hash) return;
+    if (hash) {
+      // React Router doesn't scroll to anchors on cross-page nav.
+      // Defer to next tick so the target element is in the DOM.
+      const id = hash.slice(1);
+      requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ block: "start" });
+      });
+      return;
+    }
     window.scrollTo(0, 0);
   }, [pathname, hash]);
 

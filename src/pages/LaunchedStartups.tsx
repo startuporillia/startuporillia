@@ -1,7 +1,19 @@
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 
 const LaunchedStartups = () => {
-  const startups = [
+  const startups: {
+    id: number;
+    name: string;
+    description: string;
+    url: string;
+    image?: string;
+  }[] = [
+    {
+      id: 7,
+      name: "SuperFun Orillia",
+      description: "Discover drop-in swimming, skating, fitness, and family activities at Orillia rec centres. Filter by venue, age, and activity.",
+      url: "https://superfun.startuporillia.ca",
+    },
     {
       id: 4,
       name: "Pics Direct",
@@ -62,11 +74,17 @@ const LaunchedStartups = () => {
             >
               {/* Logo container with white background */}
               <div className="h-44 bg-white flex items-center justify-center p-8 border-b border-border/30">
-                <img
-                  src={startup.image}
-                  alt={startup.name}
-                  className="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-                />
+                {startup.image ? (
+                  <img
+                    src={startup.image}
+                    alt={startup.name}
+                    className="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  />
+                ) : (
+                  <span className="font-heading font-bold text-2xl md:text-3xl text-primary tracking-tight text-center group-hover:text-brand-orange transition-colors">
+                    {startup.name}
+                  </span>
+                )}
               </div>
 
               {/* Content */}
