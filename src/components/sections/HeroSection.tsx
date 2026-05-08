@@ -64,28 +64,27 @@ const HeroSection = () => {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-orange/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-teal/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4" />
 
-      <div className="relative container mx-auto px-4 py-24 md:py-32 lg:py-40">
+      <div className="relative container mx-auto px-4 pt-12 md:pt-16 lg:pt-20 pb-20 md:pb-28 lg:pb-32">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="inline-flex items-center gap-1.5 bg-brand-teal/10 text-brand-teal text-xs font-medium px-3 py-1 rounded-full mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-teal animate-pulse" />
-            A growing community in Orillia
-          </span>
-
           <h1 className="!leading-[1.25]">
-            <span className="block text-4xl md:text-5xl lg:text-6xl font-heading font-semibold text-primary mb-1 pb-2">
-              For people building
+            <span className="block text-4xl md:text-5xl lg:text-6xl font-heading font-semibold text-primary mb-1 pb-1">
+              Welcome to
             </span>
             <span className="block text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gradient pb-3">
-              interesting things.
+              Startup Orillia
             </span>
           </h1>
 
-          <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed text-balance">
-            A community in Orillia of founders, operators, freelancers, creatives, and curious people learning, building, experimenting, and improving things together.
+          <p className="mt-8 text-xl md:text-2xl text-primary/80 font-medium tracking-tight">
+            Orillia's community of founders and builders.{' '}
+            <br className="hidden sm:block" />
+            <span className="text-brand-orange">Show up.</span>{' '}
+            <span className="text-brand-teal">Work together.</span>{' '}
+            <span className="text-primary">Ship.</span>
           </p>
 
-          <p className="mt-4 text-sm text-muted-foreground/80 font-medium tracking-wide">
-            30+ people building, experimenting, and learning together.
+          <p className="mt-5 text-sm text-muted-foreground/80 font-medium tracking-wide">
+            40+ builders. Monthly meetups. Projects in motion.
           </p>
 
           <div id="rsvp" className="mt-12">
