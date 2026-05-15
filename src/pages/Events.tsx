@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AddToCalendarButton from "@/components/AddToCalendarButton";
 import { upcomingEvents, pastEvents, EVENT_TYPE_LABEL, type Event, type EventType } from "../lib/events";
+import { workshops as workshopsCatalog, workshopAsEvent } from "../lib/workshops";
 import { LUMA_CALENDAR_URL, WHATSAPP_GROUP_URL } from "../lib/links";
 
 const typeStyles: Record<EventType, string> = {
@@ -46,9 +47,18 @@ const EventCard = ({ event }: { event: Event }) => {
       </div>
 
       <div className="p-5 sm:p-6">
-        <h3 className="text-lg sm:text-xl font-heading font-semibold text-primary mb-2 break-words">
-          {event.title}
-        </h3>
+        {event.detailUrl ? (
+          <Link
+            to={event.detailUrl}
+            className="block text-lg sm:text-xl font-heading font-semibold text-primary mb-2 break-words hover:text-brand-orange transition-colors"
+          >
+            {event.title}
+          </Link>
+        ) : (
+          <h3 className="text-lg sm:text-xl font-heading font-semibold text-primary mb-2 break-words">
+            {event.title}
+          </h3>
+        )}
         <p className="text-muted-foreground mb-5 leading-relaxed text-sm sm:text-base">{event.description}</p>
 
         <div className="grid sm:grid-cols-2 gap-2 sm:gap-3 mb-5 text-sm min-w-0">
@@ -68,9 +78,16 @@ const EventCard = ({ event }: { event: Event }) => {
             {hasRsvpLink ? (
               <Button asChild size="sm" className="bg-brand-orange hover:bg-brand-orange-light text-white group">
                 <a href={event.rsvpUrl} target="_blank" rel="noopener noreferrer">
-                  RSVP
+                  {event.type === "workshop" ? "Reserve" : "RSVP"}
                   <ArrowUpRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
+              </Button>
+            ) : event.detailUrl ? (
+              <Button asChild size="sm" className="bg-brand-orange hover:bg-brand-orange-light text-white">
+                <Link to={event.detailUrl}>
+                  View workshop
+                  <ArrowRight className="ml-1.5 h-4 w-4" />
+                </Link>
               </Button>
             ) : (
               <Button asChild size="sm" variant="outline" className="border-brand-teal/40 text-brand-teal hover:bg-brand-teal/5">
@@ -78,6 +95,11 @@ const EventCard = ({ event }: { event: Event }) => {
                   <MessageCircle className="mr-1.5 h-4 w-4" />
                   RSVP via WhatsApp
                 </a>
+              </Button>
+            )}
+            {event.detailUrl && hasRsvpLink && (
+              <Button asChild size="sm" variant="outline" className="border-border">
+                <Link to={event.detailUrl}>Details</Link>
               </Button>
             )}
             {event.startDate && event.endDate && (
@@ -200,7 +222,13 @@ const TypedSection = ({
 
 const EventsPage = () => {
   const upcoming = upcomingEvents;
-  const workshops = upcoming.filter((e) => e.type === "workshop");
+  // Workshops live in their own catalog (src/lib/workshops.ts). Pull scheduled
+  // + sold-out entries and adapt them to the Event shape so they render here.
+  const scheduledWorkshops = workshopsCatalog
+    .filter((w) => w.status === "scheduled" || w.status === "sold-out")
+    .map(workshopAsEvent);
+  // Combine adapter output with any workshop-typed entries in events.ts (if ever added).
+  const workshops = [...scheduledWorkshops, ...upcoming.filter((e) => e.type === "workshop")];
   const community = upcoming.filter((e) => e.type === "coworking" || e.type === "community");
   const partners = upcoming.filter((e) => e.type === "partner");
 
@@ -218,7 +246,7 @@ const EventsPage = () => {
               Workshops, meetups, and partner events.
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Coworking days, workshops, demos, and community-led events happening across the Startup Orillia ecosystem.
+              Coworking days, workshops, demos, and partner events. All in-person, all in Orillia.
             </p>
           </div>
         </div>
@@ -236,11 +264,11 @@ const EventsPage = () => {
 
           <TypedSection
             label="Workshops"
-            description="Small-group sessions on AI tools, workflows, productivity, and modern ways of working."
+            description="Practitioner-led intensives in AI, building, founder craft, and modern operations. Wednesday mornings."
             events={workshops}
-            emptyMessage="A few are in the works. Keep an eye out, or apply to lead one yourself."
+            emptyMessage="Next workshops are being scheduled. Browse the full catalog to get notified."
             theme={{ accent: "brand-orange", icon: Wrench }}
-            cta={{ label: "Apply to run a workshop", to: "/contact?topic=workshop" }}
+            cta={{ label: "Browse the workshop catalog", to: "/workshops" }}
           />
 
           <TypedSection
@@ -254,10 +282,10 @@ const EventsPage = () => {
 
           <div className="bg-card border border-border/50 rounded-2xl p-8 md:p-10 text-center mt-4">
             <h3 className="text-xl md:text-2xl font-heading font-semibold text-primary mb-3">
-              Don't miss the next one
+              Get notified first
             </h3>
             <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-              Events are announced first in the WhatsApp group, and on our Luma calendar. Pick whichever works for you.
+              Both channels carry the announcement — pick whichever fits your inbox.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Button asChild size="lg" className="bg-brand-teal hover:bg-brand-teal-light text-white">

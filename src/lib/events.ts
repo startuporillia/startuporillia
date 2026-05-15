@@ -15,6 +15,8 @@ export interface Event {
   startDate?: Date;
   /** UTC end time. Optional for historical/past events where calendar links aren't needed. */
   endDate?: Date;
+  /** Internal route to a detail page (e.g. /workshops/<slug>). Renders the title as a link when set. */
+  detailUrl?: string;
 }
 
 export const EVENT_TYPE_LABEL: Record<EventType, string> = {

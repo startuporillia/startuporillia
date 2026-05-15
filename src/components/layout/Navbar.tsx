@@ -10,6 +10,7 @@ const Navbar = () => {
   const navItems = [
     { label: "Events", href: "/events" },
     { label: "Workshops", href: "/workshops" },
+    // { label: "Community", href: "/community" },  // hidden for now — re-enable when profiles registry grows
     { label: "Projects", href: "/startups" },
     { label: "Contact", href: "/contact" },
   ];

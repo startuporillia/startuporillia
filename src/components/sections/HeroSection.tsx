@@ -76,7 +76,7 @@ const HeroSection = () => {
           </h1>
 
           <p className="mt-8 text-xl md:text-2xl text-primary/80 font-medium tracking-tight">
-            Orillia's community of founders and builders.{' '}
+            Orillia's working community of founders and builders.{' '}
             <br className="hidden sm:block" />
             <span className="text-brand-orange">Show up.</span>{' '}
             <span className="text-brand-teal">Work together.</span>{' '}
@@ -84,7 +84,7 @@ const HeroSection = () => {
           </p>
 
           <p className="mt-5 text-sm text-muted-foreground/80 font-medium tracking-wide">
-            40+ builders. Monthly meetups. Projects in motion.
+            Monthly meetups · Practitioner-led workshops · Active builders
           </p>
 
           <div id="rsvp" className="mt-12">

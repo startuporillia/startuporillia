@@ -1,6 +1,7 @@
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { upcomingEvents, EVENT_TYPE_LABEL, type EventType } from "../../lib/events";
+import { upcomingEvents, EVENT_TYPE_LABEL, type Event, type EventType } from "../../lib/events";
+import { workshops as workshopsCatalog, workshopAsEvent } from "../../lib/workshops";
 
 const typeStyles: Record<EventType, string> = {
   coworking: "bg-brand-teal/10 text-brand-teal",
@@ -9,8 +10,28 @@ const typeStyles: Record<EventType, string> = {
   partner: "bg-purple-500/10 text-purple-700",
 };
 
+/**
+ * Homepage "What's on the calendar" section.
+ *
+ * The Hero already features the next coworking day, so this section focuses on
+ * scheduled workshops + community/partner events. Falls back to coworking only
+ * if nothing else is on the calendar.
+ */
 const WhatsHappeningSection = () => {
-  const events = upcomingEvents.slice(0, 3);
+  const scheduledWorkshops: Event[] = workshopsCatalog
+    .filter((w) => w.status === "scheduled")
+    .map(workshopAsEvent);
+  const nonCoworking = upcomingEvents.filter((e) => e.type !== "coworking");
+
+  let events = [...scheduledWorkshops, ...nonCoworking]
+    .filter((e) => e.startDate)
+    .sort((a, b) => a.startDate!.getTime() - b.startDate!.getTime())
+    .slice(0, 3);
+
+  // Fallback if nothing else is on — show the next coworking day so the section isn't empty.
+  if (events.length === 0) {
+    events = upcomingEvents.slice(0, 3);
+  }
 
   return (
     <section id="happening" className="section-padding bg-background relative">
@@ -20,11 +41,11 @@ const WhatsHappeningSection = () => {
             <div>
               <span className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-orange uppercase tracking-wider mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
-                What's Happening
+                What's on the calendar
               </span>
-              <h2 className="text-primary mb-3">Upcoming meetups, workshops & events</h2>
+              <h2 className="text-primary mb-3">Upcoming workshops and events</h2>
               <p className="text-base md:text-lg text-muted-foreground max-w-xl">
-                Real things, on the calendar. Drop in, learn something, or meet people who are building.
+                Practitioner-led workshops, partner events, and community sessions. All in-person, all in Orillia.
               </p>
             </div>
             <Link
@@ -40,7 +61,7 @@ const WhatsHappeningSection = () => {
             {events.map((event, idx) => (
               <Link
                 key={idx}
-                to="/events"
+                to={event.detailUrl ?? "/events"}
                 className="group bg-card rounded-2xl border border-border/50 p-6 hover:border-brand-orange/30 hover:shadow-md transition-all flex flex-col"
               >
                 <div className="flex items-center gap-2 mb-4">

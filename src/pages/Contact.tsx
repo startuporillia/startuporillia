@@ -7,6 +7,7 @@ const FORMSPREE_FORM_ID = "xvzlwpbw";
 
 const TOPICS = [
   { value: "workshop", label: "Pitch a workshop" },
+  { value: "group", label: "Group rate" },
   { value: "partner", label: "Partner event" },
   { value: "sponsorship", label: "Sponsorship" },
   { value: "general", label: "General question" },
@@ -19,21 +20,28 @@ const isValidTopic = (v: string): v is TopicValue =>
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-const buildWorkshopMessage = (workshop: string): string =>
-  `I'd like to pitch the "${workshop}" workshop.\n\nA bit about me and how I'd run it:\n\n`;
+const buildPrefilledMessage = (topic: TopicValue, workshop: string): string => {
+  if (topic === "workshop") {
+    return `I'd like to pitch the "${workshop}" workshop.\n\nA bit about me and how I'd run it:\n\n`;
+  }
+  if (topic === "group") {
+    return `I'd like to bring a group to the "${workshop}" workshop.\n\nGroup size:\n\nScheduling preferences:\n\nAnything else worth knowing:\n\n`;
+  }
+  return "";
+};
 
 const ContactPage = () => {
   const [searchParams] = useSearchParams();
   const initialTopic = searchParams.get("topic");
   const initialWorkshop = searchParams.get("workshop");
 
-  const [topic, setTopic] = useState<TopicValue>(
-    initialTopic && isValidTopic(initialTopic) ? initialTopic : "general"
-  );
+  const resolvedTopic: TopicValue =
+    initialTopic && isValidTopic(initialTopic) ? initialTopic : "general";
+  const [topic, setTopic] = useState<TopicValue>(resolvedTopic);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(
-    initialWorkshop ? buildWorkshopMessage(initialWorkshop) : ""
+    initialWorkshop ? buildPrefilledMessage(resolvedTopic, initialWorkshop) : ""
   );
   const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<Status>("idle");
@@ -45,10 +53,10 @@ const ContactPage = () => {
   }, [initialTopic]);
 
   useEffect(() => {
-    if (initialWorkshop) {
-      setMessage((prev) => (prev ? prev : buildWorkshopMessage(initialWorkshop)));
+    if (initialWorkshop && initialTopic && isValidTopic(initialTopic)) {
+      setMessage((prev) => (prev ? prev : buildPrefilledMessage(initialTopic, initialWorkshop)));
     }
-  }, [initialWorkshop]);
+  }, [initialWorkshop, initialTopic]);
 
   const canSubmit =
     name.trim().length > 0 &&
@@ -161,7 +169,7 @@ const ContactPage = () => {
                 <label className="block text-sm font-medium text-primary mb-3">
                   What's this about?
                 </label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {TOPICS.map((t) => (
                     <button
                       key={t.value}
@@ -223,6 +231,8 @@ const ContactPage = () => {
                   placeholder={
                     topic === "workshop"
                       ? "What would you teach? Format, audience, anything else relevant."
+                      : topic === "group"
+                      ? "Group size, scheduling preferences, anything else worth knowing."
                       : topic === "partner"
                       ? "Tell us about the event and how it fits the community."
                       : topic === "sponsorship"

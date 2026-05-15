@@ -5,27 +5,26 @@ import { LUMA_CALENDAR_URL, WHATSAPP_GROUP_URL } from "@/lib/links";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const links = [
+  // Primary internal links — surfaced alongside external community channels below.
+  const internalLinks = [
+    { label: "Workshops", href: "/workshops" },
+    { label: "Events", href: "/events" },
+    { label: "Projects", href: "/startups" },
+    { label: "Contact", href: "/contact" },
+  ];
+
+  const externalLinks = [
     {
       label: "WhatsApp Group",
       href: WHATSAPP_GROUP_URL,
-      external: true,
       icon: <MessageCircle className="h-4 w-4" />,
       className: "bg-brand-teal/10 text-brand-teal hover:bg-brand-teal/20",
     },
     {
       label: "Follow on Luma",
       href: LUMA_CALENDAR_URL,
-      external: true,
       icon: <Calendar className="h-4 w-4" />,
       className: "bg-brand-orange/10 text-brand-orange hover:bg-brand-orange/20",
-    },
-    {
-      label: "Contact",
-      href: "/contact",
-      external: false,
-      icon: <Mail className="h-4 w-4" />,
-      className: "bg-secondary text-primary hover:bg-secondary/70",
     },
   ];
 
@@ -62,28 +61,40 @@ const Footer = () => {
           </Link>
 
           {/* Links (right) */}
-          <nav className="flex flex-wrap items-center justify-center md:justify-end gap-2">
-            {links.map((link) => {
-              const baseClasses = `inline-flex items-center gap-2 text-sm px-4 py-2 rounded-full font-medium transition-colors ${link.className}`;
-              return link.external ? (
+          <div className="flex flex-col gap-4 items-center md:items-end">
+            <nav className="flex flex-wrap items-center justify-center md:justify-end gap-x-5 gap-y-2 text-sm text-muted-foreground">
+              {internalLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className="hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+            <nav className="flex flex-wrap items-center justify-center md:justify-end gap-2">
+              {externalLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={baseClasses}
+                  className={`inline-flex items-center gap-2 text-sm px-4 py-2 rounded-full font-medium transition-colors ${link.className}`}
                 >
                   {link.icon}
                   {link.label}
                 </a>
-              ) : (
-                <Link key={link.label} to={link.href} className={baseClasses}>
-                  {link.icon}
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
+              ))}
+              <a
+                href="mailto:dcaplan@gmail.com"
+                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-full font-medium transition-colors bg-secondary text-primary hover:bg-secondary/70"
+              >
+                <Mail className="h-4 w-4" />
+                Email Dave
+              </a>
+            </nav>
+          </div>
         </div>
 
         {/* Copyright */}

@@ -5,18 +5,18 @@ const WorkshopsSection = () => {
   const features = [
     {
       icon: <Users className="h-5 w-5" />,
-      title: "5-15 people",
-      description: "Small groups, real conversation. Not lectures.",
+      title: "Small rooms",
+      description: "Capped at 10. Hands on the work, not heads in slides.",
     },
     {
       icon: <Wrench className="h-5 w-5" />,
-      title: "Real-world useful",
-      description: "1-3 hour sessions designed around something you can apply that week.",
+      title: "Tangible outputs",
+      description: "Three-hour intensives that end with a working artifact you take home.",
     },
     {
       icon: <Sparkles className="h-5 w-5" />,
-      title: "Led by people in the room",
-      description: "Run by community members who actually use this stuff in their work.",
+      title: "Practitioner-led",
+      description: "Taught by senior operators running this work every day, not lecturers.",
     },
   ];
 
@@ -31,16 +31,17 @@ const WorkshopsSection = () => {
                 Workshops
               </span>
               <h2 className="text-primary mb-5">
-                Small-group sessions led by people in the community.
+                Practitioner-led intensives in Orillia.
               </h2>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8">
-                Workshops on AI tools, workflows, productivity, growth, product, operations, and modern ways of working. Designed around real-world usefulness, not theory. Startup Orillia organizes and promotes them so the lead can focus on the room.
+                Half-day workshops in AI, building, founder craft, and modern operations.
+                Wednesday mornings at Creative Nomad Studios. Small rooms, real outcomes.
               </p>
               <Link
                 to="/workshops"
                 className="inline-flex items-center gap-2 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 px-5 py-3 rounded-xl transition-colors group"
               >
-                View Workshops
+                See the catalog
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>

@@ -10,12 +10,12 @@ const CommunitySection = () => {
     {
       icon: <MessageCircle className="h-4 w-4" />,
       label: "WhatsApp group",
-      detail: "Where the conversation actually happens. Founders, operators, freelancers, creatives.",
+      detail: "Live conversation between operators, founders, and freelancers actively building.",
     },
     {
       icon: <Users className="h-4 w-4" />,
-      label: "In-person energy",
-      detail: "Real connection beats endless online discourse. Show up, swap notes, learn something, meet interesting people.",
+      label: "In-person by default",
+      detail: "Real rooms, real introductions. Online has its place, but the work happens face-to-face.",
     },
   ];
 
@@ -31,10 +31,10 @@ const CommunitySection = () => {
                 Community
               </span>
               <h2 className="text-primary mb-5">
-                A casual, curious, ambitious crew.
+                Founders. Operators. Builders.
               </h2>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8">
-                No membership tiers, no gatekeeping. A mix of founders, operators, creatives, freelancers, and people who enjoy making things better.
+                A working community of people shipping real things in Orillia. Monthly meetups, half-day workshops, and a working WhatsApp group for getting unstuck.
               </p>
 
               <div className="space-y-4">

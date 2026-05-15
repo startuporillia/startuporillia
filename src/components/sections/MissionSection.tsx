@@ -4,20 +4,20 @@ const MissionSection = () => {
   const features = [
     {
       icon: <Users className="h-7 w-7" />,
-      title: "Show up & work together",
-      description: "A consistent time and place to work on your thing alongside other builders. Proximity keeps the momentum going.",
+      title: "A working room",
+      description: "A consistent time and place to ship your own work alongside other builders. Proximity compounds.",
       color: "brand-teal",
     },
     {
       icon: <Lightbulb className="h-7 w-7" />,
-      title: "Learn from each other",
-      description: "Workshops and casual conversation with people in the trenches. Real lessons, not theatre.",
+      title: "Practitioner workshops",
+      description: "Half-day, hands-on intensives taught by senior operators. You leave with the work, not a notebook.",
       color: "brand-orange",
     },
     {
       icon: <Zap className="h-7 w-7" />,
-      title: "Connect & collaborate",
-      description: "Meet founders, operators, and freelancers. Find collaborators, customers, or just better friends.",
+      title: "Introductions that matter",
+      description: "Founders, operators, and freelancers actively building. Collaborators, customers, future hires.",
       color: "primary",
     },
   ];
@@ -33,7 +33,9 @@ const MissionSection = () => {
         <div className="max-w-2xl mx-auto text-center mb-16">
           <h2 className="text-primary mb-6">Why this exists</h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Interesting people are building and improving things all over Orillia: businesses, workflows, tools, side projects, creative work, and ideas. Startup Orillia exists to create more opportunities for those people to find each other, collaborate, and keep momentum going.
+            Ambitious people are quietly building real things across Orillia — businesses, products,
+            workflows, creative work. Startup Orillia is the surface area for them to find each
+            other, sharpen their craft, and keep momentum going.
           </p>
           <div className="mt-8 inline-flex items-center gap-2 bg-brand-teal/10 text-brand-teal px-5 py-2.5 rounded-full text-sm font-medium">
             <HeartHandshake className="h-4 w-4" />
