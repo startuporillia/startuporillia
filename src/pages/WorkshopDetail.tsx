@@ -391,9 +391,14 @@ const CTASection = ({
           <div className="bg-card border border-border/50 rounded-2xl p-5">
             <p className="text-sm text-primary font-medium mb-1">Tickets opening soon</p>
             <p className="text-xs text-muted-foreground mb-3">
-              The date is locked in. Drop your email to be the first to grab a seat when registration opens.
+              The date is locked in. Drop your email to be first when registration opens.
             </p>
-            <WorkshopInterestForm workshopSlug={workshop.slug} workshopTitle={workshop.title} />
+            <WorkshopInterestForm
+              workshopSlug={workshop.slug}
+              workshopTitle={workshop.title}
+              headerLabel="Notify me when tickets open"
+              successFollowup="We'll email the moment registration opens."
+            />
           </div>
         )}
         <p className="text-xs text-muted-foreground mt-3">
@@ -446,6 +451,8 @@ const CTASection = ({
         <WorkshopInterestForm
           workshopSlug={workshop.slug}
           workshopTitle={workshop.title}
+          headerLabel="Notify me about the next run"
+          successFollowup="We'll email when this one is back on the calendar."
         />
       </div>
     );

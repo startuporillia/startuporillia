@@ -1,5 +1,16 @@
 import { lastDayOfMonth, subDays, getDay, addMonths, format, startOfDay, isBefore } from "date-fns";
 
+/**
+ * Per-event Luma URLs for upcoming coworking days, keyed by YYYY-MM-DD of the
+ * coworking date (in Eastern Time). Fill in as Luma events are created.
+ * Unkeyed dates render without an RSVP button (falls back to WhatsApp CTA).
+ */
+const COWORKING_LUMA_URLS: Record<string, string> = {
+  "2026-05-26": "https://lu.ma/w4q3xgtg",
+  "2026-06-30": "https://lu.ma/peaf4jnz",
+  "2026-07-28": "https://lu.ma/1wq1emin",
+};
+
 export type EventType = "coworking" | "workshop" | "community" | "partner";
 
 export interface Event {
@@ -74,6 +85,7 @@ function generateUpcomingCoworkingDays(count: number): Event[] {
       const startDate = new Date(Date.UTC(y, m, d, 9 + offset, 0, 0));
       const endDate = new Date(Date.UTC(y, m, d, 13 + offset, 0, 0));
 
+      const isoKey = format(lastTuesday, "yyyy-MM-dd");
       events.push({
         date: format(lastTuesday, "EEEE, MMMM d"),
         title: "Startup Orillia Coworking Day",
@@ -83,6 +95,7 @@ function generateUpcomingCoworkingDays(count: number): Event[] {
         location: "Creative Nomad Studios, 23 Mississaga St W, Orillia, ON",
         cost: "Free (supported by the City of Orillia and Creative Nomad Studios)",
         type: "coworking",
+        rsvpUrl: COWORKING_LUMA_URLS[isoKey],
         startDate,
         endDate,
       });

@@ -350,17 +350,19 @@ const CustomWorkshopCard = ({ onClick }: { onClick: () => void }) => (
     <h3 className="font-heading font-semibold text-primary text-xl md:text-2xl leading-tight mb-2 group-hover:text-brand-teal transition-colors">
       Build a custom workshop
     </h3>
-    <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-5 flex-grow">
+    <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-5">
       A private session for your team. Pick a topic, group size, and level — we'll come back with available dates and a quote.
     </p>
 
-    <div className="pt-4 border-t border-brand-teal/20 flex items-center justify-between gap-3 text-xs text-muted-foreground">
-      <span>3-15 people · Creative Nomad Studios</span>
-    </div>
+    <div className="mt-auto">
+      <div className="pt-4 border-t border-brand-teal/20 flex items-center justify-between gap-3 text-xs text-muted-foreground">
+        <span>3-15 people · Creative Nomad Studios</span>
+      </div>
 
-    <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-teal">
-      Build a custom workshop
-      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+      <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-teal">
+        Build a custom workshop
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+      </div>
     </div>
   </button>
 );
@@ -392,38 +394,41 @@ const FeatureWorkshopCard = ({ workshop }: { workshop: Workshop }) => {
       <h3 className="font-heading font-semibold text-primary text-xl md:text-2xl leading-tight mb-2 group-hover:text-brand-orange transition-colors">
         {workshop.title}
       </h3>
-      <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-5 flex-grow">
+      <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-5">
         {workshop.tagline}
       </p>
 
-      <div className="pt-4 border-t border-border/40 flex items-end justify-between gap-3 flex-wrap">
-        <div className="flex items-center gap-3 text-xs text-muted-foreground">
-          <span className="flex items-center gap-1">
-            <Clock className="h-3.5 w-3.5" />
-            {formatDuration(workshop.durationMinutes)}
-          </span>
-          {lead && (
-            <span className="flex items-center gap-1.5">
-              <span className="block w-5 h-5 rounded-full overflow-hidden border border-border/60 bg-secondary flex-shrink-0">
-                <img src={lead.photo} alt={lead.name} className="w-full h-full object-cover" loading="lazy" />
+      {/* Footer pinned to the bottom of the card via mt-auto */}
+      <div className="mt-auto">
+        <div className="pt-4 border-t border-border/40 flex items-end justify-between gap-3 flex-wrap">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1">
+              <Clock className="h-3.5 w-3.5" />
+              {formatDuration(workshop.durationMinutes)}
+            </span>
+            {lead && (
+              <span className="flex items-center gap-1.5">
+                <span className="block w-5 h-5 rounded-full overflow-hidden border border-border/60 bg-secondary flex-shrink-0">
+                  <img src={lead.photo} alt={lead.name} className="w-full h-full object-cover" loading="lazy" />
+                </span>
+                <span>{lead.name.split(" ")[0]}</span>
               </span>
-              <span>{lead.name.split(" ")[0]}</span>
-            </span>
-          )}
-        </div>
-        <div className="text-right">
-          <div className="text-xl font-heading font-semibold text-primary">
-            {formatPrice(workshop)}
-            <span className="text-xs font-normal text-muted-foreground ml-1">
-              {workshop.price.currency}
-            </span>
+            )}
+          </div>
+          <div className="text-right">
+            <div className="text-xl font-heading font-semibold text-primary">
+              {formatPrice(workshop)}
+              <span className="text-xs font-normal text-muted-foreground ml-1">
+                {workshop.price.currency}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-orange">
-        {isSoldOut ? "Join the waitlist" : "Reserve my seat"}
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-brand-orange">
+          {isSoldOut ? "Join the waitlist" : "Reserve my seat"}
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+        </div>
       </div>
     </Link>
   );
@@ -442,10 +447,10 @@ const CompactWorkshopCard = ({ workshop }: { workshop: Workshop }) => (
     <h4 className="font-heading font-semibold text-primary text-base leading-tight mb-1.5 group-hover:text-brand-teal transition-colors">
       {workshop.title}
     </h4>
-    <p className="text-xs text-muted-foreground leading-relaxed mb-3 flex-grow line-clamp-2">
+    <p className="text-xs text-muted-foreground leading-relaxed mb-3 line-clamp-2">
       {workshop.tagline}
     </p>
-    <div className="flex items-center justify-between gap-2 text-xs">
+    <div className="mt-auto flex items-center justify-between gap-2 text-xs">
       <div className="flex items-center gap-2 text-muted-foreground">
         <Clock className="h-3 w-3" />
         {formatDuration(workshop.durationMinutes)}

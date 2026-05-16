@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Calendar,
   MapPin,
@@ -6,14 +7,18 @@ import {
   ArrowUpRight,
   ArrowRight,
   MessageCircle,
-  Wrench,
-  Users,
-  Handshake,
+  Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AddToCalendarButton from "@/components/AddToCalendarButton";
-import { upcomingEvents, pastEvents, EVENT_TYPE_LABEL, type Event, type EventType } from "../lib/events";
+import {
+  upcomingEvents,
+  pastEvents,
+  EVENT_TYPE_LABEL,
+  type Event,
+  type EventType,
+} from "../lib/events";
 import { workshops as workshopsCatalog, workshopAsEvent } from "../lib/workshops";
 import { LUMA_CALENDAR_URL, WHATSAPP_GROUP_URL } from "../lib/links";
 
@@ -24,18 +29,27 @@ const typeStyles: Record<EventType, string> = {
   partner: "bg-purple-500/10 text-purple-700",
 };
 
-interface SectionTheme {
-  /** Tailwind text/ring color class fragment, e.g. "brand-orange" */
-  accent: "brand-orange" | "brand-teal" | "purple-500";
-  /** Lucide icon component */
-  icon: React.ComponentType<{ className?: string }>;
-}
+type TypeFilter = "all" | "workshop" | "community";
+type CostFilter = "all" | "free" | "paid";
+
+const isFreeEvent = (e: Event): boolean => e.cost.toLowerCase().startsWith("free");
+
+const monthLabel = (date: Date): string =>
+  date.toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+    timeZone: "America/Toronto",
+  });
+
+/* -------------------------------------------------------------------------- */
+/*  Event card (used in the chronological list)                               */
+/* -------------------------------------------------------------------------- */
 
 const EventCard = ({ event }: { event: Event }) => {
   const hasRsvpLink = !!event.rsvpUrl;
 
   return (
-    <article className="bg-card rounded-2xl border border-border/50 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+    <article className="bg-card rounded-2xl border border-border/50 overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
       <div className="bg-secondary/30 border-b border-border/30 px-4 sm:px-6 py-3 flex items-center justify-between gap-3 flex-wrap">
         <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${typeStyles[event.type]} whitespace-nowrap`}>
           {EVENT_TYPE_LABEL[event.type]}
@@ -46,7 +60,7 @@ const EventCard = ({ event }: { event: Event }) => {
         </div>
       </div>
 
-      <div className="p-5 sm:p-6">
+      <div className="p-5 sm:p-6 flex flex-col flex-1">
         {event.detailUrl ? (
           <Link
             to={event.detailUrl}
@@ -59,7 +73,9 @@ const EventCard = ({ event }: { event: Event }) => {
             {event.title}
           </h3>
         )}
-        <p className="text-muted-foreground mb-5 leading-relaxed text-sm sm:text-base">{event.description}</p>
+        <p className="text-muted-foreground mb-5 leading-relaxed text-sm sm:text-base flex-grow">
+          {event.description}
+        </p>
 
         <div className="grid sm:grid-cols-2 gap-2 sm:gap-3 mb-5 text-sm min-w-0">
           <div className="flex items-center gap-2 text-muted-foreground min-w-0">
@@ -72,33 +88,137 @@ const EventCard = ({ event }: { event: Event }) => {
           </div>
         </div>
 
-        <div className="pt-4 border-t border-border/40">
-          <p className="text-xs text-brand-teal font-medium mb-3 break-words">{event.cost}</p>
+        <div className="mt-auto pt-4 border-t border-border/40 flex flex-wrap items-center gap-2">
+          {hasRsvpLink ? (
+            <Button asChild size="sm" className="bg-brand-orange hover:bg-brand-orange-light text-white group">
+              <a href={event.rsvpUrl} target="_blank" rel="noopener noreferrer">
+                {event.type === "workshop" ? "Reserve" : "RSVP"}
+                <ArrowUpRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            </Button>
+          ) : event.detailUrl ? (
+            <Button asChild size="sm" className="bg-brand-orange hover:bg-brand-orange-light text-white">
+              <Link to={event.detailUrl}>
+                View workshop
+                <ArrowRight className="ml-1.5 h-4 w-4" />
+              </Link>
+            </Button>
+          ) : (
+            <Button asChild size="sm" variant="outline" className="border-brand-teal/40 text-brand-teal hover:bg-brand-teal/5">
+              <a href={WHATSAPP_GROUP_URL} target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="mr-1.5 h-4 w-4" />
+                RSVP via WhatsApp
+              </a>
+            </Button>
+          )}
+          {event.detailUrl && hasRsvpLink && (
+            <Button asChild size="sm" variant="outline" className="border-border">
+              <Link to={event.detailUrl}>Details</Link>
+            </Button>
+          )}
+          {event.startDate && event.endDate && (
+            <AddToCalendarButton
+              event={{
+                title: event.title,
+                description: event.description,
+                location: event.location,
+                start: event.startDate,
+                end: event.endDate,
+                url:
+                  event.detailUrl
+                    ? typeof window !== "undefined"
+                      ? `${window.location.origin}${event.detailUrl}`
+                      : undefined
+                    : typeof window !== "undefined"
+                      ? `${window.location.origin}/events`
+                      : undefined,
+              }}
+              filename={`${event.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.ics`}
+            />
+          )}
+        </div>
+      </div>
+    </article>
+  );
+};
+
+/* -------------------------------------------------------------------------- */
+/*  Featured "Next up" card                                                   */
+/* -------------------------------------------------------------------------- */
+
+const NextUpCard = ({ event }: { event: Event }) => {
+  const hasRsvpLink = !!event.rsvpUrl;
+
+  return (
+    <article className="relative bg-card border-2 border-brand-orange/30 rounded-2xl overflow-hidden shadow-md">
+      <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 text-xs font-medium text-brand-orange uppercase tracking-wider bg-card px-2 py-1 rounded-full border border-brand-orange/30">
+        <Sparkles className="h-3 w-3" />
+        Next up
+      </div>
+
+      <div className="p-6 sm:p-8 pt-14 sm:pt-12 flex flex-col md:flex-row md:items-start gap-6">
+        <div className="md:flex-shrink-0 md:w-48 md:border-r md:border-border/40 md:pr-6">
+          <div className="flex items-center gap-2 text-brand-orange mb-1">
+            <Calendar className="h-4 w-4" />
+            <span className="text-sm font-semibold">{event.date}</span>
+          </div>
+          <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+            <Clock className="h-3.5 w-3.5 text-brand-teal" />
+            {event.time}
+          </div>
+          <div className="flex items-start gap-2 text-muted-foreground text-sm">
+            <MapPin className="h-3.5 w-3.5 text-brand-orange mt-0.5 flex-shrink-0" />
+            <span>{event.location}</span>
+          </div>
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-3 flex-wrap">
+            <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${typeStyles[event.type]}`}>
+              {EVENT_TYPE_LABEL[event.type]}
+            </span>
+          </div>
+          {event.detailUrl ? (
+            <Link
+              to={event.detailUrl}
+              className="block text-xl md:text-2xl font-heading font-semibold text-primary mb-2 hover:text-brand-orange transition-colors"
+            >
+              {event.title}
+            </Link>
+          ) : (
+            <h3 className="text-xl md:text-2xl font-heading font-semibold text-primary mb-2">
+              {event.title}
+            </h3>
+          )}
+          <p className="text-sm md:text-base text-muted-foreground mb-5 leading-relaxed">
+            {event.description}
+          </p>
+
           <div className="flex flex-wrap items-center gap-2">
             {hasRsvpLink ? (
-              <Button asChild size="sm" className="bg-brand-orange hover:bg-brand-orange-light text-white group">
+              <Button asChild size="lg" className="bg-brand-orange hover:bg-brand-orange-light text-white group">
                 <a href={event.rsvpUrl} target="_blank" rel="noopener noreferrer">
-                  {event.type === "workshop" ? "Reserve" : "RSVP"}
+                  {event.type === "workshop" ? "Reserve my seat" : "RSVP"}
                   <ArrowUpRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
               </Button>
             ) : event.detailUrl ? (
-              <Button asChild size="sm" className="bg-brand-orange hover:bg-brand-orange-light text-white">
+              <Button asChild size="lg" className="bg-brand-orange hover:bg-brand-orange-light text-white">
                 <Link to={event.detailUrl}>
                   View workshop
                   <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Link>
               </Button>
             ) : (
-              <Button asChild size="sm" variant="outline" className="border-brand-teal/40 text-brand-teal hover:bg-brand-teal/5">
-                <a href="https://chat.whatsapp.com/LndY1VnetIrE8IgBUtbU9F" target="_blank" rel="noopener noreferrer">
+              <Button asChild size="lg" variant="outline" className="border-brand-teal/40 text-brand-teal hover:bg-brand-teal/5">
+                <a href={WHATSAPP_GROUP_URL} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-1.5 h-4 w-4" />
                   RSVP via WhatsApp
                 </a>
               </Button>
             )}
             {event.detailUrl && hasRsvpLink && (
-              <Button asChild size="sm" variant="outline" className="border-border">
+              <Button asChild size="lg" variant="outline" className="border-border">
                 <Link to={event.detailUrl}>Details</Link>
               </Button>
             )}
@@ -110,7 +230,10 @@ const EventCard = ({ event }: { event: Event }) => {
                   location: event.location,
                   start: event.startDate,
                   end: event.endDate,
-                  url: typeof window !== "undefined" ? `${window.location.origin}/events` : undefined,
+                  url:
+                    event.detailUrl && typeof window !== "undefined"
+                      ? `${window.location.origin}${event.detailUrl}`
+                      : undefined,
                 }}
                 filename={`${event.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.ics`}
               />
@@ -122,118 +245,98 @@ const EventCard = ({ event }: { event: Event }) => {
   );
 };
 
-const accentClasses: Record<
-  SectionTheme["accent"],
-  { text: string; bg: string; bgSoft: string; border: string; hoverBgSoft: string }
-> = {
-  "brand-orange": {
-    text: "text-brand-orange",
-    bg: "bg-brand-orange",
-    bgSoft: "bg-brand-orange/10",
-    border: "border-brand-orange/20",
-    hoverBgSoft: "hover:bg-brand-orange/10",
-  },
-  "brand-teal": {
-    text: "text-brand-teal",
-    bg: "bg-brand-teal",
-    bgSoft: "bg-brand-teal/10",
-    border: "border-brand-teal/20",
-    hoverBgSoft: "hover:bg-brand-teal/10",
-  },
-  "purple-500": {
-    text: "text-purple-700",
-    bg: "bg-purple-500",
-    bgSoft: "bg-purple-500/10",
-    border: "border-purple-500/20",
-    hoverBgSoft: "hover:bg-purple-500/10",
-  },
-};
+/* -------------------------------------------------------------------------- */
+/*  Filter UI                                                                 */
+/* -------------------------------------------------------------------------- */
 
-const TypedSection = ({
+const FilterPill = ({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-all ${
+      active
+        ? "border-brand-orange bg-brand-orange/10 text-brand-orange"
+        : "border-border bg-card text-muted-foreground hover:border-brand-orange/40 hover:text-primary"
+    }`}
+  >
+    {children}
+  </button>
+);
+
+const FilterRow = ({
   label,
-  description,
-  events,
-  emptyMessage,
-  theme,
-  cta,
+  children,
 }: {
   label: string;
-  description: string;
-  events: Event[];
-  emptyMessage?: string;
-  theme: SectionTheme;
-  cta?: { label: string; to: string };
-}) => {
-  if (events.length === 0 && !emptyMessage) return null;
+  children: React.ReactNode;
+}) => (
+  <div className="flex items-center gap-3 flex-wrap">
+    <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider w-16 flex-shrink-0">
+      {label}
+    </span>
+    <div className="flex items-center gap-1.5 flex-wrap">{children}</div>
+  </div>
+);
 
-  const Icon = theme.icon;
-  const c = accentClasses[theme.accent];
-  const countLabel = events.length > 0 ? `${events.length} upcoming` : "Coming soon";
-
-  return (
-    <section className={`relative rounded-2xl sm:rounded-3xl border ${c.border} ${c.bgSoft} p-4 sm:p-6 md:p-8 mb-8`}>
-      <div className="flex items-start gap-3 sm:gap-4 mb-5 sm:mb-6 pb-4 sm:pb-5 border-b border-border/40">
-        <div className={`flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-xl ${c.bg} text-white flex items-center justify-center shadow-sm`}>
-          <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1 flex-wrap">
-            <h2 className={`text-lg sm:text-xl md:text-2xl font-heading font-semibold ${c.text} break-words`}>
-              {label}
-            </h2>
-            <span className={`text-xs font-medium px-2 py-0.5 rounded-full bg-card border border-border/60 ${c.text} whitespace-nowrap`}>
-              {countLabel}
-            </span>
-          </div>
-          <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-        </div>
-      </div>
-
-      {events.length > 0 ? (
-        <div className="grid md:grid-cols-2 gap-5">
-          {events.map((event, idx) => (
-            <EventCard key={idx} event={event} />
-          ))}
-        </div>
-      ) : (
-        <div className="bg-card border border-dashed border-border rounded-2xl p-6 text-center">
-          <p className="text-sm text-muted-foreground">{emptyMessage}</p>
-        </div>
-      )}
-
-      {cta && (
-        <div className="mt-6 flex justify-center">
-          <Button
-            asChild
-            size="sm"
-            variant="outline"
-            className={`bg-card ${c.text} ${c.border} ${c.hoverBgSoft} group`}
-          >
-            <Link to={cta.to}>
-              {cta.label}
-              <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          </Button>
-        </div>
-      )}
-    </section>
-  );
-};
+/* -------------------------------------------------------------------------- */
+/*  Page                                                                      */
+/* -------------------------------------------------------------------------- */
 
 const EventsPage = () => {
-  const upcoming = upcomingEvents;
-  // Workshops live in their own catalog (src/lib/workshops.ts). Pull scheduled
-  // + sold-out entries and adapt them to the Event shape so they render here.
-  const scheduledWorkshops = workshopsCatalog
+  const [monthFilter, setMonthFilter] = useState<string>("all");
+  const [typeFilter, setTypeFilter] = useState<TypeFilter>("all");
+  const [costFilter, setCostFilter] = useState<CostFilter>("all");
+
+  // Combine workshop catalog + native events into one chronological list.
+  const scheduledWorkshops: Event[] = workshopsCatalog
     .filter((w) => w.status === "scheduled" || w.status === "sold-out")
     .map(workshopAsEvent);
-  // Combine adapter output with any workshop-typed entries in events.ts (if ever added).
-  const workshops = [...scheduledWorkshops, ...upcoming.filter((e) => e.type === "workshop")];
-  const community = upcoming.filter((e) => e.type === "coworking" || e.type === "community");
-  const partners = upcoming.filter((e) => e.type === "partner");
+  const partnerAndCommunity = upcomingEvents.filter((e) => e.type !== "workshop");
+  const allUpcoming: Event[] = [...scheduledWorkshops, ...partnerAndCommunity]
+    .filter((e) => e.startDate)
+    .sort((a, b) => a.startDate!.getTime() - b.startDate!.getTime());
+
+  const availableMonths = Array.from(
+    new Map(
+      allUpcoming.map((e) => [
+        `${e.startDate!.getUTCFullYear()}-${e.startDate!.getUTCMonth()}`,
+        monthLabel(e.startDate!),
+      ]),
+    ).values(),
+  );
+
+  const filtered = allUpcoming.filter((e) => {
+    if (monthFilter !== "all" && monthLabel(e.startDate!) !== monthFilter) return false;
+    if (typeFilter === "workshop" && e.type !== "workshop") return false;
+    if (typeFilter === "community" && e.type === "workshop") return false;
+    if (costFilter === "free" && !isFreeEvent(e)) return false;
+    if (costFilter === "paid" && isFreeEvent(e)) return false;
+    return true;
+  });
+
+  const nextUp = filtered[0];
+  const rest = filtered.slice(1);
+
+  const filtersActive =
+    monthFilter !== "all" || typeFilter !== "all" || costFilter !== "all";
+
+  const clearFilters = () => {
+    setMonthFilter("all");
+    setTypeFilter("all");
+    setCostFilter("all");
+  };
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Hero */}
       <section className="relative overflow-hidden border-b border-border/40">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-cream via-background to-background" />
         <div className="relative container mx-auto px-4 py-16 md:py-24">
@@ -243,7 +346,7 @@ const EventsPage = () => {
               Events
             </span>
             <h1 className="text-primary mb-5">
-              Workshops, meetups, and partner events.
+              What's on the calendar.
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
               Coworking days, workshops, demos, and partner events. All in-person, all in Orillia.
@@ -252,35 +355,91 @@ const EventsPage = () => {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-16 md:py-20">
+      <section className="container mx-auto px-4 py-12 md:py-16">
         <div className="max-w-5xl mx-auto">
-          <TypedSection
-            label="Community Events"
-            description="Coworking days and meetups organized by Startup Orillia."
-            events={community}
-            theme={{ accent: "brand-teal", icon: Users }}
-            cta={{ label: "Suggest a community event", to: "/contact?topic=general" }}
-          />
+          {/* Filters */}
+          {allUpcoming.length > 0 && (
+            <div className="bg-card border border-border/50 rounded-2xl p-5 mb-8 space-y-3">
+              <FilterRow label="Month">
+                <FilterPill active={monthFilter === "all"} onClick={() => setMonthFilter("all")}>
+                  All
+                </FilterPill>
+                {availableMonths.map((m) => (
+                  <FilterPill key={m} active={monthFilter === m} onClick={() => setMonthFilter(m)}>
+                    {m}
+                  </FilterPill>
+                ))}
+              </FilterRow>
+              <FilterRow label="Type">
+                <FilterPill active={typeFilter === "all"} onClick={() => setTypeFilter("all")}>
+                  All
+                </FilterPill>
+                <FilterPill active={typeFilter === "workshop"} onClick={() => setTypeFilter("workshop")}>
+                  Workshops
+                </FilterPill>
+                <FilterPill active={typeFilter === "community"} onClick={() => setTypeFilter("community")}>
+                  Community
+                </FilterPill>
+              </FilterRow>
+              <FilterRow label="Cost">
+                <FilterPill active={costFilter === "all"} onClick={() => setCostFilter("all")}>
+                  All
+                </FilterPill>
+                <FilterPill active={costFilter === "free"} onClick={() => setCostFilter("free")}>
+                  Free
+                </FilterPill>
+                <FilterPill active={costFilter === "paid"} onClick={() => setCostFilter("paid")}>
+                  Paid
+                </FilterPill>
+              </FilterRow>
+              {filtersActive && (
+                <div className="pt-1">
+                  <button
+                    type="button"
+                    onClick={clearFilters}
+                    className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2"
+                  >
+                    Clear filters
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
 
-          <TypedSection
-            label="Workshops"
-            description="Practitioner-led intensives in AI, building, founder craft, and modern operations. Wednesday mornings."
-            events={workshops}
-            emptyMessage="Next workshops are being scheduled. Browse the full catalog to get notified."
-            theme={{ accent: "brand-orange", icon: Wrench }}
-            cta={{ label: "Browse the workshop catalog", to: "/workshops" }}
-          />
+          {/* Next up */}
+          {nextUp && (
+            <div className="mb-8">
+              <NextUpCard event={nextUp} />
+            </div>
+          )}
 
-          <TypedSection
-            label="Partner Events"
-            description="Community-aligned events independently led by members of the Startup Orillia network."
-            events={partners}
-            emptyMessage="Nothing scheduled right now. Running something the community would love? Submit it below."
-            theme={{ accent: "purple-500", icon: Handshake }}
-            cta={{ label: "Submit a partner event", to: "/contact?topic=partner" }}
-          />
+          {/* Rest of the list */}
+          {rest.length > 0 && (
+            <div className="grid md:grid-cols-2 gap-5">
+              {rest.map((event, idx) => (
+                <EventCard key={`${event.title}-${idx}`} event={event} />
+              ))}
+            </div>
+          )}
 
-          <div className="bg-card border border-border/50 rounded-2xl p-8 md:p-10 text-center mt-4">
+          {/* Empty state */}
+          {filtered.length === 0 && (
+            <div className="bg-card border border-dashed border-border rounded-2xl p-10 text-center">
+              <p className="text-muted-foreground mb-4">
+                {filtersActive
+                  ? "Nothing matches these filters."
+                  : "Nothing on the calendar right now."}
+              </p>
+              {filtersActive && (
+                <Button variant="outline" size="sm" onClick={clearFilters}>
+                  Clear filters
+                </Button>
+              )}
+            </div>
+          )}
+
+          {/* CTA */}
+          <div className="bg-card border border-border/50 rounded-2xl p-8 md:p-10 text-center mt-12">
             <h3 className="text-xl md:text-2xl font-heading font-semibold text-primary mb-3">
               Get notified first
             </h3>
@@ -303,30 +462,33 @@ const EventsPage = () => {
             </div>
           </div>
 
-          <div className="mt-20">
-            <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-6">
-              Past events
-            </h2>
-            <div className="space-y-3">
-              {pastEvents.map((event, idx) => (
-                <div
-                  key={idx}
-                  className="bg-card/50 rounded-xl border border-border/30 px-5 py-4 flex items-center justify-between gap-4"
-                >
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground mb-0.5">
-                      <CheckCircle className="h-3.5 w-3.5 text-brand-teal" />
-                      <span>{event.date}</span>
+          {/* Past events */}
+          {pastEvents.length > 0 && (
+            <div className="mt-20">
+              <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-6">
+                Past events
+              </h2>
+              <div className="space-y-3">
+                {pastEvents.map((event, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-card/50 rounded-xl border border-border/30 px-5 py-4 flex items-center justify-between gap-4"
+                  >
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-0.5">
+                        <CheckCircle className="h-3.5 w-3.5 text-brand-teal" />
+                        <span>{event.date}</span>
+                      </div>
+                      <p className="font-medium text-primary text-sm truncate">{event.title}</p>
                     </div>
-                    <p className="font-medium text-primary text-sm truncate">{event.title}</p>
+                    <span className="text-xs text-brand-teal bg-brand-teal/10 px-2.5 py-1 rounded-full font-medium whitespace-nowrap">
+                      Completed
+                    </span>
                   </div>
-                  <span className="text-xs text-brand-teal bg-brand-teal/10 px-2.5 py-1 rounded-full font-medium whitespace-nowrap">
-                    Completed
-                  </span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
     </div>

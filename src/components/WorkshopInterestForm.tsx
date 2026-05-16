@@ -6,9 +6,16 @@ import { FORMSPREE_FORM_ID } from "@/lib/links";
 interface Props {
   workshopSlug: string;
   workshopTitle: string;
+  /** Overrides the default "Notify me when this is scheduled" heading. */
+  headerLabel?: string;
+  /** Second sentence of the success state. Overrides "We'll email the moment a date is set." */
+  successFollowup?: string;
 }
 
 type Status = "idle" | "submitting" | "success" | "error";
+
+const DEFAULT_HEADER = "Notify me when this is scheduled";
+const DEFAULT_SUCCESS_FOLLOWUP = "We'll email the moment a date is set.";
 
 /**
  * Single-field opt-in for unscheduled workshops.
@@ -20,7 +27,12 @@ type Status = "idle" | "submitting" | "success" | "error";
  * still in place but currently unused; switch back when notify-me volume
  * justifies aggregation queries.
  */
-const WorkshopInterestForm = ({ workshopSlug, workshopTitle }: Props) => {
+const WorkshopInterestForm = ({
+  workshopSlug,
+  workshopTitle,
+  headerLabel = DEFAULT_HEADER,
+  successFollowup = DEFAULT_SUCCESS_FOLLOWUP,
+}: Props) => {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState<Status>("idle");
@@ -68,8 +80,7 @@ const WorkshopInterestForm = ({ workshopSlug, workshopTitle }: Props) => {
         </div>
         <p className="text-sm text-muted-foreground max-w-md mx-auto">
           You're on the list for{" "}
-          <span className="font-medium text-primary">{workshopTitle}</span>. We'll
-          email the moment a date is set.
+          <span className="font-medium text-primary">{workshopTitle}</span>. {successFollowup}
         </p>
       </div>
     );
@@ -93,7 +104,7 @@ const WorkshopInterestForm = ({ workshopSlug, workshopTitle }: Props) => {
 
       <div className="flex items-center gap-2 mb-3">
         <Bell className="h-4 w-4 text-brand-teal" />
-        <p className="text-sm font-medium text-primary">Notify me when this is scheduled</p>
+        <p className="text-sm font-medium text-primary">{headerLabel}</p>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-2">
