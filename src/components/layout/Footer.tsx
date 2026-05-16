@@ -87,7 +87,7 @@ const Footer = () => {
                 </a>
               ))}
               <a
-                href="mailto:dcaplan@gmail.com"
+                href="mailto:dave@startuporillia.ca"
                 className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-full font-medium transition-colors bg-secondary text-primary hover:bg-secondary/70"
               >
                 <Mail className="h-4 w-4" />

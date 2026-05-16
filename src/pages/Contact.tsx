@@ -248,8 +248,8 @@ const ContactPage = () => {
                   <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" />
                   <span>
                     Something went wrong. Try again or email{" "}
-                    <a href="mailto:dcaplan@gmail.com" className="underline">
-                      dcaplan@gmail.com
+                    <a href="mailto:dave@startuporillia.ca" className="underline">
+                      dave@startuporillia.ca
                     </a>
                     .
                   </span>

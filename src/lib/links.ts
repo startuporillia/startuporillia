@@ -6,6 +6,6 @@ export const LUMA_CALENDAR_URL = "https://lu.ma/startuporillia";
 
 export const LINKEDIN_URL = "https://www.linkedin.com/in/davecap/";
 
-export const CONTACT_EMAIL = "dcaplan@gmail.com";
+export const CONTACT_EMAIL = "dave@startuporillia.ca";
 
 export const FORMSPREE_FORM_ID = "xvzlwpbw";
