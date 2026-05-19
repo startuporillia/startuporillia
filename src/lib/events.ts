@@ -107,8 +107,25 @@ function generateUpcomingCoworkingDays(count: number): Event[] {
   return events;
 }
 
-// Auto-generated from the recurring schedule
-export const upcomingEvents: Event[] = generateUpcomingCoworkingDays(3);
+// Upcoming events. One-off partner/community entries listed explicitly,
+// recurring coworking days appended via the generator. Order doesn't matter
+// — the Events page sorts chronologically.
+export const upcomingEvents: Event[] = [
+  {
+    date: "Thursday, June 18",
+    title: "The Reframe Workshop: Breathe. Root. Lead.",
+    description:
+      "Half-day in-person workshop for founders, leaders, and high performers. Reset stress, reconnect with what matters, and rewire your nervous system through breath, body, and Japanese leadership disciplines. Led by Anette Lan (author of Ensō, tech CEO) and Brian Coones (breathwork specialist, TEDx speaker).",
+    time: "9:30 AM - 12:30 PM EDT",
+    location: "Creative Nomad Studios, 23 Mississaga St W, Orillia, ON",
+    cost: "See ticket page for pricing",
+    type: "partner",
+    rsvpUrl: "https://www.creativenomad.ca/tickets",
+    startDate: new Date(Date.UTC(2026, 5, 18, 13, 30, 0)),
+    endDate: new Date(Date.UTC(2026, 5, 18, 16, 30, 0)),
+  },
+  ...generateUpcomingCoworkingDays(3),
+];
 
 // Historical past events (pre-recurring schedule). No startDate/endDate, so calendar buttons don't apply.
 export const pastEvents: Event[] = [
