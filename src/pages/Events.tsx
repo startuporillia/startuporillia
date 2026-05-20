@@ -29,7 +29,7 @@ const typeStyles: Record<EventType, string> = {
   partner: "bg-purple-500/10 text-purple-700",
 };
 
-type TypeFilter = "all" | "workshop" | "community";
+type TypeFilter = "all" | "workshop" | "community" | "partner";
 type CostFilter = "all" | "free" | "paid";
 
 const isFreeEvent = (e: Event): boolean => e.cost.toLowerCase().startsWith("free");
@@ -316,7 +316,13 @@ const EventsPage = () => {
   const filtered = allUpcoming.filter((e) => {
     if (monthFilter !== "all" && monthLabel(e.startDate!) !== monthFilter) return false;
     if (typeFilter === "workshop" && e.type !== "workshop") return false;
-    if (typeFilter === "community" && e.type === "workshop") return false;
+    if (
+      typeFilter === "community" &&
+      e.type !== "coworking" &&
+      e.type !== "community"
+    )
+      return false;
+    if (typeFilter === "partner" && e.type !== "partner") return false;
     if (costFilter === "free" && !isFreeEvent(e)) return false;
     if (costFilter === "paid" && isFreeEvent(e)) return false;
     return true;
@@ -379,6 +385,9 @@ const EventsPage = () => {
                 </FilterPill>
                 <FilterPill active={typeFilter === "community"} onClick={() => setTypeFilter("community")}>
                   Community
+                </FilterPill>
+                <FilterPill active={typeFilter === "partner"} onClick={() => setTypeFilter("partner")}>
+                  Partner
                 </FilterPill>
               </FilterRow>
               <FilterRow label="Cost">
