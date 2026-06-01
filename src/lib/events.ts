@@ -202,7 +202,13 @@ export const pastEvents: Event[] = [
 ];
 
 export const getNextMeetup = (): Event | null => {
-  return upcomingEvents.length > 0 ? upcomingEvents[0] : null;
+  // The hero "Next Meetup" card is community-meetup specific (it hardcodes
+  // "Free" + Creative Nomad Studios), so only ever surface coworking days —
+  // never a workshop or partner event that happens to sit first in the array.
+  const meetups = upcomingEvents
+    .filter((e) => e.type === "coworking")
+    .sort((a, b) => (a.startDate?.getTime() ?? 0) - (b.startDate?.getTime() ?? 0));
+  return meetups.length > 0 ? meetups[0] : null;
 };
 
 export const getEventsByType = (type: EventType): Event[] => {
