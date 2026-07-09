@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import LaunchedStartups from "./pages/LaunchedStartups";
 import EventsPage from "./pages/Events";
+import MeetupPage from "./pages/Meetup";
 import WorkshopsPage from "./pages/Workshops";
 import WorkshopDetailPage from "./pages/WorkshopDetail";
 import CommunityPage from "./pages/Community";
@@ -31,6 +32,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/events" element={<EventsPage />} />
+              <Route path="/meetup" element={<MeetupPage />} />
               <Route path="/workshops" element={<WorkshopsPage />} />
               <Route path="/workshops/:slug" element={<WorkshopDetailPage />} />
               <Route path="/community" element={<CommunityPage />} />

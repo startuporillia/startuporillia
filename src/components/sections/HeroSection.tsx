@@ -46,12 +46,21 @@ const NextMeetupCard = () => {
                 location: nextMeetup.location,
                 start: nextMeetup.startDate,
                 end: nextMeetup.endDate,
-                url: typeof window !== "undefined" ? `${window.location.origin}/events` : undefined,
+                url: typeof window !== "undefined" ? `${window.location.origin}/meetup` : undefined,
               }}
               filename={`${nextMeetup.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.ics`}
             />
           </div>
         )}
+        <div className="mt-4 pt-4 border-t border-border/40">
+          <Link
+            to="/meetup"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-teal hover:text-brand-teal-light transition-colors group"
+          >
+            New here? What to expect at a meetup
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </div>
       </div>
     </div>
   );

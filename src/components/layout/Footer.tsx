@@ -1,12 +1,13 @@
-import { MessageCircle, Mail, Calendar } from "lucide-react";
+import { MessageCircle, Mail, Calendar, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
-import { LUMA_CALENDAR_URL, WHATSAPP_GROUP_URL } from "@/lib/links";
+import { LUMA_CALENDAR_URL, WHATSAPP_GROUP_URL, YOUTUBE_CHANNEL_URL } from "@/lib/links";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   // Primary internal links — surfaced alongside external community channels below.
   const internalLinks = [
+    { label: "Meetup", href: "/meetup" },
     { label: "Workshops", href: "/workshops" },
     { label: "Events", href: "/events" },
     { label: "Projects", href: "/startups" },
@@ -25,6 +26,12 @@ const Footer = () => {
       href: LUMA_CALENDAR_URL,
       icon: <Calendar className="h-4 w-4" />,
       className: "bg-brand-orange/10 text-brand-orange hover:bg-brand-orange/20",
+    },
+    {
+      label: "YouTube",
+      href: YOUTUBE_CHANNEL_URL,
+      icon: <Youtube className="h-4 w-4" />,
+      className: "bg-red-500/10 text-red-600 hover:bg-red-500/20",
     },
   ];
 

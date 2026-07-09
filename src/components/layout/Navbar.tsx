@@ -8,6 +8,7 @@ const Navbar = () => {
   const [sheetOpen, setSheetOpen] = useState(false);
 
   const navItems = [
+    { label: "Meetup", href: "/meetup" },
     { label: "Events", href: "/events" },
     { label: "Workshops", href: "/workshops" },
     // { label: "Community", href: "/community" },  // hidden for now — re-enable when profiles registry grows
