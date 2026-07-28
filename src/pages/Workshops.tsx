@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
+  currentStatus,
   LEVEL_DESCRIPTION,
   LEVEL_LABEL,
   TRACK_LABEL,
@@ -37,10 +38,10 @@ const WorkshopsPage = () => {
 
   const filtered = filter === "all" ? workshops : workshops.filter((w) => w.track === filter);
 
-  const scheduled = filtered.filter((w) => w.status === "scheduled");
-  const interest = filtered.filter((w) => w.status === "interest");
-  const soldOut = filtered.filter((w) => w.status === "sold-out");
-  const past = filtered.filter((w) => w.status === "past");
+  const scheduled = filtered.filter((w) => currentStatus(w) === "scheduled");
+  const interest = filtered.filter((w) => currentStatus(w) === "interest");
+  const soldOut = filtered.filter((w) => currentStatus(w) === "sold-out");
+  const past = filtered.filter((w) => currentStatus(w) === "past");
 
   const features = [
     {

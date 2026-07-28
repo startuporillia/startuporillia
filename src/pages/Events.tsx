@@ -19,7 +19,7 @@ import {
   type Event,
   type EventType,
 } from "../lib/events";
-import { workshops as workshopsCatalog, workshopAsEvent } from "../lib/workshops";
+import { workshops as workshopsCatalog, workshopAsEvent, currentStatus } from "../lib/workshops";
 import { LUMA_CALENDAR_URL, WHATSAPP_GROUP_URL } from "../lib/links";
 
 const typeStyles: Record<EventType, string> = {
@@ -297,7 +297,10 @@ const EventsPage = () => {
 
   // Combine workshop catalog + native events into one chronological list.
   const scheduledWorkshops: Event[] = workshopsCatalog
-    .filter((w) => w.status === "scheduled" || w.status === "sold-out")
+    .filter((w) => {
+      const status = currentStatus(w);
+      return status === "scheduled" || status === "sold-out";
+    })
     .map(workshopAsEvent);
   const partnerAndCommunity = upcomingEvents.filter((e) => e.type !== "workshop");
   const allUpcoming: Event[] = [...scheduledWorkshops, ...partnerAndCommunity]

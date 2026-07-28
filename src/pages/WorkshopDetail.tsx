@@ -15,6 +15,7 @@ import {
   LEVEL_DESCRIPTION,
   LEVEL_LABEL,
   TRACK_LABEL,
+  currentStatus,
   formatLevelLabel,
   getWorkshop,
   levelRange,
@@ -63,7 +64,7 @@ const WorkshopDetailPage = () => {
             <div className="flex flex-wrap items-center gap-2 mb-5">
               <TrackChip track={workshop.track} />
               <LevelChip level={workshop.level} />
-              <StatusBadge status={workshop.status} />
+              <StatusBadge status={currentStatus(workshop)} />
             </div>
 
             <h1 className="text-primary mb-4">{workshop.title}</h1>
@@ -89,7 +90,7 @@ const WorkshopDetailPage = () => {
                   {formatPrice(workshop)} {workshop.price.currency}
                 </span>
               </div>
-              {workshop.scheduledTimeLabel && workshop.status === "scheduled" && (
+              {workshop.scheduledTimeLabel && currentStatus(workshop) === "scheduled" && (
                 <div className="flex items-center gap-1.5">
                   <CalendarDays className="h-4 w-4 text-brand-teal" />
                   {workshop.scheduledTimeLabel}
@@ -366,7 +367,7 @@ const CTASection = ({
 }: {
   workshop: NonNullable<ReturnType<typeof getWorkshop>>;
 }) => {
-  if (workshop.status === "scheduled") {
+  if (currentStatus(workshop) === "scheduled") {
     return (
       <div className="bg-brand-orange/5 border border-brand-orange/20 rounded-2xl p-6 md:p-8">
         <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
@@ -414,7 +415,7 @@ const CTASection = ({
     );
   }
 
-  if (workshop.status === "sold-out") {
+  if (currentStatus(workshop) === "sold-out") {
     return (
       <div className="bg-primary/5 border border-primary/20 rounded-2xl p-6 md:p-8">
         <p className="text-xs font-medium text-primary uppercase tracking-wider mb-1">Sold out</p>
@@ -436,7 +437,7 @@ const CTASection = ({
     );
   }
 
-  if (workshop.status === "past") {
+  if (currentStatus(workshop) === "past") {
     return (
       <div className="bg-secondary/30 border border-border rounded-2xl p-6 md:p-8">
         <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">

@@ -176,7 +176,7 @@ export const workshops: Workshop[] = [
     level: 2,
     durationMinutes: 180,
     capacity: { min: 5, max: 15 },
-    status: "scheduled",
+    status: "past",
     scheduledDate: new Date(Date.UTC(2026, 5, 17, 13, 0, 0)),
     scheduledTimeLabel: "Wed June 17 · 9:00 AM - 12:00 PM EDT",
     leadSlug: "dave-caplan",
@@ -507,7 +507,7 @@ export const workshops: Workshop[] = [
     level: 2,
     durationMinutes: 180,
     capacity: { min: 5, max: 15 },
-    status: "scheduled",
+    status: "past",
     scheduledDate: new Date(Date.UTC(2026, 6, 8, 13, 0, 0)),
     scheduledTimeLabel: "Wed July 8 · 9:00 AM - 12:00 PM EDT",
     leadSlug: "stephen-tracy",
@@ -558,7 +558,7 @@ export const workshops: Workshop[] = [
     level: 2,
     durationMinutes: 180,
     capacity: { min: 5, max: 15 },
-    status: "scheduled",
+    status: "past",
     scheduledDate: new Date(Date.UTC(2026, 6, 15, 13, 0, 0)),
     scheduledTimeLabel: "Wed July 15 · 9:00 AM - 12:00 PM EDT",
     leadSlug: "stephen-tracy",
@@ -608,7 +608,7 @@ export const workshops: Workshop[] = [
     level: 2,
     durationMinutes: 240,
     capacity: { min: 5, max: 15 },
-    status: "scheduled",
+    status: "past",
     scheduledDate: new Date(Date.UTC(2026, 6, 22, 13, 0, 0)),
     scheduledTimeLabel: "Wed July 22 · 9:00 AM - 1:00 PM EDT",
     leadSlug: "stephen-tracy",
@@ -786,7 +786,7 @@ export const workshops: Workshop[] = [
     level: 1,
     durationMinutes: 120,
     capacity: { min: 5, max: 15 },
-    status: "scheduled",
+    status: "past",
     scheduledDate: new Date(Date.UTC(2026, 5, 24, 13, 0, 0)),
     scheduledTimeLabel: "Wed June 24 · 9:00 - 11:00 AM EDT",
     leadSlug: "dave-caplan",
@@ -914,6 +914,22 @@ export const getWorkshopsByTrack = (track: WorkshopTrack): Workshop[] =>
 
 export const getWorkshopsByStatus = (status: WorkshopStatus): Workshop[] =>
   workshops.filter((w) => w.status === status);
+
+/**
+ * The workshop's status with the calendar applied: a `scheduled` / `sold-out`
+ * workshop whose date has already passed reads as `past`.
+ *
+ * `status` is still the field to edit when a run ends (see CLAUDE.md) — this is
+ * the safety net so a forgotten flag can't surface an old date as upcoming.
+ * Read this instead of `w.status` anywhere the UI says "upcoming".
+ */
+export const currentStatus = (w: Workshop, now: Date = new Date()): WorkshopStatus => {
+  const isDated = w.status === "scheduled" || w.status === "sold-out";
+  if (isDated && w.scheduledDate && w.scheduledDate.getTime() < now.getTime()) {
+    return "past";
+  }
+  return w.status;
+};
 
 /* -------------------------------------------------------------------------- */
 /*  Event adapter                                                             */

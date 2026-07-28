@@ -17,9 +17,12 @@ React + Vite + TypeScript SPA deployed to Vercel.
 
 Recurring coworking days are **auto-generated** in `src/lib/events.ts`. The function `generateUpcomingCoworkingDays(3)` computes the last Tuesday of each month using date-fns and always produces the next 3 upcoming events from today's date. No manual editing is needed for the regular monthly schedule.
 
-- `upcomingEvents` — auto-generated, always current
-- `pastEvents` — static array of historical events (pre-recurring schedule)
-- `getNextMeetup()` — returns the first upcoming event, used by the hero card
+- `upcomingEvents` — one-offs + generated coworking days, **filtered by `isUpcoming`** so nothing with a passed date can render as upcoming
+- `pastEvents` — static array of historical events
+- `getNextMeetup()` — returns the first upcoming coworking day, used by the hero card
+- `isUpcoming(event)` — true until the event's `endDate` (or `startDate`) passes. An event with no `startDate` is treated as historical and never upcoming, so **always set `startDate`/`endDate` on a one-off** or it won't render.
+
+Nothing is "upcoming" because a flag says so — dates decide. Same idea on the workshop side via `currentStatus()`.
 
 ### Key files
 
@@ -30,11 +33,10 @@ Recurring coworking days are **auto-generated** in `src/lib/events.ts`. The func
 
 ### Adding a one-off special event
 
-To add a non-recurring event (e.g., Pitch Day), add it directly to the `upcomingEvents` array in `events.ts` alongside the generated ones:
+To add a non-recurring event (e.g., Pitch Day), add it to the `oneOffEvents` array in `events.ts`. It gets merged with the generated coworking days and sorted chronologically by the Events page:
 
 ```ts
-export const upcomingEvents: Event[] = [
-  // One-off event
+const oneOffEvents: Event[] = [
   {
     date: "Saturday, March 15",
     title: "Startup Orillia Pitch Day",
@@ -42,13 +44,15 @@ export const upcomingEvents: Event[] = [
     time: "6:00 PM - 9:00 PM EST",
     location: "Creative Nomad Studios",
     cost: "Free!",
+    type: "community",
+    // Required — without these the entry is treated as historical and won't show.
+    startDate: new Date(Date.UTC(2027, 2, 15, 23, 0, 0)),  // 6 PM EST = 23:00 UTC
+    endDate: new Date(Date.UTC(2027, 2, 16, 2, 0, 0)),
   },
-  // Regular recurring meetups
-  ...generateUpcomingCoworkingDays(3),
 ];
 ```
 
-Move it to `pastEvents` once it's over, or remove it.
+It drops off the site automatically once `endDate` passes — no cleanup needed. Move it to `pastEvents` only if you want it listed under "Past events".
 
 ### Changing the recurring schedule
 
@@ -124,6 +128,8 @@ Standard flow — Dave says something like "Schedule Claude Code 101 for Wed Jun
 
 - Sold out: set `status: "sold-out"`, keep `lumaUrl` so the page shows the waitlist link.
 - Past: set `status: "past"`. The detail page flips to a "schedule a return" form.
+
+**Safety net**: `currentStatus(w)` in `workshops.ts` reports `past` for any `scheduled`/`sold-out` workshop whose `scheduledDate` has already passed, regardless of the stored flag. The UI reads `currentStatus(w)`, not `w.status`, everywhere it says "upcoming" (`/workshops`, `/events`, homepage, `/workshops/:slug`) — so a forgotten flag can't surface a stale date. Still set `status: "past"` when a run ends; the net is there for when nobody remembers.
 
 ### Workshop levels (per-track, 1-5)
 

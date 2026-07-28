@@ -1,7 +1,7 @@
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { upcomingEvents, EVENT_TYPE_LABEL, type Event, type EventType } from "../../lib/events";
-import { workshops as workshopsCatalog, workshopAsEvent } from "../../lib/workshops";
+import { workshops as workshopsCatalog, workshopAsEvent, currentStatus } from "../../lib/workshops";
 
 const typeStyles: Record<EventType, string> = {
   coworking: "bg-brand-teal/10 text-brand-teal",
@@ -13,25 +13,32 @@ const typeStyles: Record<EventType, string> = {
 /**
  * Homepage "What's on the calendar" section.
  *
- * The Hero already features the next coworking day, so this section focuses on
- * scheduled workshops + community/partner events. Falls back to coworking only
- * if nothing else is on the calendar.
+ * The Hero already features the next coworking day, so this section leads with
+ * scheduled workshops + community/partner events. When none are on the calendar
+ * — the meetups-only stretches — it falls back to the coworking days and swaps
+ * the copy to match, rather than promising workshops that aren't scheduled.
  */
 const WhatsHappeningSection = () => {
   const scheduledWorkshops: Event[] = workshopsCatalog
-    .filter((w) => w.status === "scheduled")
+    .filter((w) => currentStatus(w) === "scheduled")
     .map(workshopAsEvent);
   const nonCoworking = upcomingEvents.filter((e) => e.type !== "coworking");
 
-  let events = [...scheduledWorkshops, ...nonCoworking]
+  const byDate = (a: Event, b: Event) => a.startDate!.getTime() - b.startDate!.getTime();
+  const featured = [...scheduledWorkshops, ...nonCoworking]
     .filter((e) => e.startDate)
-    .sort((a, b) => a.startDate!.getTime() - b.startDate!.getTime())
+    .sort(byDate)
     .slice(0, 3);
 
-  // Fallback if nothing else is on — show the next coworking day so the section isn't empty.
-  if (events.length === 0) {
-    events = upcomingEvents.slice(0, 3);
-  }
+  const meetupsOnly = featured.length === 0;
+  const events = meetupsOnly
+    ? [...upcomingEvents].filter((e) => e.startDate).sort(byDate).slice(0, 3)
+    : featured;
+
+  const heading = meetupsOnly ? "Upcoming meetups" : "Upcoming workshops and events";
+  const blurb = meetupsOnly
+    ? "Our monthly coworking day — last Tuesday of every month at Creative Nomad Studios. Free, in-person, open to anyone building something."
+    : "Practitioner-led workshops, partner events, and community sessions. All in-person, all in Orillia.";
 
   return (
     <section id="happening" className="section-padding bg-background relative">
@@ -43,9 +50,9 @@ const WhatsHappeningSection = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-orange" />
                 What's on the calendar
               </span>
-              <h2 className="text-primary mb-3">Upcoming workshops and events</h2>
+              <h2 className="text-primary mb-3">{heading}</h2>
               <p className="text-base md:text-lg text-muted-foreground max-w-xl">
-                Practitioner-led workshops, partner events, and community sessions. All in-person, all in Orillia.
+                {blurb}
               </p>
             </div>
             <Link
