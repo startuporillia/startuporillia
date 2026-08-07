@@ -1,6 +1,11 @@
-import { MessageCircle, Mail, Calendar, Youtube } from "lucide-react";
+import { MessageCircle, MessagesSquare, Mail, Calendar, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
-import { LUMA_CALENDAR_URL, WHATSAPP_GROUP_URL, YOUTUBE_CHANNEL_URL } from "@/lib/links";
+import {
+  DISCORD_INVITE_URL,
+  LUMA_CALENDAR_URL,
+  WHATSAPP_GROUP_URL,
+  YOUTUBE_CHANNEL_URL,
+} from "@/lib/links";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,6 +25,12 @@ const Footer = () => {
       href: WHATSAPP_GROUP_URL,
       icon: <MessageCircle className="h-4 w-4" />,
       className: "bg-brand-teal/10 text-brand-teal hover:bg-brand-teal/20",
+    },
+    {
+      label: "Discord",
+      href: DISCORD_INVITE_URL,
+      icon: <MessagesSquare className="h-4 w-4" />,
+      className: "bg-indigo-500/10 text-indigo-600 hover:bg-indigo-500/20",
     },
     {
       label: "Follow on Luma",

@@ -1,4 +1,5 @@
-import { MessageCircle, Users, Calendar, Linkedin } from "lucide-react";
+import { MessageCircle, MessagesSquare, Users, Calendar, Linkedin } from "lucide-react";
+import { DISCORD_INVITE_URL, WHATSAPP_GROUP_URL } from "@/lib/links";
 
 const CommunitySection = () => {
   const bullets = [
@@ -11,6 +12,11 @@ const CommunitySection = () => {
       icon: <MessageCircle className="h-4 w-4" />,
       label: "WhatsApp group",
       detail: "Live conversation between operators, founders, and freelancers actively building.",
+    },
+    {
+      icon: <MessagesSquare className="h-4 w-4" />,
+      label: "Discord",
+      detail: "Where the work gets shown — demos, progress, and getting unstuck between meetups.",
     },
     {
       icon: <Users className="h-4 w-4" />,
@@ -51,15 +57,26 @@ const CommunitySection = () => {
                 ))}
               </div>
 
-              <a
-                href="https://chat.whatsapp.com/LndY1VnetIrE8IgBUtbU9F"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-8 text-sm font-medium bg-brand-teal text-white hover:bg-brand-teal-light px-5 py-3 rounded-xl transition-colors"
-              >
-                <MessageCircle className="h-4 w-4" />
-                Join the WhatsApp Group
-              </a>
+              <div className="flex flex-wrap gap-3 mt-8">
+                <a
+                  href={WHATSAPP_GROUP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium bg-brand-teal text-white hover:bg-brand-teal-light px-5 py-3 rounded-xl transition-colors"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Join the WhatsApp Group
+                </a>
+                <a
+                  href={DISCORD_INVITE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium border border-border bg-background text-primary hover:bg-secondary px-5 py-3 rounded-xl transition-colors"
+                >
+                  <MessagesSquare className="h-4 w-4" />
+                  Join the Discord
+                </a>
+              </div>
             </div>
 
             {/* Bio */}

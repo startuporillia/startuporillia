@@ -12,7 +12,11 @@
     "deploy": "vercel --prod",
     "db:init": "tsx scripts/init-db.ts",
     "metrics": "tsx scripts/workshop-metrics.ts",
-    "announce": "tsx scripts/announce.ts"
+    "announce": "tsx scripts/announce.ts",
+    "discord:inspect": "tsx scripts/discord/inspect.ts",
+    "discord:plan": "tsx scripts/discord/configure.ts",
+    "discord:apply": "tsx scripts/discord/configure.ts --apply",
+    "discord:whoami": "tsx scripts/discord/whoami.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
