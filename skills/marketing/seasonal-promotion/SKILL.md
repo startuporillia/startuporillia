@@ -15,7 +15,7 @@ Identify the seasonal customer job: celebrate, prepare, give, gather, save time,
 
 ## Add local intelligence
 
-If Chamber MCP exists, check snapshot freshness, then search members for complementary offers, venues, suppliers, distribution partners, and community reach. Search events for dates that create a natural campaign moment. Retrieve source records before citing them.
+If Startup Orillia MCP exists, check snapshot freshness, then search members for complementary offers, venues, suppliers, distribution partners, and community reach. Search events for dates that create a natural campaign moment. Retrieve source records before citing them.
 
 Never imply a business will participate or an event audience is available unless sourced data says so. Never invent businesses. If MCP is unavailable, recommend partner categories and manual research steps.
 

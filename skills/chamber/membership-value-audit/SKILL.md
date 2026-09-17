@@ -9,7 +9,7 @@ Connect Chamber participation to the business's real goals without treating memb
 
 Clarify the business, customers, current membership status, annual goals, existing Chamber activity, time budget, relationship strengths, and desired outcomes. Choose no more than three measurable 90-day outcomes such as relevant introductions, supplier discoveries, partner conversations, learning, visibility, or community contribution.
 
-If Chamber MCP is available, check snapshot freshness, then:
+If Startup Orillia MCP is available, check snapshot freshness, then:
 
 - search events that align with the goals;
 - search member categories for customers, suppliers, peers, referral partners, and experts;

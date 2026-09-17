@@ -11,7 +11,7 @@ Confirm the desired referred customer, qualifying action, customer value, sales 
 
 Choose the appropriate model: customer-to-customer, reciprocal partner, one-way professional introduction, ambassador, or community benefit. Explain why it fits. Specify eligibility, attribution window, reward trigger, reward timing, caps, exclusions, abuse prevention, privacy, and how disputes are handled. Avoid rewards that compromise professional independence or regulated obligations.
 
-If Chamber MCP is available, check freshness and search for complementary—not directly conflicting—partner categories. Retrieve and cite any businesses used as examples. Treat fit as a hypothesis, never as endorsement or agreement. Without MCP, name partner types only.
+If Startup Orillia MCP is available, check freshness and search for complementary—not directly conflicting—partner categories. Retrieve and cite any businesses used as examples. Treat fit as a hypothesis, never as endorsement or agreement. Without MCP, name partner types only.
 
 Produce:
 

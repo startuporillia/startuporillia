@@ -24,6 +24,6 @@ If a hire is justified, produce:
 9. manager cadence and success measures;
 10. compliance questions to confirm with qualified local advisors.
 
-Use Chamber MCP only to find potential HR, payroll, bookkeeping, legal, benefits, training, or recruiting providers. Cite source listings and never treat membership as endorsement. Without MCP, list provider categories.
+Use Startup Orillia MCP only to find potential HR, payroll, bookkeeping, legal, benefits, training, or recruiting providers. Cite source listings and never treat membership as endorsement. Without MCP, list provider categories.
 
 End with the hiring decision, assumptions, risks, and this week's actions.

@@ -15,7 +15,7 @@ Turn the objective into one primary measurable outcome with a deadline, such as 
 
 ## Find local context
 
-If Chamber MCP tools are available:
+If Startup Orillia MCP tools are available:
 
 1. Call `chamber.snapshot_status` and note the snapshot date.
 2. Use `chamber.search_members` for complementary businesses, distribution partners, suppliers, media, venues, or referral sources. Search by need and category; do not treat ranking as quality.

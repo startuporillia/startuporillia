@@ -7,6 +7,6 @@ describe("skill packages", () => {
     expect(skills).toHaveLength(12);
     expect(new Set(skills.map((skill) => skill.name)).size).toBe(12);
     expect(skills.every((skill) => skill.raw.length > 1_500)).toBe(true);
-    expect(skills.every((skill) => /Chamber MCP/i.test(skill.raw) && /source/i.test(skill.raw))).toBe(true);
+    expect(skills.every((skill) => /Startup Orillia MCP/i.test(skill.raw) && /source/i.test(skill.raw))).toBe(true);
   });
 });

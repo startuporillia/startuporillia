@@ -9,7 +9,7 @@ Help the user enter the room with purpose without turning every conversation int
 
 Clarify the event, user's business and role, networking objective, useful connection types, available time, comfort level, and what they can offer others. Set a realistic target such as three relevant conversations and two agreed follow-ups.
 
-If Chamber MCP is available:
+If Startup Orillia MCP is available:
 
 1. check snapshot freshness;
 2. use `chamber.search_events` to find the event and retrieve its details;

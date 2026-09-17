@@ -9,7 +9,7 @@ Treat the opening as a customer-acquisition project, not only a one-day event.
 
 Confirm opening type, location, date flexibility, customer, capacity, permits or venue constraints, budget, offer, and 30-day goal. Flag uncertain dates or dependencies. Define success across attendance, qualified contacts, sales/bookings, local reach, and follow-up conversion.
 
-If Chamber MCP is available, check freshness and search for relevant suppliers (signage, printing, food, photography, AV, cleaning, security), complementary partners, media, and nearby businesses. Search events for conflicts or opportunities. Retrieve records and cite source URLs. Do not imply availability, attendance, endorsement, or partnership.
+If Startup Orillia MCP is available, check freshness and search for relevant suppliers (signage, printing, food, photography, AV, cleaning, security), complementary partners, media, and nearby businesses. Search events for conflicts or opportunities. Retrieve records and cite source URLs. Do not imply availability, attendance, endorsement, or partnership.
 
 Build a plan covering:
 

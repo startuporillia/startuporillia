@@ -9,7 +9,7 @@ Translate a vague need into a usable supplier brief and evidence-based shortlist
 
 Confirm what is being purchased, required outcome, location, deadline, budget range, must-haves, compliance or insurance needs, service frequency, and decision owner. Separate mandatory criteria from preferences.
 
-If Chamber MCP is available, check freshness and search with the buyer's plain-language need, category terms, and close synonyms. Retrieve shortlisted records. Return sourced names, categories, city, website, description, source URL, and snapshot date. Chamber membership and search order are not endorsements or quality ratings.
+If Startup Orillia MCP is available, check freshness and search with the buyer's plain-language need, category terms, and close synonyms. Retrieve shortlisted records. Return sourced names, categories, city, website, description, source URL, and snapshot date. Chamber membership and search order are not endorsements or quality ratings.
 
 Never invent capabilities, prices, availability, certifications, service areas, reviews, contacts, or businesses. Mark every unsourced capability as "verify." If MCP is unavailable, return search terms, supplier categories, and a comparison template without local names.
 

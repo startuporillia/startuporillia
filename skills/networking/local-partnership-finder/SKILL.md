@@ -9,7 +9,7 @@ Find partnerships that solve a customer problem for both businesses, not just a 
 
 Clarify the user's customer, offer, partnership objective, assets they can contribute, constraints, conflicts to avoid, and measurable pilot outcome. Describe an ideal partner by complementary customer moment, capability, geography, and incentive alignment.
 
-If Chamber MCP is available, check freshness, search multiple need/category phrases, and retrieve promising records. Cite source URLs. Never invent a business or imply interest, availability, quality, endorsement, or an existing relationship. MCP results are candidates for verification, not recommendations based on quality.
+If Startup Orillia MCP is available, check freshness, search multiple need/category phrases, and retrieve promising records. Cite source URLs. Never invent a business or imply interest, availability, quality, endorsement, or an existing relationship. MCP results are candidates for verification, not recommendations based on quality.
 
 For each candidate or partner type, show:
 

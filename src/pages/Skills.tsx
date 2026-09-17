@@ -70,7 +70,7 @@ const SkillsPage = () => {
               <div className="flex items-center justify-between gap-3 mb-5"><Badge variant="secondary" className="capitalize">{skill.category}</Badge><span className="text-xs text-muted-foreground">{skill.status}</span></div>
               <h3 className="font-heading font-semibold text-xl mb-2 group-hover:text-brand-orange transition-colors">{skill.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-5">{skill.summary}</p>
-              <div className="flex items-center justify-between text-xs"><span className="text-muted-foreground">By {skill.author}</span>{skill.usesChamberData && <span className="text-brand-teal font-medium inline-flex items-center gap-1"><Database className="h-3.5 w-3.5" /> Chamber-enabled</span>}</div>
+              <div className="flex items-center justify-between text-xs"><span className="text-muted-foreground">By {skill.author}</span>{skill.usesChamberData && <span className="text-brand-teal font-medium inline-flex items-center gap-1"><Database className="h-3.5 w-3.5" /> MCP-enabled</span>}</div>
             </Link>)}
           </div>
           {!filtered.length && <div className="rounded-2xl border border-dashed p-10 text-center text-muted-foreground">No skills match that search.</div>}

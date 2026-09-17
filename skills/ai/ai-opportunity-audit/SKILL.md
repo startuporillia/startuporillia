@@ -25,6 +25,6 @@ Score candidates on impact, frequency, readiness, validation ease, privacy, erro
 - success, stop, and rollback criteria;
 - owner and 30-day sequence.
 
-Use Chamber MCP only when local suppliers, advisors, training, or partners would help. Cite source listings and avoid quality claims. The audit must work without MCP.
+Use Startup Orillia MCP only when local suppliers, advisors, training, or partners would help. Cite source listings and avoid quality claims. The audit must work without MCP.
 
 Deliver an opportunity matrix, the recommended pilot, controls, test plan, and immediate actions. Clearly distinguish estimates from measured facts.

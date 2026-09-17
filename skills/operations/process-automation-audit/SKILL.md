@@ -21,6 +21,6 @@ Classify each step:
 
 Score opportunities on impact, frequency, feasibility, data sensitivity, exception rate, reversibility, and maintenance burden. Recommend no more than three. Define a measurable pilot for the best one, including test data, human review, failure path, audit trail, owner, rollback, and 30-day target.
 
-Use Chamber MCP only if the user needs local implementers, advisors, or suppliers. Search by capability, cite source listings, and treat matches as candidates to verify—not quality rankings. The audit must work without MCP.
+Use Startup Orillia MCP only if the user needs local implementers, advisors, or suppliers. Search by capability, cite source listings, and treat matches as candidates to verify—not quality rankings. The audit must work without MCP.
 
 Deliver the current-state map, opportunity table, recommended future-state flow, pilot build checklist, controls, measurement plan, and next five actions. State assumptions and do not promise savings without baseline evidence.
