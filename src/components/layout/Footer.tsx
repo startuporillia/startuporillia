@@ -15,6 +15,7 @@ const Footer = () => {
     { label: "Meetup", href: "/meetup" },
     { label: "Workshops", href: "/workshops" },
     { label: "Events", href: "/events" },
+    { label: "AI Skills", href: "/skills" },
     { label: "Projects", href: "/startups" },
     { label: "Contact", href: "/contact" },
   ];

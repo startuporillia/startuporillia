@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "2026-09-01",
+  "generatedAt": "2026-09-01T06:00:00.000Z",
+  "source": {
+    "organization": "Orillia & District Chamber of Commerce",
+    "platform": "GrowthZone",
+    "baseUrl": "https://business.orillia.com"
+  },
+  "stats": { "members": 5, "categories": 8, "events": 2 },
+  "members": [
+    {
+      "id": "member-bakery",
+      "sourceId": "101",
+      "name": "Example Bakery",
+      "slug": "example-bakery",
+      "description": "Bread, pastries, catering, and seasonal baked goods.",
+      "categories": ["Bakeries", "Catering"],
+      "address": { "city": "Orillia", "province": "ON", "country": "Canada" },
+      "website": "https://example.com/bakery",
+      "sourceUrl": "https://business.orillia.com/list/member/example-bakery-101"
+    },
+    {
+      "id": "member-photo",
+      "sourceId": "102",
+      "name": "Example Commercial Photography",
+      "slug": "example-commercial-photography",
+      "description": "Commercial product, food, event, and brand photography.",
+      "categories": ["Photography", "Advertising"],
+      "address": { "city": "Orillia", "province": "ON", "country": "Canada" },
+      "sourceUrl": "https://business.orillia.com/list/member/example-commercial-photography-102"
+    },
+    {
+      "id": "member-sign",
+      "name": "Example Sign Studio",
+      "slug": "example-sign-studio",
+      "description": "Portable signs, storefront signs, vinyl graphics, and printing.",
+      "categories": ["Printing Services & Signage", "Graphic Design"],
+      "address": { "city": "Orillia", "province": "ON", "country": "Canada" },
+      "sourceUrl": "https://business.orillia.com/list/member/example-sign-studio-103"
+    },
+    {
+      "id": "member-it",
+      "name": "Example Technology Services",
+      "slug": "example-technology-services",
+      "description": "Managed IT support, computer repair, networks, and cybersecurity.",
+      "categories": ["Computer Sales & Repair", "Cybersecurity"],
+      "address": { "city": "Oro-Medonte", "province": "ON", "country": "Canada" },
+      "sourceUrl": "https://business.orillia.com/list/member/example-technology-services-104"
+    },
+    {
+      "id": "member-accounting",
+      "name": "Example Accounting Office",
+      "slug": "example-accounting-office",
+      "description": "Bookkeeping, payroll, tax, and accounting for small businesses.",
+      "categories": ["Accounting & Bookkeeping"],
+      "address": { "city": "Orillia", "province": "ON", "country": "Canada" },
+      "sourceUrl": "https://business.orillia.com/list/member/example-accounting-office-105"
+    }
+  ],
+  "categories": ["Accounting & Bookkeeping", "Advertising", "Bakeries", "Catering", "Computer Sales & Repair", "Cybersecurity", "Graphic Design", "Photography"],
+  "events": [
+    {
+      "id": "event-networking",
+      "title": "Example Business After Five",
+      "description": "An evening networking event for the local business community.",
+      "startAt": "2026-10-15T17:00:00-04:00",
+      "venue": "Example Venue",
+      "address": "Orillia, ON",
+      "categories": ["Chamber Of Commerce", "Networking"],
+      "registrationUrl": "https://business.orillia.com/events/register/example",
+      "sourceUrl": "https://business.orillia.com/events/details/example-business-after-five-201"
+    },
+    {
+      "id": "event-market",
+      "title": "Example Holiday Market",
+      "startAt": "2026-11-20T10:00:00-05:00",
+      "categories": ["Community", "Shopping"],
+      "sourceUrl": "https://business.orillia.com/events/details/example-holiday-market-202"
+    }
+  ],
+  "benefits": [],
+  "deals": []
+}

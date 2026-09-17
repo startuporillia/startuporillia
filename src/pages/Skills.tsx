@@ -1,0 +1,91 @@
+import { useMemo, useState } from "react";
+import { ArrowRight, Bot, Database, Search, Sparkles, Users } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { categories, skills } from "@/lib/skills";
+import SkillsNotice from "@/components/skills/SkillsNotice";
+
+const SkillsPage = () => {
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("all");
+  const filtered = useMemo(() => skills.filter((skill) => {
+    const haystack = `${skill.title} ${skill.summary} ${skill.tags.join(" ")}`.toLowerCase();
+    return (category === "all" || skill.category === category) && haystack.includes(query.trim().toLowerCase());
+  }), [category, query]);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <section className="relative overflow-hidden border-b border-border/40">
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-cream via-background to-background" />
+        <div className="absolute -top-40 right-0 h-[520px] w-[520px] rounded-full bg-brand-teal/5 blur-3xl" />
+        <div className="relative container px-4 py-16 md:py-24">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-orange uppercase tracking-wider mb-4"><Sparkles className="h-3.5 w-3.5" /> Startup Orillia AI Skills</span>
+            <h1 className="text-primary mb-5">AI skills built for local business</h1>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">Practical, reusable AI playbooks from Startup Orillia. Use them with the AI tools you already have — and connect them to the Orillia Chamber network for local intelligence.</p>
+            <div className="flex flex-wrap justify-center gap-3 mt-8">
+              <Link to="/skills/connect" className="btn-primary inline-flex items-center gap-2">Use the skills <ArrowRight className="h-4 w-4" /></Link>
+              <a href="#catalog" className="inline-flex items-center px-6 py-3 rounded-lg border bg-card hover:bg-secondary transition-colors font-medium">Browse the catalog</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container px-4 py-16 md:py-20">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-8">
+            <p className="text-xs uppercase tracking-wider text-brand-teal font-medium mb-3">How it works</p>
+            <h2 className="text-2xl md:text-3xl">Playbooks plus local context</h2>
+          </div>
+          <div className="grid md:grid-cols-[1fr_auto_1fr_auto_1fr] gap-4 items-stretch">
+            {[
+              { icon: Users, eyebrow: "Your business problem", text: "“I’m opening a second location.”" },
+              { icon: Bot, eyebrow: "Startup Orillia Skill", text: "Local Supplier Finder" },
+              { icon: Database, eyebrow: "+ local Chamber data", text: "Signage, IT, cleaning, accounting — with source links" },
+            ].map((item, index) => <div key={item.eyebrow} className="rounded-2xl border bg-card p-6">
+              <item.icon className={`h-6 w-6 mb-5 ${index === 1 ? "text-brand-orange" : "text-brand-teal"}`} />
+              <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">{item.eyebrow}</p>
+              <p className="font-heading text-lg font-semibold leading-snug">{item.text}</p>
+            </div>).flatMap((item, index, array) => index < array.length - 1 ? [item, <ArrowRight key={`arrow-${index}`} className="hidden md:block self-center h-5 w-5 text-muted-foreground" />] : [item])}
+          </div>
+        </div>
+      </section>
+
+      <section id="catalog" className="container px-4 pb-20 scroll-mt-24">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-7">
+            <div><p className="text-xs uppercase tracking-wider text-brand-orange font-medium mb-3">Open catalog</p><h2 className="text-2xl md:text-3xl">Practical skills you can take with you</h2></div>
+            <p className="text-sm text-muted-foreground max-w-md">Each download is a portable <code>SKILL.md</code> package. Chamber data improves local discovery, but every skill still works without it.</p>
+          </div>
+          <div className="grid md:grid-cols-[1fr_auto] gap-3 mb-5">
+            <label className="relative"><Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" /><Input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search skills by task" className="pl-10 bg-card" /><span className="sr-only">Search skills</span></label>
+            <div className="flex gap-2 overflow-x-auto pb-1">
+              {["all", ...categories].map((item) => <button key={item} onClick={() => setCategory(item)} className={`px-3.5 py-2 rounded-lg border text-sm capitalize whitespace-nowrap transition-colors ${category === item ? "bg-primary text-primary-foreground border-primary" : "bg-card hover:bg-secondary"}`}>{item}</button>)}
+            </div>
+          </div>
+          <p className="text-sm text-muted-foreground mb-5">{filtered.length} {filtered.length === 1 ? "skill" : "skills"}</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filtered.map((skill) => <Link to={`/skills/${skill.slug}`} key={skill.slug} className="group rounded-2xl border bg-card p-6 hover:border-brand-orange/30 hover:-translate-y-1 transition-all">
+              <div className="flex items-center justify-between gap-3 mb-5"><Badge variant="secondary" className="capitalize">{skill.category}</Badge><span className="text-xs text-muted-foreground">{skill.status}</span></div>
+              <h3 className="font-heading font-semibold text-xl mb-2 group-hover:text-brand-orange transition-colors">{skill.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">{skill.summary}</p>
+              <div className="flex items-center justify-between text-xs"><span className="text-muted-foreground">By {skill.author}</span>{skill.usesChamberData && <span className="text-brand-teal font-medium inline-flex items-center gap-1"><Database className="h-3.5 w-3.5" /> Chamber-enabled</span>}</div>
+            </Link>)}
+          </div>
+          {!filtered.length && <div className="rounded-2xl border border-dashed p-10 text-center text-muted-foreground">No skills match that search.</div>}
+        </div>
+      </section>
+
+      <section className="border-t bg-secondary/20">
+        <div className="container px-4 py-16"><div className="max-w-5xl mx-auto grid lg:grid-cols-[1fr_1.2fr] gap-8 items-start">
+          <div><p className="text-xs uppercase tracking-wider text-brand-teal font-medium mb-3">Contribute</p><h2 className="text-2xl md:text-3xl mb-4">Turn local expertise into a reusable skill</h2><p className="text-muted-foreground leading-relaxed">Accountants, HR professionals, marketers, photographers, cybersecurity providers, and other practitioners can contribute useful playbooks and be credited.</p><Link to="/skills/connect#contribute" className="inline-flex items-center gap-2 text-brand-orange font-medium mt-5">Contribution guidelines <ArrowRight className="h-4 w-4" /></Link></div>
+          <div className="rounded-2xl border bg-card p-6 md:p-8"><h3 className="font-heading font-semibold text-xl mb-3">Teach the work, not the advertisement</h3><p className="text-sm text-muted-foreground leading-relaxed mb-5">A contributed skill must teach transferable expertise regardless of who runs it. Good examples include preparing for year-end, planning a first hire, building a local advertising campaign, planning a business photo shoot, or completing a small-business security audit.</p><p className="text-sm font-medium">Contributors can be credited. Disguised advertising is not accepted.</p></div>
+        </div></div>
+      </section>
+      <section className="container px-4 py-10"><div className="max-w-5xl mx-auto"><SkillsNotice /></div></section>
+    </div>
+  );
+};
+
+export default SkillsPage;

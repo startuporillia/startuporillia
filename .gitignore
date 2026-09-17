@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Chamber crawls are published to object storage, never committed.
+fixtures/chamber/*.json
+!fixtures/chamber/synthetic-snapshot.json
+chamber-snapshot*.json
+
 # Vercel
 .vercel
 

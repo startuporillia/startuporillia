@@ -1,0 +1,74 @@
+name: Refresh Chamber snapshot
+
+on:
+  schedule:
+    - cron: "17 11 1 * *"
+  workflow_dispatch:
+    inputs:
+      allow_large_drop:
+        description: "Publish despite sanity-check warnings (manual recovery only)"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chamber-snapshot-publish
+  cancel-in-progress: false
+
+jobs:
+  crawl-validate-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Download current production snapshot
+        run: |
+          npx tsx scripts/chamber/download.ts fixtures/chamber/previous.json
+        env:
+          CHAMBER_SNAPSHOT_URL: ${{ vars.CHAMBER_SNAPSHOT_URL }}
+          CHAMBER_BLOB_ACCESS: private
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+      - name: Crawl public GrowthZone pages
+        run: npm run chamber:crawl
+        env:
+          CHAMBER_SNAPSHOT_PATH: fixtures/chamber/chamber-snapshot.local.json
+      - name: Validate schema and sanity checks
+        run: |
+          if [ -f fixtures/chamber/previous.json ]; then
+            npm run chamber:validate -- fixtures/chamber/chamber-snapshot.local.json fixtures/chamber/previous.json | tee chamber-summary.txt
+          else
+            npm run chamber:validate -- fixtures/chamber/chamber-snapshot.local.json | tee chamber-summary.txt
+          fi
+        env:
+          CHAMBER_ALLOW_LARGE_DROP: ${{ inputs.allow_large_drop == true && '1' || '0' }}
+      - name: Publish immutable snapshot then latest pointer
+        run: npm run chamber:publish -- fixtures/chamber/chamber-snapshot.local.json
+        env:
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+      - name: Job summary
+        if: always()
+        run: |
+          echo '## Chamber snapshot refresh' >> "$GITHUB_STEP_SUMMARY"
+          if [ -f chamber-summary.txt ]; then
+            echo '```text' >> "$GITHUB_STEP_SUMMARY"
+            cat chamber-summary.txt >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'The crawl did not reach the summary step.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: chamber-summary-${{ github.run_id }}
+          path: chamber-summary.txt
+          if-no-files-found: ignore
+          retention-days: 14
