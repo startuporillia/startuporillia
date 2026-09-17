@@ -81,6 +81,8 @@ export const discoverMemberUrls = async (page: Page): Promise<string[]> => uniqu
 async function crawlMembers(context: BrowserContext): Promise<ChamberMember[]> {
   const index = await context.newPage();
   await gotoPublic(index, DIRECTORY_URL, "h5.gz-card-title a[href*='/list/member/']");
+  // The directory is streamed HTML: its first card can arrive before the rest.
+  await index.waitForLoadState("domcontentloaded", { timeout: 60_000 });
   const urls = await discoverMemberUrls(index);
   await index.close();
   if (urls.length < 25) throw new Error(`Directory traversal found only ${urls.length} member URLs`);
@@ -148,6 +150,7 @@ async function extractEvent(page: Page, sourceUrl: string): Promise<ChamberEvent
 async function crawlEvents(context: BrowserContext): Promise<ChamberEvent[]> {
   const index = await context.newPage();
   await gotoPublic(index, EVENT_URL, "a[href*='/events/details/']");
+  await index.waitForLoadState("domcontentloaded", { timeout: 60_000 });
   const urls = uniqueSorted(await index.locator("a[href*='/events/details/']").evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).href)));
   await index.close();
   const page = await context.newPage();

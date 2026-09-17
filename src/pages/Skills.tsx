@@ -23,7 +23,7 @@ const SkillsPage = () => {
           <div className="max-w-4xl mx-auto text-center">
             <span className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-orange uppercase tracking-wider mb-4"><Sparkles className="h-3.5 w-3.5" /> Startup Orillia AI Skills</span>
             <h1 className="text-primary mb-5">AI skills built for local business</h1>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">Practical, reusable AI playbooks from Startup Orillia. Use them with the AI tools you already have — and connect them to the Orillia Chamber network for local intelligence.</p>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">Practical, reusable AI playbooks from Startup Orillia. Use them with the AI tools you already have.</p>
             <div className="flex flex-wrap justify-center gap-3 mt-8">
               <Link to="/skills/connect" className="btn-primary inline-flex items-center gap-2">Use the skills <ArrowRight className="h-4 w-4" /></Link>
               <a href="#catalog" className="inline-flex items-center px-6 py-3 rounded-lg border bg-card hover:bg-secondary transition-colors font-medium">Browse the catalog</a>
