@@ -9,6 +9,8 @@ Create a focused prospecting system based on fit signals, not a bulk contact dum
 
 Clarify the offer, ideal account, buyer problem, geography, minimum viable deal, proof, sales capacity, exclusions, and numeric pipeline target. Convert the goal into required conversations, opportunities, and wins using stated or labelled assumed conversion rates.
 
+Ask at most two missing questions that change targeting and propose initial segments immediately. For “businesses that might buy corporate catering,” reason about offices, employers, venues and organizers, then search those categories separately; searching catering alone mostly finds suppliers. Validate each prospect against sourced facts and label buying intent as unknown. Use a manageable first batch, respect opt-outs, and adapt the sequence to the user's channels and applicable rules. Draft messages without sending or adding people to lists.
+
 If Startup Orillia MCP is available, check snapshot status and search members across likely categories, descriptions, and cities. Retrieve records before using details. Chamber membership establishes only that a business is publicly listed; it is not evidence of need, budget, quality, or buying intent. Never invent companies, contacts, or email addresses, and do not aggressively collect named individuals.
 
 Build a prospect table with:

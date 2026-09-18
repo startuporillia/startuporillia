@@ -1,5 +1,5 @@
 ---
-name: membership-value-audit
+name: chamber-membership-planner
 description: Turn your Chamber membership into a practical 90-day plan for relationships, visibility, learning, and business opportunities. Use when joining the Chamber or looking to get more from an existing membership.
 ---
 

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { categories, skills } from "@/lib/skills";
 import SkillsNotice from "@/components/skills/SkillsNotice";
+import { downloadSkills } from "@/lib/skill-download";
 
 const SkillsPage = () => {
   const [query, setQuery] = useState("");
@@ -52,6 +53,20 @@ const SkillsPage = () => {
         </div>
       </section>
 
+      <section className="container px-4 pb-16">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl mb-3">Start with a real business problem</h2>
+          <p className="text-muted-foreground mb-7">Tell your AI what you need help with. A skill guides the work; optional local context can make the results more useful.</p>
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { slug: "local-marketing-campaign", prompt: "I run a bakery. January weekdays are slow. Help me increase sales.", output: "Compare three campaign ideas, then turn your choice into partner outreach, ready-to-edit copy and a 30-day plan.", followup: "Build idea #2. Who locally could help me run it?" },
+              { slug: "networking-event-prep", prompt: "I'm going to a networking event. Help me prepare.", output: "Set a purpose, prepare a short introduction and conversation openers, and leave with a follow-up plan.", followup: "Give me a checklist I can keep on my phone." },
+              { slug: "ai-opportunity-audit", prompt: "We spend too much time on admin. Where could AI help?", output: "Compare practical opportunities and design one small pilot with a time-saving target and human review.", followup: "Build a one-week test for the best option." },
+            ].map((example) => <article key={example.slug} className="rounded-2xl border bg-card p-6"><h3 className="font-heading text-lg font-semibold mb-4">“{example.prompt}”</h3><p className="text-sm text-muted-foreground leading-relaxed mb-4">{example.output}</p><p className="text-sm mb-5"><span className="text-muted-foreground">Then ask: </span>“{example.followup}”</p><Link to={`/skills/${example.slug}`} className="text-sm font-medium text-brand-orange hover:underline">Explore this skill →</Link></article>)}
+          </div>
+        </div>
+      </section>
+
       <section id="catalog" className="container px-4 pb-20 scroll-mt-24">
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-7">
@@ -65,6 +80,7 @@ const SkillsPage = () => {
             </div>
           </div>
           <p className="text-sm text-muted-foreground mb-5">{filtered.length} {filtered.length === 1 ? "skill" : "skills"}</p>
+          <div className="mb-6 flex flex-wrap items-center gap-4"><button onClick={() => downloadSkills(skills, "startup-orillia-ai-skills.zip")} className="btn-primary">Get all {skills.length} skills</button><p className="text-sm text-muted-foreground">One ZIP with separate skill folders. Installation depends on your AI tool. <Link to="/skills/connect" className="text-brand-orange underline">Setup options</Link></p></div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {filtered.map((skill) => <Link to={`/skills/${skill.slug}`} key={skill.slug} className="group rounded-2xl border bg-card p-6 hover:border-brand-orange/30 hover:-translate-y-1 transition-all">
               <div className="flex items-center justify-between gap-3 mb-5"><Badge variant="secondary" className="capitalize">{skill.category}</Badge><span className="text-xs text-muted-foreground">{skill.status}</span></div>

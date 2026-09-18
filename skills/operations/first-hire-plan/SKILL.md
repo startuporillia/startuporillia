@@ -9,6 +9,8 @@ Determine whether hiring is the right constraint to solve before writing a job p
 
 Gather the business goal, work backlog, owner's current time, recurring tasks, revenue or capacity constraint, seasonality, budget, location, required schedule, and legal jurisdiction. Ask only essential questions. Do not provide definitive legal, payroll, immigration, tax, or employment advice; flag items for a qualified Ontario professional.
 
+Start with at most two questions that decide whether hiring is sensible, usually the recurring work and affordable hours. Produce a provisional role or alternative from known context. Confirm jurisdiction before presenting location-specific requirements; outside Ontario, use the relevant local professional. Include supervision and training time in the cost comparison. A hiring plan does not authorize posting jobs or contacting candidates.
+
 Group the work into outcomes, not a miscellaneous task list. Estimate weekly volume and value. Test four options: eliminate/simplify, automate, contractor/vendor, and employee. Explain the tradeoff and state assumptions.
 
 If a hire is justified, produce:

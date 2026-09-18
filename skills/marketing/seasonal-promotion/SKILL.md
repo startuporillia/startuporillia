@@ -11,6 +11,8 @@ Create a timely promotion without defaulting to an unprofitable discount.
 
 Confirm the season or date, customer, product or service, business goal, baseline, lead time, fulfillment capacity, margin constraints, and channels. Choose one measurable outcome and deadline. When details are missing, make and label conservative assumptions.
 
+Do not ask for all these details at once. Ask at most two questions that would change the offer and provide preliminary options immediately. If margin is unknown, propose offer mechanics with a break-even worksheet: selling price less product cost, reward, partner share and extra fulfillment cost. Avoid asserting profitability until those inputs are known. After the user selects an option, write the actual copy and staff instructions using the existing context.
+
 Identify the seasonal customer job: celebrate, prepare, give, gather, save time, escape weather, restart, or solve a predictable seasonal problem. Check whether the timing is genuinely relevant to the offer.
 
 ## Add local intelligence

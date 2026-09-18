@@ -7,13 +7,17 @@ description: Prepare for a networking event with a focused objective, relevant c
 
 Help the user enter the room with purpose without turning every conversation into a pitch.
 
-Clarify the event, user's business and role, networking objective, useful connection types, available time, comfort level, and what they can offer others. Set a realistic target such as three relevant conversations and two agreed follow-ups.
+Use the event and business context already provided. Ask at most two questions that would change preparation, usually the user's business and purpose for attending. Offer a useful starting plan immediately, with a realistic target such as three relevant conversations and two agreed follow-ups. Do not require a comfort-level questionnaire.
 
 If Startup Orillia MCP is available:
 
 1. check snapshot freshness;
 2. use `chamber.search_events` to find the event and retrieve its details;
 3. search members/categories to understand plausible connection types related to the objective.
+
+For “the next event,” compare event dates with the current date and local timezone; do not select a past event because it ranked first. If the snapshot has no suitable future event, say so and ask for the event link while preparing a general conversation plan. An event may be organized by any relevant organization; Chamber events are one available source. Search partner types separately rather than submitting an abstract networking objective.
+
+A listing on the Chamber calendar does not establish that the Chamber organizes the event. If “next” could mean several relevant events, present the earliest dated options and clarify the intended event while offering provisional preparation.
 
 Never claim that a member, employee, or contact will attend unless actual attendance data is available. Do not fabricate an attendee list. Clearly label businesses as research examples or connection types, not expected attendees.
 

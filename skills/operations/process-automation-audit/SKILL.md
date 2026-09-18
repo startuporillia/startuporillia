@@ -9,6 +9,8 @@ Find the smallest safe automation that removes meaningful friction.
 
 Choose one process. Gather trigger, steps, roles, systems, inputs, outputs, frequency, handling time, wait time, error/rework rate, exceptions, customer impact, and sensitive data. Draw the current workflow before proposing tools.
 
+Ask the user to walk through one recent example instead of answering a long questionnaire. Ask at most two missing questions initially and draw a provisional map from known facts. Include human review, exception handling and maintenance in savings estimates. If the workflow changes frequently, simplify it before automating. Produce a concrete first-week pilot checklist; do not modify production systems without authorization.
+
 Calculate a baseline using clearly labelled inputs: monthly volume, labour minutes, delay, error cost, and opportunity cost. Identify bottlenecks, duplicate entry, status chasing, routing, formatting, reminders, and predictable decisions.
 
 Classify each step:

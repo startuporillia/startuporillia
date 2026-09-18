@@ -9,6 +9,8 @@ Treat the opening as a customer-acquisition project, not only a one-day event.
 
 Confirm opening type, location, date flexibility, customer, capacity, permits or venue constraints, budget, offer, and 30-day goal. Flag uncertain dates or dependencies. Define success across attendance, qualified contacts, sales/bookings, local reach, and follow-up conversion.
 
+Use known context first; ask at most two questions that change the format or feasibility, usually opening date and capacity/budget. Give an initial plan with labelled assumptions immediately. Scale the countdown to the actual lead time: do not prescribe eight weeks when the opening is in ten days. Identify essential tasks, optional extras, and a go/no-go decision if the premises are not ready. Draft invitations and supplier enquiries; do not send or book without approval.
+
 If Startup Orillia MCP is available, check freshness and search for relevant suppliers (signage, printing, food, photography, AV, cleaning, security), complementary partners, media, and nearby businesses. Search events for conflicts or opportunities. Retrieve records and cite source URLs. Do not imply availability, attendance, endorsement, or partnership.
 
 Build a plan covering:
