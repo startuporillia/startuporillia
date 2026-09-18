@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { categories, skills } from "@/lib/skills";
 import SkillsNotice from "@/components/skills/SkillsNotice";
 import SkillsSetup from "@/components/skills/SkillsSetup";
+import LocalDataExample from "@/components/skills/LocalDataExample";
 import { downloadSkills } from "@/lib/skill-download";
 
 const SkillsPage = () => {
@@ -33,6 +34,8 @@ const SkillsPage = () => {
           </div>
         </div>
       </section>
+
+      <LocalDataExample />
 
       <section className="container px-4 py-16 md:py-20">
         <div className="max-w-5xl mx-auto">
