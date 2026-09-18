@@ -14,7 +14,6 @@ import CommunityPage from "./pages/Community";
 import ContactPage from "./pages/Contact";
 import SkillsPage from "./pages/Skills";
 import SkillDetailPage from "./pages/SkillDetail";
-import SkillsConnectPage from "./pages/SkillsConnect";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
@@ -42,7 +41,6 @@ const App = () => (
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/startups" element={<LaunchedStartups />} />
               <Route path="/skills" element={<SkillsPage />} />
-              <Route path="/skills/connect" element={<SkillsConnectPage />} />
               <Route path="/skills/:slug" element={<SkillDetailPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

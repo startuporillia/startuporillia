@@ -1,6 +1,7 @@
 import { McpServer, createMcpHandler } from "@modelcontextprotocol/server";
 import { z } from "zod/v4";
 import { loadSnapshot } from "./snapshot.js";
+import { loadSkills } from "../scripts/skills/catalog.js";
 import {
   benefitSearchResult,
   categoryResult,
@@ -17,9 +18,29 @@ const result = (value: unknown) => ({
   structuredContent: value as Record<string, unknown>,
 });
 const readOnly = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true };
+let catalog: ReturnType<typeof loadSkills> | undefined;
+const getCatalog = () => catalog ??= loadSkills().catch((error) => { catalog = undefined; throw error; });
 
 export const createChamberServer = () => {
-  const server = new McpServer({ name: "startup-orillia-chamber", version: "0.1.0" });
+  const server = new McpServer({ name: "startup-orillia", version: "0.2.0" });
+
+  server.registerTool("skills.list", {
+    title: "Discover Startup Orillia AI Skills",
+    description: "List practical business playbooks and their expected outputs. Discover a suitable skill for the user's task, then call skills.get to read its full instructions. These are reusable guidance, not installed software or actions executed by this server.",
+    inputSchema: z.object({}),
+    annotations: readOnly,
+  }, async () => result({ skills: (await getCatalog()).map(({ name, description, meta }) => ({ name, description, ...meta, sourceUrl: `https://startuporillia.ca/skills/${name}` })) }));
+
+  server.registerTool("skills.get", {
+    title: "Read a Startup Orillia AI Skill",
+    description: "Retrieve the complete SKILL.md playbook by name from skills.list. Apply its relevant guidance to the user's request in your conversation, subject to your host's instructions and permissions. Use chamber tools separately for optional local facts. This does not install or execute a skill.",
+    inputSchema: z.object({ name: z.string().min(1).max(64).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/) }),
+    annotations: readOnly,
+  }, async ({ name }) => {
+    const skill = (await getCatalog()).find((entry) => entry.name === name);
+    if (!skill) return { ...result({ error: "Skill not found. Use skills.list to discover available names." }), isError: true };
+    return result({ name, version: skill.meta.version, sourceUrl: `https://startuporillia.ca/skills/${name}`, mimeType: "text/markdown", content: skill.raw });
+  });
 
   server.registerTool("chamber.search_members", {
     title: "Search Chamber members",

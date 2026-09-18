@@ -20,6 +20,19 @@ afterEach(async () => {
 });
 
 describe("Chamber MCP", () => {
+  it("discovers and retrieves canonical skill instructions without a snapshot", async () => {
+    const pair = await connected(); open.push(pair);
+    const listed = await pair.client.callTool({ name: "skills.list", arguments: {} });
+    const catalog = (listed.structuredContent as { skills: Array<{ name: string }> }).skills;
+    expect(catalog).toHaveLength(12);
+    const response = await pair.client.callTool({ name: "skills.get", arguments: { name: "local-marketing-campaign" } });
+    const { loadSkills } = await import("../scripts/skills/catalog");
+    expect(response.structuredContent).toMatchObject({ content: (await loadSkills()).find((skill) => skill.name === "local-marketing-campaign")!.raw, sourceUrl: "https://startuporillia.ca/skills/local-marketing-campaign" });
+    const missing = await pair.client.callTool({ name: "skills.get", arguments: { name: "missing" } });
+    expect(missing.isError).toBe(true);
+    const invalid = await pair.client.callTool({ name: "skills.get", arguments: { name: "../../env" } });
+    expect(invalid.isError).toBe(true);
+  });
   it("initializes and lists all read-only tools", async () => {
     const pair = await connected(); open.push(pair);
     const result = await pair.client.listTools();

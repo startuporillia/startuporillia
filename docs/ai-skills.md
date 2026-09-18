@@ -71,6 +71,12 @@ BLOB_READ_WRITE_TOKEN=... npm run chamber:publish -- /tmp/chamber-snapshot.json
 
 ## MCP
 
+The public `/skills` page is the single onboarding page, with MCP-first setup tabs, plain-language explanations and download alternatives. There is no separate connect page. Account support differs; official client instructions are linked in each tab.
+
+`skills.list` returns the twelve playbooks' metadata and expected outputs. `skills.get` accepts a listed name and returns the canonical SKILL.md, version and source URL. These tools retrieve guidance for the host AI; they do not install skills, execute campaigns or replace the host's permissions. They work independently of the Chamber snapshot. Vercel bundles `skills/**` with the function; the validated catalog is cached per process. Skill changes therefore require a deployment, while snapshot updates do not.
+
+Keep the skill source in this repository for v1: the website, ZIP downloads, validation and MCP all consume the same files. A separate repository is an organizational option when maintainers or release cadence diverge, not an installation requirement. The Skills CLI already discovers the nested folders in this repository.
+
 Endpoint: `https://startuporillia.ca/mcp`
 
 The MCP uses the official TypeScript SDK 2.x stateless per-request Streamable HTTP handler. It loads `CHAMBER_SNAPSHOT_PATH` for local/test use or `CHAMBER_SNAPSHOT_URL` in production, validates the snapshot, builds searches in memory, and caches the snapshot for six hours. Updating Blob storage does not require redeploying the site.

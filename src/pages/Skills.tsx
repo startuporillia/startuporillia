@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { categories, skills } from "@/lib/skills";
 import SkillsNotice from "@/components/skills/SkillsNotice";
+import SkillsSetup from "@/components/skills/SkillsSetup";
 import { downloadSkills } from "@/lib/skill-download";
 
 const SkillsPage = () => {
@@ -26,7 +27,7 @@ const SkillsPage = () => {
             <h1 className="text-primary mb-5">AI skills built for local business</h1>
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">Practical, reusable AI playbooks from Startup Orillia. Use them with the AI tools you already have.</p>
             <div className="flex flex-wrap justify-center gap-3 mt-8">
-              <Link to="/skills/connect" className="btn-primary inline-flex items-center gap-2">Use the skills <ArrowRight className="h-4 w-4" /></Link>
+              <a href="#setup" className="btn-primary inline-flex items-center gap-2">Get started <ArrowRight className="h-4 w-4" /></a>
               <a href="#catalog" className="inline-flex items-center px-6 py-3 rounded-lg border bg-card hover:bg-secondary transition-colors font-medium">Browse the catalog</a>
             </div>
           </div>
@@ -38,6 +39,8 @@ const SkillsPage = () => {
           <div className="mb-8">
             <p className="text-xs uppercase tracking-wider text-brand-teal font-medium mb-3">How it works</p>
             <h2 className="text-2xl md:text-3xl">Playbooks plus local context</h2>
+            <p className="text-muted-foreground leading-relaxed mt-4 max-w-3xl">A skill is a reusable set of instructions that helps your AI work through a business task. Think of it as a practical playbook: it guides the questions to ask, the options to consider and the work to produce—not just a one-line prompt.</p>
+            <p className="text-muted-foreground leading-relaxed mt-3 max-w-3xl">Use one to turn a slow-sales problem into a campaign, prepare talking points and follow-ups for a networking event, compare suppliers, or plan a small AI experiment. You can refine the result in conversation: “Choose the second idea,” “Draft the outreach,” or “Make this fit a $300 budget.”</p>
           </div>
           <div className="grid md:grid-cols-[1fr_auto_1fr_auto_1fr] gap-4 items-stretch">
             {[
@@ -52,6 +55,8 @@ const SkillsPage = () => {
           </div>
         </div>
       </section>
+
+      <SkillsSetup />
 
       <section className="container px-4 pb-16">
         <div className="max-w-5xl mx-auto">
@@ -80,7 +85,7 @@ const SkillsPage = () => {
             </div>
           </div>
           <p className="text-sm text-muted-foreground mb-5">{filtered.length} {filtered.length === 1 ? "skill" : "skills"}</p>
-          <div className="mb-6 flex flex-wrap items-center gap-4"><button onClick={() => downloadSkills(skills, "startup-orillia-ai-skills.zip")} className="btn-primary">Get all {skills.length} skills</button><p className="text-sm text-muted-foreground">One ZIP with separate skill folders. Installation depends on your AI tool. <Link to="/skills/connect" className="text-brand-orange underline">Setup options</Link></p></div>
+          <div className="mb-6 flex flex-wrap items-center gap-4"><button onClick={() => downloadSkills(skills, "startup-orillia-ai-skills.zip")} className="btn-primary">Get all {skills.length} skills</button><p className="text-sm text-muted-foreground">One ZIP with separate skill folders. Installation depends on your AI tool. <a href="#setup" className="text-brand-orange underline">Setup options</a></p></div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {filtered.map((skill) => <Link to={`/skills/${skill.slug}`} key={skill.slug} className="group rounded-2xl border bg-card p-6 hover:border-brand-orange/30 hover:-translate-y-1 transition-all">
               <div className="flex items-center justify-between gap-3 mb-5"><Badge variant="secondary" className="capitalize">{skill.category}</Badge><span className="text-xs text-muted-foreground">{skill.status}</span></div>
@@ -95,7 +100,7 @@ const SkillsPage = () => {
 
       <section className="border-t bg-secondary/20">
         <div className="container px-4 py-16"><div className="max-w-5xl mx-auto grid lg:grid-cols-[1fr_1.2fr] gap-8 items-start">
-          <div><p className="text-xs uppercase tracking-wider text-brand-teal font-medium mb-3">Contribute</p><h2 className="text-2xl md:text-3xl mb-4">Turn local expertise into a reusable skill</h2><p className="text-muted-foreground leading-relaxed">Accountants, HR professionals, marketers, photographers, cybersecurity providers, and other practitioners can contribute useful playbooks and be credited.</p><Link to="/skills/connect#contribute" className="inline-flex items-center gap-2 text-brand-orange font-medium mt-5">Contribution guidelines <ArrowRight className="h-4 w-4" /></Link></div>
+          <div><p className="text-xs uppercase tracking-wider text-brand-teal font-medium mb-3">Contribute</p><h2 className="text-2xl md:text-3xl mb-4">Turn local expertise into a reusable skill</h2><p className="text-muted-foreground leading-relaxed">Accountants, HR professionals, marketers, photographers, cybersecurity providers, and other practitioners can contribute useful playbooks and be credited.</p><a href="https://github.com/startuporillia/startuporillia/blob/main/docs/ai-skills.md" className="inline-flex items-center gap-2 text-brand-orange font-medium mt-5">Contribution guidelines <ArrowRight className="h-4 w-4" /></a></div>
           <div className="rounded-2xl border bg-card p-6 md:p-8"><h3 className="font-heading font-semibold text-xl mb-3">Teach the work, not the advertisement</h3><p className="text-sm text-muted-foreground leading-relaxed mb-5">A contributed skill must teach transferable expertise regardless of who runs it. Good examples include preparing for year-end, planning a first hire, building a local advertising campaign, planning a business photo shoot, or completing a small-business security audit.</p><p className="text-sm font-medium">Contributors can be credited. Disguised advertising is not accepted.</p></div>
         </div></div>
       </section>
