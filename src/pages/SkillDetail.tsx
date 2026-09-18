@@ -8,7 +8,6 @@ import { getSkill } from "@/lib/skills";
 
 const SkillDetailPage = () => {
   const { slug } = useParams();
-  if (slug === "chamber-event-prep") return <Navigate to="/skills/networking-event-prep" replace />;
   const skill = getSkill(slug);
   if (!skill) return <Navigate to="/skills" replace />;
 
