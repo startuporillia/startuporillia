@@ -1,15 +1,15 @@
 export default function LocalDataExample() {
-  return <section className="container px-4 pt-12 md:pt-16">
+  return <section className="container px-4 pt-8 md:pt-16">
     <div className="max-w-5xl mx-auto">
       <p className="text-xs uppercase tracking-wider text-brand-teal font-medium mb-3">Local knowledge, practical action</p>
       <h2 className="text-2xl md:text-3xl mb-4">Connect your AI to the businesses around you</h2>
       <p className="text-muted-foreground leading-relaxed max-w-3xl">The Startup Orillia MCP gives your AI access to our playbooks and local business information, so it can help you find potential partners, discover suppliers and prepare for events—not just suggest generic ideas.</p>
-      <div className="grid sm:grid-cols-3 gap-4 mt-7">
+      <div className="grid sm:grid-cols-3 gap-2 sm:gap-4 mt-5 md:mt-7">
         {[
           ["500+", "local businesses", "Search names, services, descriptions and published website links."],
           ["190+", "business categories", "Explore suppliers and potential partners by the work they do."],
           ["Local events", "with source links", "Look up dates and details captured from the public calendar."],
-        ].map(([value, label, description]) => <div key={value} className="rounded-2xl border bg-card p-6"><p className="font-heading text-3xl text-brand-teal font-semibold mb-1">{value}</p><p className="font-medium mb-3">{label}</p><p className="text-sm text-muted-foreground leading-relaxed">{description}</p></div>)}
+        ].map(([value, label, description]) => <div key={value} className="rounded-2xl border bg-card p-4 md:p-6 grid grid-cols-[7rem_1fr] sm:block items-center gap-x-3"><div><p className="font-heading text-2xl md:text-3xl text-brand-teal font-semibold mb-1">{value}</p><p className="text-sm sm:text-base font-medium sm:mb-3">{label}</p></div><p className="text-sm text-muted-foreground leading-relaxed">{description}</p></div>)}
       </div>
       <p className="text-xs italic text-muted-foreground leading-relaxed mt-4">Snapshots are refreshed regularly. This is not a directory of every business in the area.</p>
 
@@ -19,8 +19,9 @@ export default function LocalDataExample() {
 
 export function EndToEndExample() {
   return <details id="real-example" className="rounded-2xl border bg-card mt-7 group scroll-mt-24">
-        <summary className="cursor-pointer p-6 font-heading text-xl font-semibold text-brand-orange">See an end-to-end example with real local data</summary>
+        <summary className="cursor-pointer p-4 md:p-6 font-heading text-lg md:text-xl font-semibold text-brand-orange">See an example: a bakery finds possible office customers</summary>
         <div className="px-6 pb-6 md:px-8 md:pb-8 space-y-7">
+          <p className="font-medium text-sm leading-relaxed">A business problem → real local listings → an offer and message → a 30-day test.</p>
           <p className="text-sm text-muted-foreground leading-relaxed">A worked example using the Startup Orillia MCP and skills, with real local search results from September 17, 2026. This shows how a campaign could work, not one that has already happened. The bakery, budget and sales goals are made up for this example. The named businesses have real listings, but have not agreed to take part.</p>
           <div><h3 className="font-heading text-lg font-semibold mb-2">1. Start with the business problem</h3><blockquote className="rounded-lg bg-secondary p-4">“I run a bakery in Orillia. January weekdays are slow. Help me increase sales.”</blockquote><p className="text-sm text-muted-foreground mt-3">Your AI reads the Local Marketing Campaign skill. It asks whether you can deliver and what you can spend. For this example, assume you can make a few nearby morning deliveries and have a $300 test budget. The goal: five paid office orders in 30 days, with at least two customers ordering again.</p></div>
           <div><h3 className="font-heading text-lg font-semibold mb-2">2. Find businesses with a reason to order</h3><p className="text-sm text-muted-foreground mb-4">Instead of asking people to change their morning routine, offer something for an existing occasion: breakfast for a team meeting or a client visit. The AI searches for local offices. Searches for “accounting” and “insurance” through the Startup Orillia MCP returned these real businesses:</p><div className="grid md:grid-cols-2 gap-4">
