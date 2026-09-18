@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { categories, skills } from "@/lib/skills";
 import SkillsNotice from "@/components/skills/SkillsNotice";
 import SkillsSetup from "@/components/skills/SkillsSetup";
-import LocalDataExample from "@/components/skills/LocalDataExample";
+import LocalDataExample, { EndToEndExample } from "@/components/skills/LocalDataExample";
 import { downloadSkills } from "@/lib/skill-download";
 
 const SkillsPage = () => {
@@ -56,6 +56,7 @@ const SkillsPage = () => {
               <p className="font-heading text-lg font-semibold leading-snug">{item.text}</p>
             </div>).flatMap((item, index, array) => index < array.length - 1 ? [item, <ArrowRight key={`arrow-${index}`} className="hidden md:block self-center h-5 w-5 text-muted-foreground" />] : [item])}
           </div>
+          <EndToEndExample />
         </div>
       </section>
 

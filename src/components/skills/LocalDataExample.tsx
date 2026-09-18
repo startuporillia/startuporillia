@@ -13,7 +13,12 @@ export default function LocalDataExample() {
       </div>
       <p className="text-xs italic text-muted-foreground leading-relaxed mt-4">Snapshots are refreshed regularly. This is not a directory of every business in the area.</p>
 
-      <details id="real-example" className="rounded-2xl border bg-card mt-7 group scroll-mt-24">
+    </div>
+  </section>;
+}
+
+export function EndToEndExample() {
+  return <details id="real-example" className="rounded-2xl border bg-card mt-7 group scroll-mt-24">
         <summary className="cursor-pointer p-6 font-heading text-xl font-semibold text-brand-orange">See an end-to-end example with real local data</summary>
         <div className="px-6 pb-6 md:px-8 md:pb-8 space-y-7">
           <p className="text-sm text-muted-foreground leading-relaxed">A worked example using the Startup Orillia MCP and skills, with real local search results from September 17, 2026. This shows how a campaign could work, not one that has already happened. The bakery, budget and sales goals are made up for this example. The named businesses have real listings, but have not agreed to take part.</p>
@@ -28,7 +33,5 @@ export default function LocalDataExample() {
           <p className="text-sm text-muted-foreground border-t pt-5">That is the combination: a skill guides the work, the Startup Orillia MCP provides local information, and your AI helps turn it into drafts and decisions. You check the details, approve the plan and take action.</p>
           <a href="#setup" className="btn-primary inline-flex">Try it with your AI tool</a>
         </div>
-      </details>
-    </div>
-  </section>;
+      </details>;
 }
