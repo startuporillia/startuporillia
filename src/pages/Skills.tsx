@@ -103,13 +103,7 @@ const SkillsPage = () => {
         </div>
       </section>
 
-      <section className="border-t bg-secondary/20">
-        <div className="container px-4 py-16"><div className="max-w-5xl mx-auto grid lg:grid-cols-[1fr_1.2fr] gap-8 items-start">
-          <div><p className="text-xs uppercase tracking-wider text-brand-teal font-medium mb-3">Contribute</p><h2 className="text-2xl md:text-3xl mb-4">Turn local expertise into a reusable skill</h2><p className="text-muted-foreground leading-relaxed">Accountants, HR professionals, marketers, photographers, cybersecurity providers, and other practitioners can contribute useful playbooks and be credited.</p><a href="https://github.com/startuporillia/startuporillia/blob/main/docs/ai-skills.md" className="inline-flex items-center gap-2 text-brand-orange font-medium mt-5">Contribution guidelines <ArrowRight className="h-4 w-4" /></a></div>
-          <div className="rounded-2xl border bg-card p-6 md:p-8"><h3 className="font-heading font-semibold text-xl mb-3">Teach the work, not the advertisement</h3><p className="text-sm text-muted-foreground leading-relaxed mb-5">A contributed skill must teach transferable expertise regardless of who runs it. Good examples include preparing for year-end, planning a first hire, building a local advertising campaign, planning a business photo shoot, or completing a small-business security audit.</p><p className="text-sm font-medium">Contributors can be credited. Disguised advertising is not accepted.</p></div>
-        </div></div>
-      </section>
-      <section className="container px-4 pt-10 md:pt-16" aria-labelledby="meetup-invitation">
+      <section className="container px-4" aria-labelledby="meetup-invitation">
         <div className="max-w-5xl mx-auto rounded-2xl border border-brand-teal/20 bg-brand-teal/5 p-6 md:p-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
           <div className="flex-1">
             <p className="text-xs uppercase tracking-wider text-brand-teal font-medium mb-3">Free monthly meetups</p>
