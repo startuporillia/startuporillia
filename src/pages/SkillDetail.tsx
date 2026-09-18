@@ -8,6 +8,7 @@ import { getSkill } from "@/lib/skills";
 
 const SkillDetailPage = () => {
   const { slug } = useParams();
+  if (slug === "chamber-event-prep") return <Navigate to="/skills/networking-event-prep" replace />;
   const skill = getSkill(slug);
   if (!skill) return <Navigate to="/skills" replace />;
 
@@ -27,7 +28,7 @@ const SkillDetailPage = () => {
       <div className="container px-4 py-12 md:py-16"><div className="max-w-5xl mx-auto">
         <Link to="/skills" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-8"><ArrowLeft className="h-4 w-4" /> All skills</Link>
         <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-end">
-          <div><div className="flex flex-wrap gap-2 mb-5"><Badge className="capitalize bg-brand-orange hover:bg-brand-orange">{skill.category}</Badge><Badge variant="outline">{skill.status} · v{skill.version}</Badge>{skill.usesChamberData && <Badge variant="outline" className="text-brand-teal border-brand-teal/30"><Database className="h-3.5 w-3.5 mr-1" /> MCP-enabled</Badge>}</div><h1 className="mb-5">{skill.title}</h1><p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">{skill.description}</p></div>
+          <div><div className="flex flex-wrap gap-2 mb-5"><Badge className="capitalize bg-brand-orange hover:bg-brand-orange">{skill.category}</Badge><Badge variant="outline">{skill.status} · v{skill.version}</Badge>{skill.usesChamberData && <Badge variant="outline" className="text-brand-teal border-brand-teal/30"><Database className="h-3.5 w-3.5 mr-1" /> Local context</Badge>}</div><h1 className="mb-5">{skill.title}</h1><p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">{skill.description}</p></div>
           <Button onClick={download} size="lg" className="bg-brand-orange hover:bg-brand-orange-light text-white"><Download className="h-4 w-4" /> Download skill</Button>
         </div>
       </div></div>
@@ -41,7 +42,7 @@ const SkillDetailPage = () => {
         <SkillsNotice />
       </main>
       <aside className="space-y-5">
-        <div className="rounded-2xl border bg-card p-6 sticky top-24"><h3 className="font-heading font-semibold text-lg mb-4">Skill details</h3><dl className="space-y-4 text-sm"><div><dt className="text-muted-foreground">Author</dt><dd className="font-medium mt-1">{skill.author}</dd></div><div><dt className="text-muted-foreground">Contributors</dt><dd className="font-medium mt-1">{skill.contributors.length ? skill.contributors.join(", ") : "No additional contributors yet"}</dd></div><div><dt className="text-muted-foreground">Version</dt><dd className="font-medium mt-1">{skill.version}</dd></div><div><dt className="text-muted-foreground">Local data</dt><dd className="font-medium mt-1">{skill.usesChamberData ? "Optional Startup Orillia MCP" : "Not required"}</dd></div></dl><hr className="my-5" /><Link to="/skills/connect" className="text-sm text-brand-orange font-medium hover:underline">Platform setup instructions →</Link></div>
+        <div className="rounded-2xl border bg-card p-6 sticky top-24"><h3 className="font-heading font-semibold text-lg mb-4">Skill details</h3><dl className="space-y-4 text-sm"><div><dt className="text-muted-foreground">Author</dt><dd className="font-medium mt-1">{skill.author}</dd></div><div><dt className="text-muted-foreground">Contributors</dt><dd className="font-medium mt-1">{skill.contributors.length ? skill.contributors.join(", ") : "No additional contributors yet"}</dd></div><div><dt className="text-muted-foreground">Version</dt><dd className="font-medium mt-1">{skill.version}</dd></div><div><dt className="text-muted-foreground">Local data</dt><dd className="font-medium mt-1">{skill.usesChamberData ? "Optional local context" : "Not required"}</dd></div></dl><hr className="my-5" /><Link to="/skills/connect" className="text-sm text-brand-orange font-medium hover:underline">Platform setup instructions →</Link></div>
       </aside>
     </div></div>
   </div>;

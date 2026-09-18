@@ -1,9 +1,9 @@
 ---
-name: chamber-event-prep
-description: Prepare for a Chamber or local networking event with a focused objective, relevant connection types, conversation openers, and a follow-up workflow. Use before business mixers, breakfasts, conferences, or community events.
+name: networking-event-prep
+description: Prepare for a networking event with a focused objective, relevant connection types, conversation openers, and a follow-up workflow. Use before business mixers, breakfasts, conferences, or community events.
 ---
 
-# Chamber Event Prep
+# Networking Event Prep
 
 Help the user enter the room with purpose without turning every conversation into a pitch.
 

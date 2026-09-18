@@ -42,7 +42,7 @@ const SkillsPage = () => {
             {[
               { icon: Users, eyebrow: "Your business problem", text: "“I’m opening a second location.”" },
               { icon: Bot, eyebrow: "Startup Orillia Skill", text: "Local Supplier Finder" },
-              { icon: Database, eyebrow: "+ local Chamber data", text: "Signage, IT, cleaning, accounting — with source links" },
+              { icon: Database, eyebrow: "+ local business data", text: "Signage, IT, cleaning, accounting — with source links" },
             ].map((item, index) => <div key={item.eyebrow} className="rounded-2xl border bg-card p-6">
               <item.icon className={`h-6 w-6 mb-5 ${index === 1 ? "text-brand-orange" : "text-brand-teal"}`} />
               <p className="text-xs uppercase tracking-wider text-muted-foreground mb-2">{item.eyebrow}</p>
@@ -56,7 +56,7 @@ const SkillsPage = () => {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-7">
             <div><p className="text-xs uppercase tracking-wider text-brand-orange font-medium mb-3">Open catalog</p><h2 className="text-2xl md:text-3xl">Practical skills you can take with you</h2></div>
-            <p className="text-sm text-muted-foreground max-w-md">Each download is a portable <code>SKILL.md</code> package. Chamber data improves local discovery, but every skill still works without it.</p>
+            <p className="text-sm text-muted-foreground max-w-md">Each download is a portable <code>SKILL.md</code> package. Local data can improve discovery and recommendations, but every skill still works without it.</p>
           </div>
           <div className="grid md:grid-cols-[1fr_auto] gap-3 mb-5">
             <label className="relative"><Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" /><Input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search skills by task" className="pl-10 bg-card" /><span className="sr-only">Search skills</span></label>
@@ -70,7 +70,7 @@ const SkillsPage = () => {
               <div className="flex items-center justify-between gap-3 mb-5"><Badge variant="secondary" className="capitalize">{skill.category}</Badge><span className="text-xs text-muted-foreground">{skill.status}</span></div>
               <h3 className="font-heading font-semibold text-xl mb-2 group-hover:text-brand-orange transition-colors">{skill.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-5">{skill.summary}</p>
-              <div className="flex items-center justify-between text-xs"><span className="text-muted-foreground">By {skill.author}</span>{skill.usesChamberData && <span className="text-brand-teal font-medium inline-flex items-center gap-1"><Database className="h-3.5 w-3.5" /> MCP-enabled</span>}</div>
+              <div className="flex items-center justify-between text-xs"><span className="text-muted-foreground">By {skill.author}</span>{skill.usesChamberData && <span className="text-brand-teal font-medium inline-flex items-center gap-1"><Database className="h-3.5 w-3.5" /> Local context</span>}</div>
             </Link>)}
           </div>
           {!filtered.length && <div className="rounded-2xl border border-dashed p-10 text-center text-muted-foreground">No skills match that search.</div>}
