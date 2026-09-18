@@ -7,6 +7,9 @@
   },
   "rewrites": [
     { "source": "/mcp", "destination": "/api/mcp" },
+    { "source": "/skills/:slug", "destination": "/share-pages/skills/:slug.html" },
+    { "source": "/workshops/:slug", "destination": "/share-pages/workshops/:slug.html" },
+    { "source": "/:page(skills|meetup|events|workshops|community|contact|startups)", "destination": "/share-pages/:page.html" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "trailingSlash": false,

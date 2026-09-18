@@ -18,6 +18,7 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import ScrollToTop from "./components/layout/ScrollToTop";
+import PageMetadata from "./components/layout/PageMetadata";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <PageMetadata />
         <ScrollToTop />
         <div className="flex flex-col min-h-screen font-sans">
           <Navbar />
