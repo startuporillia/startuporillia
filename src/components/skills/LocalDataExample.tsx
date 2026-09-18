@@ -11,7 +11,7 @@ export default function LocalDataExample() {
           ["Local events", "with source links", "Look up dates and details captured from the public calendar."],
         ].map(([value, label, description]) => <div key={value} className="rounded-2xl border bg-card p-6"><p className="font-heading text-3xl text-brand-teal font-semibold mb-1">{value}</p><p className="font-medium mb-3">{label}</p><p className="text-sm text-muted-foreground leading-relaxed">{description}</p></div>)}
       </div>
-      <p className="text-xs text-muted-foreground leading-relaxed mt-4">Counts rounded down from the September 17, 2026 snapshot: 513 listings, 197 categories and 10 calendar events. Our first local data source is publicly available <a href="https://business.orillia.com/" target="_blank" rel="noreferrer" className="underline">Orillia &amp; District Chamber of Commerce information</a>. Snapshots are refreshed monthly, not live; visit the official listings for the most accurate and up-to-date information. This is not a directory of every business in the area.</p>
+      <p className="text-xs italic text-muted-foreground leading-relaxed mt-4">Snapshots are refreshed regularly. This is not a directory of every business in the area.</p>
 
       <details id="real-example" className="rounded-2xl border bg-card mt-7 group scroll-mt-24">
         <summary className="cursor-pointer p-6 font-heading text-xl font-semibold text-brand-orange">See an end-to-end example with real local data</summary>
