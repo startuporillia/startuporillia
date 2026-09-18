@@ -109,6 +109,16 @@ const SkillsPage = () => {
           <div className="rounded-2xl border bg-card p-6 md:p-8"><h3 className="font-heading font-semibold text-xl mb-3">Teach the work, not the advertisement</h3><p className="text-sm text-muted-foreground leading-relaxed mb-5">A contributed skill must teach transferable expertise regardless of who runs it. Good examples include preparing for year-end, planning a first hire, building a local advertising campaign, planning a business photo shoot, or completing a small-business security audit.</p><p className="text-sm font-medium">Contributors can be credited. Disguised advertising is not accepted.</p></div>
         </div></div>
       </section>
+      <section className="container px-4 pt-10 md:pt-16" aria-labelledby="meetup-invitation">
+        <div className="max-w-5xl mx-auto rounded-2xl border border-brand-teal/20 bg-brand-teal/5 p-6 md:p-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+          <div className="flex-1">
+            <p className="text-xs uppercase tracking-wider text-brand-teal font-medium mb-3">Free monthly meetups</p>
+            <h2 id="meetup-invitation" className="text-2xl md:text-3xl mb-4">You don’t have to figure it out alone</h2>
+            <p className="text-muted-foreground leading-relaxed">Bring your questions to a Startup Orillia meetup. Meet local business owners, share what you’re trying and get help from the community. Whether you’re just starting with AI or have something to share, you’re welcome. No technical experience needed.</p>
+          </div>
+          <Link to="/meetup" className="btn-primary inline-flex items-center justify-center gap-2 shrink-0 self-start md:self-center">Find the next meetup <ArrowRight aria-hidden="true" className="h-4 w-4" /></Link>
+        </div>
+      </section>
       <section className="container px-4 py-10"><div className="max-w-5xl mx-auto"><SkillsNotice /></div></section>
     </div>
   );
