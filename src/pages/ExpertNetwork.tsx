@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import {
   Briefcase,
   ArrowRight,
-  Check,
   Calendar,
   Linkedin,
   Quote,
@@ -15,13 +14,12 @@ import { Button } from "@/components/ui/button";
 import ExpertApplicationForm from "@/components/ExpertApplicationForm";
 import {
   APPLICATION_STEPS,
-  CONNECTION_STEPS,
-  ELIGIBILITY,
   EXAMPLE_PROBLEMS,
   EXPERTISE_AREAS,
   EXPERT_NETWORK_FEE_CAD,
   EXPERT_NETWORK_SEATS,
   MEMBER_BENEFITS,
+  OPPORTUNITY_STEPS,
   expertMembers,
   openSeats,
 } from "@/lib/expert-network";
@@ -40,7 +38,7 @@ const ExpertNetworkPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero — expert side first */}
+      {/* Hero — two-sided */}
       <section className="relative overflow-hidden border-b border-border/40">
         <div className="absolute inset-0 bg-gradient-to-b from-brand-cream via-background to-background" />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-teal/5 rounded-full blur-3xl -translate-y-1/3" />
@@ -52,11 +50,15 @@ const ExpertNetworkPage = () => {
                 Expert Network
               </span>
               <h1 className="text-primary mb-5">
-                Local tech experts, ready to help.
+                Local experts who help businesses grow, automate and build.
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                Startup Orillia connects businesses that need software, AI, product or design help
-                with experienced local professionals who can help solve the problem.
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
+                Startup Orillia connects businesses with experienced local professionals who can help solve
+                practical growth, technology and operational challenges.
+              </p>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                The Network includes people with experience across software, AI, automation, marketing, CRM,
+                systems integration, product, digital strategy and scaling companies with technology.
               </p>
             </div>
 
@@ -67,13 +69,13 @@ const ExpertNetworkPage = () => {
                   <Handshake className="h-5 w-5" />
                 </div>
                 <h2 className="text-xl md:text-2xl font-heading font-semibold text-primary mb-2">
-                  Have a tech problem?
+                  Have a business challenge?
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
-                  Tell us what you're trying to solve. If someone in the Network is a fit, we'll make
-                  the introduction.
+                  Tell us what you're trying to improve, build or figure out. Startup Orillia will help clarify
+                  the opportunity and bring it to relevant members of the Expert Network.
                 </p>
-                <p className="text-sm font-medium text-primary mb-5">Free to ask · No commission</p>
+                <p className="text-sm font-medium text-primary mb-5">Free to submit</p>
                 <Button asChild size="lg" className="bg-brand-orange hover:bg-brand-orange/90 text-white w-full sm:w-auto self-start">
                   <Link to="/contact?topic=help">
                     Bring us a problem
@@ -88,16 +90,17 @@ const ExpertNetworkPage = () => {
                   <Briefcase className="h-5 w-5" />
                 </div>
                 <h2 className="text-xl md:text-2xl font-heading font-semibold text-primary mb-2">
-                  Are you a tech expert?
+                  Are you an experienced operator or specialist?
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
-                  Join a small, curated group we turn to when local organizations need paid
-                  professional help.
+                  Join a small, curated group that gets early access to qualified local business opportunities.
                 </p>
-                <p className="text-sm font-medium text-primary mb-5">${EXPERT_NETWORK_FEE_CAD}/year · Free to apply</p>
+                <p className="text-sm font-medium text-primary mb-5">
+                  Founding membership: ${EXPERT_NETWORK_FEE_CAD}/year · Free to apply · {EXPERT_NETWORK_SEATS} founding members
+                </p>
                 <Button asChild size="lg" className="bg-brand-teal hover:bg-brand-teal-light text-white w-full sm:w-auto self-start">
                   <a href="#apply">
-                    Apply as an expert
+                    Apply to the Expert Network
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
@@ -107,58 +110,91 @@ const ExpertNetworkPage = () => {
         </div>
       </section>
 
-      {/* How it works */}
+      {/* What kinds of problems */}
       <section className="container mx-auto px-4 py-16 md:py-20 border-b border-border/40">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-10 text-center">
-            How it works
-          </h2>
-          <ol className="grid md:grid-cols-4 gap-4 md:gap-3 relative">
-            {CONNECTION_STEPS.map((s, i) => (
-              <li key={s.title} className="relative bg-card border border-border/50 rounded-2xl p-5 flex md:flex-col gap-4 md:gap-3">
-                <div className="flex-shrink-0 w-9 h-9 rounded-full bg-brand-teal text-white font-heading font-semibold text-sm flex items-center justify-center">
-                  {i + 1}
-                </div>
-                <div>
-                  <p className="font-heading font-semibold text-primary leading-snug mb-1">{s.title}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{s.detail}</p>
-                </div>
-                {i < CONNECTION_STEPS.length - 1 && (
-                  <ArrowRight className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-border z-10" aria-hidden />
-                )}
+          <div className="max-w-2xl mb-10">
+            <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-3">
+              What kinds of problems?
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Businesses don't always know what kind of expert they need. They might come to us saying:
+            </p>
+          </div>
+          <ul className="grid sm:grid-cols-2 gap-3 mb-8">
+            {EXAMPLE_PROBLEMS.map((q) => (
+              <li key={q} className="flex items-start gap-3 bg-card border border-border/50 rounded-2xl px-5 py-4">
+                <Quote className="h-4 w-4 text-brand-orange/70 mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-primary leading-relaxed">{q}</span>
               </li>
             ))}
-          </ol>
-          <div className="mt-8 flex justify-center">
-            <div className="inline-flex items-center gap-3 bg-brand-teal/5 border border-brand-teal/20 rounded-2xl px-5 py-4 max-w-xl">
+          </ul>
+          <p className="text-sm font-medium text-primary">
+            Startup Orillia helps clarify the problem before bringing it to the Network.
+          </p>
+        </div>
+      </section>
+
+      {/* How opportunities work */}
+      <section className="bg-secondary/30 border-b border-border/40">
+        <div className="container mx-auto px-4 py-16 md:py-20">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-10">
+              How opportunities work
+            </h2>
+            <ol className="space-y-4">
+              {OPPORTUNITY_STEPS.map((s, i) => (
+                <li key={s.title} className="bg-card border border-border/50 rounded-2xl p-5 md:p-6 flex gap-4 md:gap-5">
+                  <div className="flex-shrink-0 w-9 h-9 rounded-full bg-brand-teal text-white font-heading font-semibold text-sm flex items-center justify-center">
+                    {i + 1}
+                  </div>
+                  <div>
+                    <p className="font-heading font-semibold text-primary text-lg leading-snug mb-1.5">{s.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{s.detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-6 flex items-center gap-3 bg-brand-teal/5 border border-brand-teal/20 rounded-2xl px-5 py-4">
               <div className="flex-shrink-0 rounded-full bg-brand-teal text-white font-heading font-bold text-sm px-2.5 py-1">
                 0%
               </div>
               <p className="text-sm text-primary leading-snug">
-                <span className="font-semibold">No commission.</span>{" "}
-                Startup Orillia is not involved in the commercial relationship. What you agree with a
-                client is between you and them.
+                <span className="font-semibold">No commission.</span> Startup Orillia is not part of the
+                commercial relationship.
               </p>
             </div>
-          </div>
-
-          <div className="mt-12">
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider text-center mb-4">
-              Examples of problems
-            </p>
-            <ul className="flex flex-wrap justify-center gap-2.5">
-              {EXAMPLE_PROBLEMS.map((q) => (
-                <li key={q} className="inline-flex items-center gap-2 bg-card border border-border/50 rounded-full px-4 py-2 text-sm text-primary">
-                  <Quote className="h-3.5 w-3.5 text-brand-orange/70 flex-shrink-0" />
-                  {q}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
 
-      {/* What you get */}
+      {/* Who's in the Network */}
+      <section className="container mx-auto px-4 py-16 md:py-20 border-b border-border/40">
+        <div className="max-w-5xl mx-auto">
+          <div className="max-w-2xl mb-10">
+            <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-3">
+              Who's in the Network?
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              We're looking for people with practical experience in areas such as:
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            {EXPERTISE_AREAS.map((a) => (
+              <div key={a.name} className="bg-card border border-border/50 rounded-2xl p-5">
+                <p className="font-heading font-semibold text-primary mb-1.5">{a.name}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{a.detail}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-sm leading-relaxed space-y-1">
+            <p className="text-primary font-medium">You don't need to be a developer.</p>
+            <p className="text-muted-foreground">You do need to have experience a local business could realistically hire you for.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* For members */}
       <section className="bg-secondary/30 border-b border-border/40">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-5xl mx-auto">
@@ -183,24 +219,36 @@ const ExpertNetworkPage = () => {
         </div>
       </section>
 
-      {/* Seats + who it's for */}
+      {/* Founding cohort */}
       <section className="container mx-auto px-4 py-16 md:py-20 border-b border-border/40">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>
             <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-3">
               Founding cohort
             </h2>
-            <p className="text-muted-foreground mb-8">
-              Up to {EXPERT_NETWORK_SEATS} experts.{" "}
+            <p className="text-lg text-primary font-medium mb-4">
+              {EXPERT_NETWORK_SEATS} founding experts.{" "}
               {expertMembers.length === 0
                 ? "Forming now."
                 : `${expertMembers.length} accepted · ${openSeats} open.`}
             </p>
-            <ul className="grid grid-cols-4 gap-3 sm:gap-4 mb-8" aria-label="Founding cohort seats">
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              We're starting with a small group of people with complementary experience across growth,
+              operations, technology and digital business.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              The goal isn't to assemble {EXPERT_NETWORK_SEATS} people with the same skills. It's to build a
+              group that can look at a business problem from different angles and quickly figure out what
+              kind of help is actually needed.
+            </p>
+          </div>
+
+          <div>
+            <ul className="grid grid-cols-5 gap-2 sm:gap-3 mb-8" aria-label="Founding cohort seats">
               {seats.map((s) =>
                 s.kind === "member" ? (
-                  <li key={s.member.slug} className="flex flex-col items-center gap-2 text-center">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-brand-teal bg-secondary">
+                  <li key={s.member.slug} className="flex flex-col items-center gap-1.5 text-center">
+                    <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-brand-teal bg-secondary">
                       <img src={s.member.photo} alt="" className="w-full h-full object-cover" loading="lazy" />
                     </div>
                     <span className="text-xs font-medium text-primary leading-tight">{s.member.name}</span>
@@ -212,9 +260,9 @@ const ExpertNetworkPage = () => {
                     )}
                   </li>
                 ) : (
-                  <li key={`open-${s.i}`} className="flex flex-col items-center gap-2 text-center">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-dashed border-border bg-background flex items-center justify-center">
-                      <span className="text-[11px] uppercase tracking-wide text-muted-foreground/70">Open</span>
+                  <li key={`open-${s.i}`} className="flex flex-col items-center gap-1.5 text-center">
+                    <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full border-2 border-dashed border-border bg-background flex items-center justify-center">
+                      <span className="text-[10px] sm:text-[11px] uppercase tracking-wide text-muted-foreground/70">Open</span>
                     </div>
                     <span className="text-xs text-muted-foreground/70">Seat {expertMembers.length + s.i + 1}</span>
                   </li>
@@ -244,28 +292,6 @@ const ExpertNetworkPage = () => {
                 )}
               </div>
             )}
-          </div>
-
-          <div>
-            <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-3">Who it's for</h2>
-            <p className="text-muted-foreground mb-5">Professionals in areas such as:</p>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {EXPERTISE_AREAS.map((a) => (
-                <span key={a} className="text-sm font-medium bg-brand-teal/10 text-brand-teal px-3 py-1 rounded-full">
-                  {a}
-                </span>
-              ))}
-            </div>
-            <p className="text-sm font-medium text-primary mb-3">We're looking for professionals who:</p>
-            <ul className="space-y-3 mb-6">
-              {ELIGIBILITY.map((e) => (
-                <li key={e} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
-                  <Check className="h-4 w-4 text-brand-teal mt-0.5 flex-shrink-0" />
-                  <span>{e}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-sm text-primary font-medium">You don't need to be a founder or business owner.</p>
           </div>
         </div>
       </section>
@@ -320,37 +346,26 @@ const ExpertNetworkPage = () => {
         </div>
       </section>
 
-      {/* Businesses */}
+      {/* Businesses — closing CTA */}
       <section id="need-help" className="scroll-mt-24 container mx-auto px-4 py-16 md:py-20">
-        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <div>
-            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-orange uppercase tracking-wider mb-4">
-              <Handshake className="h-3.5 w-3.5" />
-              For businesses &amp; organizations
-            </span>
-            <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-4">
-              Need technical help?
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              If you're a startup, business, nonprofit or local organization with a software, AI, automation or
-              product problem, tell us what you're trying to solve. We'll see if someone in the Network is a fit.
-              No cost to ask.
-            </p>
-            <Button asChild size="lg" className="bg-brand-orange hover:bg-brand-orange/90 text-white">
-              <Link to="/contact?topic=help">
-                Tell us the problem
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-          <ul className="space-y-3">
-            {EXAMPLE_PROBLEMS.map((q) => (
-              <li key={q} className="flex items-start gap-3 bg-card border border-border/50 rounded-2xl px-5 py-4">
-                <Quote className="h-4 w-4 text-brand-orange/70 mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-primary leading-relaxed">{q}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-orange uppercase tracking-wider mb-4">
+            <Handshake className="h-3.5 w-3.5" />
+            For businesses &amp; organizations
+          </span>
+          <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-4">
+            Have a business challenge?
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Tell us what you're trying to improve, build or figure out. We'll help clarify the opportunity
+            and bring it to relevant members of the Network. Free to submit.
+          </p>
+          <Button asChild size="lg" className="bg-brand-orange hover:bg-brand-orange/90 text-white">
+            <Link to="/contact?topic=help">
+              Bring us a problem
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </section>
     </div>

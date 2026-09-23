@@ -82,7 +82,7 @@ const ExpertApplicationForm = () => {
       `Expertise: ${areas.join(", ")}`,
       `Years of hands-on experience: ${years}`,
       "",
-      "Something they've shipped:",
+      "Something they've delivered:",
       shipped,
       "",
       "What a business can hire them for:",
@@ -170,7 +170,7 @@ const ExpertApplicationForm = () => {
       <div>
         <p className="block text-sm font-medium text-primary mb-2">Areas of expertise</p>
         <div className="flex flex-wrap gap-2">
-          {EXPERTISE_AREAS.map((a) => {
+          {EXPERTISE_AREAS.map(({ name: a }) => {
             const on = areas.includes(a);
             return (
               <button
@@ -195,12 +195,12 @@ const ExpertApplicationForm = () => {
         <input id="en-years" required inputMode="numeric" value={years} onChange={(e) => setYears(e.target.value)} placeholder="e.g. 8" className={`${inputClass} w-32`} />
       </Field>
 
-      <Field id="en-shipped" label="Something you've shipped" hint="One thing you built or launched, and your role in it. A link is great.">
+      <Field id="en-shipped" label="Something you've delivered" hint="One thing you built, launched or turned around, and your role in it. A link is great.">
         <textarea id="en-shipped" required rows={3} value={shipped} onChange={(e) => setShipped(e.target.value)} className={inputClass} />
       </Field>
 
       <Field id="en-hire" label="What can a business realistically hire you to help with?" hint="Be concrete — this is how we'll know when to think of you.">
-        <textarea id="en-hire" required rows={3} value={hireFor} onChange={(e) => setHireFor(e.target.value)} placeholder="e.g. Scoping and building internal tools, integrating AI into an existing product, fractional CTO for an early-stage team" className={inputClass} />
+        <textarea id="en-hire" required rows={3} value={hireFor} onChange={(e) => setHireFor(e.target.value)} placeholder="e.g. Fixing a messy sales pipeline, automating a manual process, launching a new digital product, CRM implementation" className={inputClass} />
       </Field>
 
       <Field id="en-projects" label="What types of projects are you interested in?" optional>
