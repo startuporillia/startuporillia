@@ -6,6 +6,7 @@ import { Mail, MessageCircle, Send, CheckCircle2, AlertCircle, ArrowLeft } from 
 const FORMSPREE_FORM_ID = "xvzlwpbw";
 
 const TOPICS = [
+  { value: "help", label: "Need technical help" },
   { value: "workshop", label: "Pitch a workshop" },
   { value: "group", label: "Group rate" },
   { value: "partner", label: "Partner event" },
@@ -229,7 +230,9 @@ const ContactPage = () => {
                   onChange={(e) => setMessage(e.target.value)}
                   required
                   placeholder={
-                    topic === "workshop"
+                    topic === "help"
+                      ? "What are you trying to solve? Rough timeline and budget help us find the right person in the Expert Network."
+                      : topic === "workshop"
                       ? "What would you teach? Format, audience, anything else relevant."
                       : topic === "group"
                       ? "Group size, scheduling preferences, anything else worth knowing."

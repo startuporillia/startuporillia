@@ -16,6 +16,11 @@ export interface Profile {
   tags?: string[];
   /** Tracks this person is willing to lead workshops in. */
   teaches?: WorkshopTrack[];
+  /**
+   * Accepted Expert Network member. Presence fills a seat on /experts.
+   * `area` is the headline discipline ("Product & UX"); `focus` is 2-3 specialties shown beneath it.
+   */
+  expertNetwork?: { area: string; focus?: string[] };
 }
 
 export const profiles: Profile[] = [

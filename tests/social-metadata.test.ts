@@ -9,7 +9,7 @@ describe("page-specific link previews", () => {
   it("includes every main page, skill and workshop without duplicate paths", async () => {
     const skills = (await loadSkills()).map((skill) => ({ slug: skill.name, ...skill.meta }));
     const pages = getPageMetadata(skills, workshops);
-    expect(pages).toHaveLength(8 + skills.length + workshops.length);
+    expect(pages).toHaveLength(9 + skills.length + workshops.length);
     expect(new Set(pages.map((page) => page.path)).size).toBe(pages.length);
     const template = await readFile("index.html", "utf8");
     for (const page of pages) {

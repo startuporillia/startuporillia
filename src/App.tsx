@@ -12,6 +12,7 @@ import WorkshopsPage from "./pages/Workshops";
 import WorkshopDetailPage from "./pages/WorkshopDetail";
 import CommunityPage from "./pages/Community";
 import ContactPage from "./pages/Contact";
+import ExpertNetworkPage from "./pages/ExpertNetwork";
 import SkillsPage from "./pages/Skills";
 import SkillDetailPage from "./pages/SkillDetail";
 import NotFound from "./pages/NotFound";
@@ -40,6 +41,7 @@ const App = () => (
               <Route path="/workshops" element={<WorkshopsPage />} />
               <Route path="/workshops/:slug" element={<WorkshopDetailPage />} />
               <Route path="/community" element={<CommunityPage />} />
+              <Route path="/experts" element={<ExpertNetworkPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/startups" element={<LaunchedStartups />} />
               <Route path="/skills" element={<SkillsPage />} />
