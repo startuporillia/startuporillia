@@ -37,8 +37,8 @@ export const OPPORTUNITY_STEPS = [
     detail: "Startup Orillia works with local businesses, startups and nonprofits to surface real challenges, and makes sure there's a genuine problem, a decision-maker and intent to invest before bringing it to the Network.",
   },
   {
-    title: "The Network gets a first look",
-    detail: "Opportunities are shared directly with relevant members, or become a Problem Exchange where the organization presents its challenge and interested members ask questions. Members who can help follow up privately with a lightweight note: why they're a fit and how they'd approach the next step.",
+    title: "Problem Exchange",
+    detail: "The organization presents its challenge to relevant members and answers questions. Members who can help follow up privately with a lightweight note: why they're a fit and how they'd approach the next step.",
   },
   {
     title: "The organization chooses",
