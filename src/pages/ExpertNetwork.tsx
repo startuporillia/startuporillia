@@ -3,17 +3,19 @@ import {
   Briefcase,
   ArrowRight,
   Calendar,
+  Check,
   Linkedin,
   Quote,
   Handshake,
   Eye,
-  Sparkles,
+  MessagesSquare,
   ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ExpertApplicationForm from "@/components/ExpertApplicationForm";
 import {
   APPLICATION_STEPS,
+  ELIGIBILITY,
   EXAMPLE_PROBLEMS,
   EXPERTISE_AREAS,
   EXPERT_NETWORK_FEE_CAD,
@@ -26,7 +28,7 @@ import {
 import { getNextMeetup } from "@/lib/events";
 import { getProfile } from "@/lib/profiles";
 
-const BENEFIT_ICONS = [Briefcase, Eye, Sparkles, ShieldCheck];
+const BENEFIT_ICONS = [Briefcase, MessagesSquare, Eye, ShieldCheck];
 
 const ExpertNetworkPage = () => {
   const nextMeetup = getNextMeetup();
@@ -135,12 +137,12 @@ const ExpertNetworkPage = () => {
         </div>
       </section>
 
-      {/* How opportunities work */}
+      {/* How we surface opportunities */}
       <section className="bg-secondary/30 border-b border-border/40">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-10">
-              How opportunities work
+              How we surface opportunities
             </h2>
             <ol className="space-y-4">
               {OPPORTUNITY_STEPS.map((s, i) => (
@@ -155,13 +157,20 @@ const ExpertNetworkPage = () => {
                 </li>
               ))}
             </ol>
-            <div className="mt-6 flex items-center gap-3 bg-brand-teal/5 border border-brand-teal/20 rounded-2xl px-5 py-4">
+            <div className="mt-6 bg-card border border-border/50 rounded-2xl px-5 py-4">
+              <p className="text-sm text-primary leading-relaxed">
+                <span className="font-semibold">Problem Exchanges are for understanding the challenge and exploring possible approaches.</span>{" "}
+                Members aren't expected to produce detailed proposals, designs or other speculative work for free.
+              </p>
+            </div>
+            <div className="mt-4 flex items-start gap-3 bg-brand-teal/5 border border-brand-teal/20 rounded-2xl px-5 py-4">
               <div className="flex-shrink-0 rounded-full bg-brand-teal text-white font-heading font-bold text-sm px-2.5 py-1">
                 0%
               </div>
-              <p className="text-sm text-primary leading-snug">
-                <span className="font-semibold">No commission.</span> Startup Orillia is not part of the
-                commercial relationship.
+              <p className="text-sm text-primary leading-relaxed">
+                <span className="font-semibold">0% referral fee for founding members.</span> Startup Orillia won't take
+                a commission on work generated through the Network during the founding year. Any future changes to
+                the Network's fee structure would be disclosed before renewal.
               </p>
             </div>
           </div>
@@ -187,9 +196,17 @@ const ExpertNetworkPage = () => {
               </div>
             ))}
           </div>
-          <div className="text-sm leading-relaxed space-y-1">
-            <p className="text-primary font-medium">You don't need to be a developer.</p>
-            <p className="text-muted-foreground">You do need to have experience a local business could realistically hire you for.</p>
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium text-primary mb-3">Network members should:</p>
+            <ul className="space-y-2.5 mb-5">
+              {ELIGIBILITY.map((e) => (
+                <li key={e} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
+                  <Check className="h-4 w-4 text-brand-teal mt-0.5 flex-shrink-0" />
+                  <span>{e}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-sm font-medium text-primary">You don't need to be a founder, consultant or developer.</p>
           </div>
         </div>
       </section>

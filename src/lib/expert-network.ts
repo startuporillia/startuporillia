@@ -33,12 +33,12 @@ export const EXAMPLE_PROBLEMS = [
 
 export const OPPORTUNITY_STEPS = [
   {
-    title: "Startup Orillia surfaces an opportunity",
-    detail: "From local businesses, startups, nonprofits, community organizations or our broader network. It might involve growth, marketing, automation, operations, software, AI, systems, product or digital strategy.",
+    title: "We source opportunities",
+    detail: "Startup Orillia works with businesses, startups, nonprofits and local partners to surface meaningful growth, operational and technology challenges.",
   },
   {
-    title: "We qualify it",
-    detail: "We work with the organization to understand the underlying problem, the outcome they want, who decides, whether there's real commercial intent, and what kind of help may be needed.",
+    title: "We qualify the opportunity",
+    detail: "We make sure there's a real problem to solve, a decision-maker involved, and genuine intent to invest in a solution before bringing it to the Network.",
   },
   {
     title: "The Network gets a first look",
@@ -46,11 +46,11 @@ export const OPPORTUNITY_STEPS = [
   },
   {
     title: "Interested members respond",
-    detail: "Members decide whether they can add value. Those who are interested privately share how they'd approach it, relevant experience, and what a sensible next step looks like.",
+    detail: "Members decide whether they can add value. Those who are interested follow up privately with something lightweight: why they think they can help, how they'd approach the next step, and relevant work they've done.",
   },
   {
     title: "The organization chooses",
-    detail: "The business decides who, if anyone, it wants to continue with. Scope, pricing and the working relationship are agreed directly between the parties.",
+    detail: "The business decides who, if anyone, it wants to pursue. From there, scope, pricing and the engagement are agreed directly between the business and the expert.",
   },
 ] as const;
 
@@ -60,17 +60,23 @@ export const MEMBER_BENEFITS = [
     detail: "Early access to business opportunities Startup Orillia has already reviewed for fit, seriousness and commercial intent.",
   },
   {
-    title: "Visibility",
-    detail: "A public profile showing what you've done and the kinds of problems organizations can come to you for.",
+    title: "Problem Exchanges",
+    detail: "Join selected sessions where local organizations present real business challenges, ask questions, and hear different perspectives before deciding who they want to work with.",
   },
   {
-    title: "First look",
-    detail: "Hear about relevant opportunities before they're shared more broadly.",
+    title: "Visibility",
+    detail: "A public profile showing what you've done and the kinds of problems organizations can come to you for.",
   },
   {
     title: "Trusted referral",
     detail: "Be one of a small number of experienced professionals Startup Orillia can confidently bring into conversations when a local organization needs help.",
   },
+] as const;
+
+export const ELIGIBILITY = [
+  "Have at least 2 years of meaningful hands-on experience in their field",
+  "Have a connection to Orillia or the surrounding area",
+  "Have expertise a local organization could realistically hire them for",
 ] as const;
 
 export const APPLICATION_STEPS = [
