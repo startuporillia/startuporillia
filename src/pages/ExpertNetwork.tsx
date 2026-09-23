@@ -137,12 +137,12 @@ const ExpertNetworkPage = () => {
         </div>
       </section>
 
-      {/* How we surface opportunities */}
+      {/* How it works */}
       <section className="bg-secondary/30 border-b border-border/40">
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-heading font-semibold text-primary mb-10">
-              How we surface opportunities
+              How it works
             </h2>
             <ol className="space-y-4">
               {OPPORTUNITY_STEPS.map((s, i) => (

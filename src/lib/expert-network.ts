@@ -33,24 +33,16 @@ export const EXAMPLE_PROBLEMS = [
 
 export const OPPORTUNITY_STEPS = [
   {
-    title: "We source opportunities",
-    detail: "Startup Orillia works with businesses, startups, nonprofits and local partners to surface meaningful growth, operational and technology challenges.",
-  },
-  {
-    title: "We qualify the opportunity",
-    detail: "We make sure there's a real problem to solve, a decision-maker involved, and genuine intent to invest in a solution before bringing it to the Network.",
+    title: "We source and qualify opportunities",
+    detail: "Startup Orillia works with local businesses, startups and nonprofits to surface real challenges, and makes sure there's a genuine problem, a decision-maker and intent to invest before bringing it to the Network.",
   },
   {
     title: "The Network gets a first look",
-    detail: "Some opportunities are shared directly with relevant members. Others become a Problem Exchange, where the organization presents its challenge to interested members and answers questions.",
-  },
-  {
-    title: "Interested members respond",
-    detail: "Members decide whether they can add value. Those who are interested follow up privately with something lightweight: why they think they can help, how they'd approach the next step, and relevant work they've done.",
+    detail: "Opportunities are shared directly with relevant members, or become a Problem Exchange where the organization presents its challenge and interested members ask questions. Members who can help follow up privately with a lightweight note: why they're a fit and how they'd approach the next step.",
   },
   {
     title: "The organization chooses",
-    detail: "The business decides who, if anyone, it wants to pursue. From there, scope, pricing and the engagement are agreed directly between the business and the expert.",
+    detail: "The business decides who, if anyone, it wants to pursue. Scope, pricing and the engagement are agreed directly between the business and the expert.",
   },
 ] as const;
 
