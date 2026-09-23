@@ -97,6 +97,7 @@ export const NETWORK_LEADS: NetworkLead[] = [
   {
     name: "Jordan Rossman",
     title: "Expert Network Lead · Founder, RubyKay Labs",
+    photo: "/jordan-rossman.jpg",
   },
 ];
 
