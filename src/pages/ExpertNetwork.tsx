@@ -56,7 +56,7 @@ const ExpertNetworkPage = () => {
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
                 The Startup Orillia Expert Network connects businesses with experienced local professionals
-                who can help you solve practical growth, technology and operational challenges.
+                who can help solve practical growth, technology and operational challenges.
               </p>
               <p className="text-base text-muted-foreground leading-relaxed">
                 The Network includes people with experience across software, AI, automation, marketing, CRM,
@@ -92,7 +92,7 @@ const ExpertNetworkPage = () => {
                   <Briefcase className="h-5 w-5" />
                 </div>
                 <h2 className="text-xl md:text-2xl font-heading font-semibold text-primary mb-2">
-                  Are you an experienced operator or specialist?
+                  Are you an experienced professional?
                 </h2>
                 <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
                   Join a small, curated group that gets early access to qualified local business opportunities.
@@ -168,9 +168,9 @@ const ExpertNetworkPage = () => {
                 0%
               </div>
               <p className="text-sm text-primary leading-relaxed">
-                <span className="font-semibold">0% referral fee for founding members.</span> Startup Orillia won't take
-                a commission on work generated through the Network during the founding year. Any future changes to
-                the Network's fee structure would be disclosed before renewal.
+                <span className="font-semibold">0% founding-year referral fee.</span> Startup Orillia won't charge
+                founding members a referral or success fee on work generated through the Network during the founding
+                year. The Network's model may evolve in future years, with any changes disclosed before renewal.
               </p>
             </div>
           </div>
@@ -188,12 +188,11 @@ const ExpertNetworkPage = () => {
               We're looking for people with practical experience in areas such as:
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+          <div className="flex flex-wrap gap-2 mb-8">
             {EXPERTISE_AREAS.map((a) => (
-              <div key={a.name} className="bg-card border border-border/50 rounded-2xl p-5">
-                <p className="font-heading font-semibold text-primary mb-1.5">{a.name}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">{a.detail}</p>
-              </div>
+              <span key={a} className="text-sm font-medium bg-brand-teal/10 text-brand-teal px-3 py-1 rounded-full">
+                {a}
+              </span>
             ))}
           </div>
           <div className="max-w-2xl">
@@ -244,7 +243,7 @@ const ExpertNetworkPage = () => {
               Founding cohort
             </h2>
             <p className="text-lg text-primary font-medium mb-4">
-              {EXPERT_NETWORK_SEATS} founding experts.{" "}
+              Up to {EXPERT_NETWORK_SEATS} founding experts.{" "}
               {expertMembers.length === 0
                 ? "Forming now."
                 : `${expertMembers.length} accepted · ${openSeats} open.`}

@@ -170,7 +170,7 @@ const ExpertApplicationForm = () => {
       <div>
         <p className="block text-sm font-medium text-primary mb-2">Areas of expertise</p>
         <div className="flex flex-wrap gap-2">
-          {EXPERTISE_AREAS.map(({ name: a }) => {
+          {EXPERTISE_AREAS.map((a) => {
             const on = areas.includes(a);
             return (
               <button

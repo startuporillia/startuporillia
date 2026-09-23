@@ -6,18 +6,18 @@ export const EXPERT_NETWORK_FEE_CAD = 250;
 /** Seats in the founding cohort. The page draws one circle per seat. */
 export const EXPERT_NETWORK_SEATS = 5;
 
-/** Areas we're recruiting for. Rendered as cards on the page; names are the chips on the application form. */
+/** Areas we're recruiting for. Chips on the page and on the application form. */
 export const EXPERTISE_AREAS = [
-  { name: "Growth & marketing", detail: "Customer acquisition, positioning, conversion, digital marketing and go-to-market." },
-  { name: "AI & automation", detail: "AI workflows, process automation, internal tools and operational efficiency." },
-  { name: "CRM & business systems", detail: "CRM implementation, workflow design, integrations and business software." },
-  { name: "Software & integrations", detail: "Custom software, APIs, system integrations and technical architecture." },
-  { name: "Product & digital experience", detail: "Product strategy, UX, prototyping and launching digital products." },
-  { name: "Scaling & operations", detail: "Helping businesses grow using better systems, processes and technology." },
-  { name: "Data & analytics", detail: "Reporting, measurement, dashboards and using data to make better decisions." },
+  "Growth & marketing",
+  "AI & automation",
+  "CRM & business systems",
+  "Software & integrations",
+  "Product & digital experience",
+  "Scaling & operations",
+  "Data & analytics",
 ] as const;
 
-export type ExpertiseArea = (typeof EXPERTISE_AREAS)[number]["name"];
+export type ExpertiseArea = (typeof EXPERTISE_AREAS)[number];
 
 /** What businesses actually say when they show up. Shown before we explain the process. */
 export const EXAMPLE_PROBLEMS = [
@@ -34,11 +34,11 @@ export const EXAMPLE_PROBLEMS = [
 export const OPPORTUNITY_STEPS = [
   {
     title: "We source and qualify opportunities",
-    detail: "Startup Orillia works with local businesses, startups and nonprofits to surface real challenges, and makes sure there's a genuine problem, a decision-maker and intent to invest before bringing it to the Network.",
+    detail: "Startup Orillia works with local businesses, startups and nonprofits to surface real challenges. Before bringing something to the Network, we make sure there's a genuine problem to solve, a decision-maker involved, and a realistic path toward paid work.",
   },
   {
-    title: "Problem Exchange",
-    detail: "The organization presents its challenge to relevant members and answers questions. Members who can help follow up privately with a lightweight note: why they're a fit and how they'd approach the next step.",
+    title: "We bring it to the Network",
+    detail: "Some opportunities are shared directly with relevant members. Others become a Problem Exchange, where the organization presents its challenge to interested members and answers questions. Members who see a fit follow up privately with why they can help and what they think the next step should be.",
   },
   {
     title: "The organization chooses",
