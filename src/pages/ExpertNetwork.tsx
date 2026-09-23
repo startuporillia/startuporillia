@@ -96,7 +96,7 @@ const ExpertNetworkPage = () => {
                   Join a small, curated group that gets early access to qualified local business opportunities.
                 </p>
                 <p className="text-sm font-medium text-primary mb-5">
-                  Founding membership: ${EXPERT_NETWORK_FEE_CAD}/year · Free to apply · {EXPERT_NETWORK_SEATS} founding members
+                  Founding membership: ${EXPERT_NETWORK_FEE_CAD}/year · Free to apply
                 </p>
                 <Button asChild size="lg" className="bg-brand-teal hover:bg-brand-teal-light text-white w-full sm:w-auto self-start">
                   <a href="#apply">
