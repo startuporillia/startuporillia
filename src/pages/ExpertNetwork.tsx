@@ -21,18 +21,17 @@ import {
   EXPERT_NETWORK_FEE_CAD,
   EXPERT_NETWORK_SEATS,
   MEMBER_BENEFITS,
+  NETWORK_LEADS,
   OPPORTUNITY_STEPS,
   expertMembers,
   openSeats,
 } from "@/lib/expert-network";
 import { getNextMeetup } from "@/lib/events";
-import { getProfile } from "@/lib/profiles";
 
 const BENEFIT_ICONS = [Briefcase, MessagesSquare, Eye, ShieldCheck];
 
 const ExpertNetworkPage = () => {
   const nextMeetup = getNextMeetup();
-  const lead = getProfile("dave-caplan");
   const seats = [
     ...expertMembers.map((m) => ({ kind: "member" as const, member: m })),
     ...Array.from({ length: openSeats }, (_, i) => ({ kind: "open" as const, i })),
@@ -286,28 +285,37 @@ const ExpertNetworkPage = () => {
               )}
             </ul>
 
-            {lead && (
-              <div className="flex items-center gap-3 bg-card border border-border/50 rounded-2xl p-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl overflow-hidden border border-border/50 bg-secondary">
-                  <img src={lead.photo} alt="" className="w-full h-full object-cover" loading="lazy" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-medium text-primary">{lead.name}</p>
-                  <p className="text-xs text-muted-foreground">Network Lead · Startup Orillia organizer</p>
-                </div>
-                {lead.linkedin && (
-                  <a
-                    href={lead.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-auto inline-flex items-center gap-1 text-xs text-brand-teal hover:text-brand-teal-light"
-                  >
-                    <Linkedin className="h-3.5 w-3.5" />
-                    LinkedIn
-                  </a>
-                )}
-              </div>
-            )}
+            <div className="bg-card border border-border/50 rounded-2xl p-4">
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">Network Leads</p>
+              <ul className="space-y-3">
+                {NETWORK_LEADS.map((lead) => (
+                  <li key={lead.name} className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl overflow-hidden border border-border/50 bg-brand-teal/10 text-brand-teal font-heading font-semibold flex items-center justify-center">
+                      {lead.photo ? (
+                        <img src={lead.photo} alt="" className="w-full h-full object-cover" loading="lazy" />
+                      ) : (
+                        <span aria-hidden>{lead.name.split(" ").map((n) => n[0]).join("")}</span>
+                      )}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-primary">{lead.name}</p>
+                      <p className="text-xs text-muted-foreground">{lead.title}</p>
+                    </div>
+                    {lead.linkedin && (
+                      <a
+                        href={lead.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-auto inline-flex items-center gap-1 text-xs text-brand-teal hover:text-brand-teal-light"
+                      >
+                        <Linkedin className="h-3.5 w-3.5" />
+                        LinkedIn
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>

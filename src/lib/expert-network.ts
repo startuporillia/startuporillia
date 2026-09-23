@@ -78,6 +78,28 @@ export const APPLICATION_STEPS = [
   { title: "Offer", detail: "Selected applicants are offered one of the founding memberships. Joining is entirely optional." },
 ] as const;
 
+export interface NetworkLead {
+  name: string;
+  title: string;
+  /** Root-relative path in /public. Omit to render initials. */
+  photo?: string;
+  linkedin?: string;
+}
+
+/** People running the Network. Shown beneath the seats, outside the cohort. */
+export const NETWORK_LEADS: NetworkLead[] = [
+  {
+    name: "Dave Caplan",
+    title: "Expert Network Lead · Startup Orillia",
+    photo: "/dave.jpg",
+    linkedin: "https://www.linkedin.com/in/davecap/",
+  },
+  {
+    name: "Jordan Rossman",
+    title: "Expert Network Lead · Founder, RubyKay Labs",
+  },
+];
+
 /** Accepted members — profiles with an `expertNetwork` entry. Fills seats on the page. */
 export const expertMembers: Profile[] = profiles.filter((p) => p.expertNetwork);
 
