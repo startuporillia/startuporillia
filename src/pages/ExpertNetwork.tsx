@@ -55,8 +55,8 @@ const ExpertNetworkPage = () => {
                 Local experts who help businesses build and grow.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
-                Startup Orillia connects businesses with experienced local professionals who can help solve
-                practical growth, technology and operational challenges.
+                The Startup Orillia Expert Network connects businesses with experienced local professionals
+                who can help you solve practical growth, technology and operational challenges.
               </p>
               <p className="text-base text-muted-foreground leading-relaxed">
                 The Network includes people with experience across software, AI, automation, marketing, CRM,
