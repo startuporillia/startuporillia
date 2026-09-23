@@ -52,7 +52,7 @@ const ExpertNetworkPage = () => {
                 Expert Network
               </span>
               <h1 className="text-primary mb-5">
-                Local experts who help businesses grow, automate and build.
+                Local experts who help businesses build and grow.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-4">
                 Startup Orillia connects businesses with experienced local professionals who can help solve
