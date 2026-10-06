@@ -2,7 +2,7 @@
 export const EXPERT_NETWORK_FEE_CAD = 250;
 
 /** Seats in the founding cohort. The page draws one circle per seat. */
-export const EXPERT_NETWORK_SEATS = 5;
+export const EXPERT_NETWORK_SEATS = 10;
 
 /** Areas we're recruiting for. Chips on the page and on the application form. */
 export const EXPERTISE_AREAS = [
