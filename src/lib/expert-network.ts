@@ -1,5 +1,3 @@
-import { profiles, type Profile } from "./profiles";
-
 /** Founding-year membership fee, CAD. Change here and the page follows. */
 export const EXPERT_NETWORK_FEE_CAD = 250;
 
@@ -102,7 +100,23 @@ export const NETWORK_LEADS: NetworkLead[] = [
   },
 ];
 
-/** Accepted members — profiles with an `expertNetwork` entry. Fills seats on the page. */
-export const expertMembers: Profile[] = profiles.filter((p) => p.expertNetwork);
+export interface FoundingMember {
+  name: string;
+  /** Root-relative path in /public. Omit to render initials as a placeholder avatar. */
+  photo?: string;
+  /** Headline discipline, e.g. "Product & UX". */
+  area?: string;
+  /** 2-3 specialties shown beneath the area. */
+  focus?: string[];
+}
 
-export const openSeats = Math.max(0, EXPERT_NETWORK_SEATS - expertMembers.length);
+/** Founding cohort, in seat order. Fill in photo/area/focus as each member is confirmed. */
+export const FOUNDING_MEMBERS: FoundingMember[] = [
+  { name: "Teryl" },
+  { name: "Nishanth" },
+  { name: "Stephen" },
+  { name: "John" },
+  { name: "Myles" },
+];
+
+export const openSeats = Math.max(0, EXPERT_NETWORK_SEATS - FOUNDING_MEMBERS.length);

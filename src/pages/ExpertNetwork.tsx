@@ -20,10 +20,10 @@ import {
   EXPERTISE_AREAS,
   EXPERT_NETWORK_FEE_CAD,
   EXPERT_NETWORK_SEATS,
+  FOUNDING_MEMBERS,
   MEMBER_BENEFITS,
   NETWORK_LEADS,
   OPPORTUNITY_STEPS,
-  expertMembers,
   openSeats,
 } from "@/lib/expert-network";
 import { getNextMeetup } from "@/lib/events";
@@ -33,9 +33,10 @@ const BENEFIT_ICONS = [Briefcase, MessagesSquare, Eye, ShieldCheck];
 const ExpertNetworkPage = () => {
   const nextMeetup = getNextMeetup();
   const seats = [
-    ...expertMembers.map((m) => ({ kind: "member" as const, member: m })),
+    ...FOUNDING_MEMBERS.map((m) => ({ kind: "member" as const, member: m })),
     ...Array.from({ length: openSeats }, (_, i) => ({ kind: "open" as const, i })),
   ];
+  const initials = (name: string) => name.split(" ").map((n) => n[0]).join("");
 
   return (
     <div className="min-h-screen bg-background">
@@ -242,10 +243,7 @@ const ExpertNetworkPage = () => {
               Founding cohort
             </h2>
             <p className="text-lg text-primary font-medium mb-4">
-              Up to {EXPERT_NETWORK_SEATS} founding experts.{" "}
-              {expertMembers.length === 0
-                ? "Forming now."
-                : `${expertMembers.length} accepted · ${openSeats} open.`}
+              Up to {EXPERT_NETWORK_SEATS} founding experts.{openSeats > 0 && " Forming now."}
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               We're starting with a small group of people with complementary experience across growth,
@@ -262,15 +260,21 @@ const ExpertNetworkPage = () => {
             <ul className="grid grid-cols-5 gap-2 sm:gap-3 mb-8" aria-label="Founding cohort seats">
               {seats.map((s) =>
                 s.kind === "member" ? (
-                  <li key={s.member.slug} className="flex flex-col items-center gap-1.5 text-center">
-                    <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-brand-teal bg-secondary">
-                      <img src={s.member.photo} alt="" className="w-full h-full object-cover" loading="lazy" />
+                  <li key={s.member.name} className="flex flex-col items-center gap-1.5 text-center">
+                    <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-brand-teal bg-brand-teal/10 text-brand-teal font-heading font-semibold text-lg sm:text-xl flex items-center justify-center">
+                      {s.member.photo ? (
+                        <img src={s.member.photo} alt="" className="w-full h-full object-cover" loading="lazy" />
+                      ) : (
+                        <span aria-hidden>{initials(s.member.name)}</span>
+                      )}
                     </div>
                     <span className="text-xs font-medium text-primary leading-tight">{s.member.name}</span>
-                    <span className="text-[11px] text-brand-teal leading-tight">{s.member.expertNetwork?.area}</span>
-                    {s.member.expertNetwork?.focus && (
+                    {s.member.area && (
+                      <span className="text-[11px] text-brand-teal leading-tight">{s.member.area}</span>
+                    )}
+                    {s.member.focus && (
                       <span className="text-[11px] text-muted-foreground/80 leading-tight">
-                        {s.member.expertNetwork.focus.join(" · ")}
+                        {s.member.focus.join(" · ")}
                       </span>
                     )}
                   </li>
@@ -279,7 +283,7 @@ const ExpertNetworkPage = () => {
                     <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full border-2 border-dashed border-border bg-background flex items-center justify-center">
                       <span className="text-[10px] sm:text-[11px] uppercase tracking-wide text-muted-foreground/70">Open</span>
                     </div>
-                    <span className="text-xs text-muted-foreground/70">Seat {expertMembers.length + s.i + 1}</span>
+                    <span className="text-xs text-muted-foreground/70">Seat {FOUNDING_MEMBERS.length + s.i + 1}</span>
                   </li>
                 ),
               )}
@@ -294,7 +298,7 @@ const ExpertNetworkPage = () => {
                       {lead.photo ? (
                         <img src={lead.photo} alt="" className="w-full h-full object-cover" loading="lazy" />
                       ) : (
-                        <span aria-hidden>{lead.name.split(" ").map((n) => n[0]).join("")}</span>
+                        <span aria-hidden>{initials(lead.name)}</span>
                       )}
                     </div>
                     <div className="min-w-0">
