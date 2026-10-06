@@ -112,11 +112,11 @@ export interface FoundingMember {
 
 /** Founding cohort, in seat order. Fill in photo/area/focus as each member is confirmed. */
 export const FOUNDING_MEMBERS: FoundingMember[] = [
-  { name: "Teryl" },
-  { name: "Nishanth" },
-  { name: "Stephen Tracy", photo: "/stephen-tracy.jpg", area: "Data & analytics", focus: ["AI", "BI", "Brand"] },
-  { name: "John" },
-  { name: "Myles" },
+  { name: "Teryl B" },
+  { name: "Nishanth M" },
+  { name: "Stephen T", photo: "/stephen-tracy.jpg", area: "Data & analytics", focus: ["AI", "BI", "Brand"] },
+  { name: "John C" },
+  { name: "Myles H" },
 ];
 
 export const openSeats = Math.max(0, EXPERT_NETWORK_SEATS - FOUNDING_MEMBERS.length);
