@@ -40,7 +40,7 @@ export default function SkillsSetup() {
         {platforms.map((platform) => <TabsContent key={platform.id} value={platform.id} className="pt-4">
           <p className="text-sm text-muted-foreground mb-4">{platform.note}</p>
           <div className="space-y-6">
-            <div><h3 className="font-medium mb-3">1. Copy the connection address</h3><McpUrlBox url="https://startuporillia.ca/mcp" /></div>
+            <div><h3 className="font-medium mb-3">1. Copy the connection address</h3><McpUrlBox url="https://www.startuporillia.ca/mcp" /></div>
             <div><h3 className="font-medium mb-3">2. Add the connection</h3><div className="space-y-3 text-sm leading-relaxed">{platform.steps.slice(0, 2).map((step) => <p key={step}>{step.replace("address below", "address above")}</p>)}</div></div>
             <div><h3 className="font-medium mb-3">3. Try a question</h3><p className="text-sm leading-relaxed mb-3">{platform.steps[2]}</p><blockquote className="rounded-lg bg-secondary p-4 text-sm leading-relaxed mb-3">{starterPrompt}</blockquote><CopyPrompt text={starterPrompt} /><p className="text-sm text-muted-foreground mt-3">Then try: “Build idea #2. Give me the offer, draft messages, a 30-day plan and a way to measure results.” If your AI has not used the connection, ask it to list Startup Orillia’s skills and read the right one first.</p></div>
           </div>

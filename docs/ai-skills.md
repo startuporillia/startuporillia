@@ -77,7 +77,7 @@ The public `/skills` page is the single onboarding page, with MCP-first setup ta
 
 Keep the skill source in this repository for v1: the website, ZIP downloads, validation and MCP all consume the same files. A separate repository is an organizational option when maintainers or release cadence diverge, not an installation requirement. The Skills CLI already discovers the nested folders in this repository.
 
-Endpoint: `https://startuporillia.ca/mcp`
+Endpoint: `https://www.startuporillia.ca/mcp` (use the `www` host: the bare domain answers with a 307 redirect to it, which some MCP clients do not follow)
 
 The MCP uses the official TypeScript SDK 2.x stateless per-request Streamable HTTP handler. It loads `CHAMBER_SNAPSHOT_PATH` for local/test use or `CHAMBER_SNAPSHOT_URL` in production, validates the snapshot, builds searches in memory, and caches the snapshot for six hours. Updating Blob storage does not require redeploying the site.
 
