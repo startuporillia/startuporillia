@@ -114,7 +114,7 @@ export interface FoundingMember {
 export const FOUNDING_MEMBERS: FoundingMember[] = [
   { name: "Teryl" },
   { name: "Nishanth" },
-  { name: "Stephen" },
+  { name: "Stephen Tracy", photo: "/stephen-tracy.jpg", area: "Data & analytics", focus: ["AI", "BI", "Brand"] },
   { name: "John" },
   { name: "Myles" },
 ];
