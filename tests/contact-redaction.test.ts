@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { parseSnapshot } from "../chamber/snapshot";
-import { eventResult, eventSearchResult, memberResult, memberSearchResult } from "../chamber/tools";
+import { eventResult, eventSearchResult, freshness, memberResult, memberSearchResult } from "../chamber/tools";
 
 const base = JSON.parse(await readFile(resolve("fixtures/chamber/synthetic-snapshot.json"), "utf8"));
 base.members[0] = {
@@ -45,5 +45,24 @@ describe("contact details are withheld from MCP results", () => {
       expect(text).not.toMatch(PHONE);
       expect(text).not.toMatch(EMAIL);
     }
+  });
+});
+
+describe("results point people back to the Chamber directory", () => {
+  it("replaces withheld contact details with the business's own listing link", () => {
+    const { member } = memberResult(snapshot, "member-bakery");
+    expect(member?.description).toContain(`contact details: ${member?.sourceUrl}`);
+  });
+
+  it("replaces withheld contact details in events with the event's listing link", () => {
+    const { event } = eventResult(snapshot, "event-networking");
+    expect(event?.description).toContain(`contact details: ${event?.sourceUrl}`);
+  });
+
+  it("includes the directory and events calendar links in every response", () => {
+    expect(freshness(snapshot)).toMatchObject({
+      directoryUrl: "https://business.orillia.com/list",
+      eventsCalendarUrl: "https://business.orillia.com/events",
+    });
   });
 });

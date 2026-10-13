@@ -2,25 +2,25 @@ import type { ChamberEvent, ChamberMember, ChamberResource, ChamberSnapshot } fr
 import { searchEvents, searchMembers, searchResources, type MemberSearch } from "./search.js";
 
 // Contact details are withheld until the Chamber approves sharing them through AI tools.
-// Phone and email fields are dropped, and any that appear in free text are replaced.
-const EMAIL = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi;
-const PHONE = /(?:\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}(?:\s*(?:ext\.?|x)\s*\d+)?/gi;
-const WITHHELD = "[contact details on the Chamber listing]";
-const redact = (text?: string) => text?.replace(EMAIL, WITHHELD).replace(PHONE, WITHHELD);
+// Phone and email fields are dropped, and any that appear in free text point to the record's own listing instead.
+const CONTACT = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}|(?:\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}(?:\s*(?:ext\.?|x)\s*\d+)?/gi;
+const redact = (text: string | undefined, listingUrl: string) => text?.replace(CONTACT, () => `[contact details: ${listingUrl}]`);
 
 const publicMember = ({ phone: _phone, email: _email, ...member }: ChamberMember) => ({
   ...member,
-  description: redact(member.description),
-  shortDescription: redact(member.shortDescription),
+  description: redact(member.description, member.sourceUrl),
+  shortDescription: redact(member.shortDescription, member.sourceUrl),
 });
-const publicEvent = (event: ChamberEvent) => ({ ...event, description: redact(event.description) });
-const publicResource = (resource: ChamberResource) => ({ ...resource, description: redact(resource.description) });
+const publicEvent = (event: ChamberEvent) => ({ ...event, description: redact(event.description, event.sourceUrl) });
+const publicResource = (resource: ChamberResource) => ({ ...resource, description: redact(resource.description, resource.sourceUrl) });
 
 export const freshness = (snapshot: ChamberSnapshot) => ({
   snapshotDate: snapshot.snapshotId,
   crawlDate: snapshot.generatedAt,
   source: snapshot.source,
-  notice: "Chamber membership is not an endorsement or quality rating. Business and event information is based on a periodically refreshed snapshot of publicly available Orillia & District Chamber of Commerce information. Visit the original Chamber listing for the latest official information.",
+  directoryUrl: "https://business.orillia.com/list",
+  eventsCalendarUrl: "https://business.orillia.com/events",
+  notice: "Chamber membership is not an endorsement or quality rating. Business and event information is based on a periodically refreshed snapshot of publicly available Orillia & District Chamber of Commerce information. Link each business or event to its Chamber listing (sourceUrl) for the latest official information, including contact details.",
 });
 
 export const memberSearchResult = (snapshot: ChamberSnapshot, input: MemberSearch) => ({
@@ -28,7 +28,7 @@ export const memberSearchResult = (snapshot: ChamberSnapshot, input: MemberSearc
   results: searchMembers(snapshot, input).map((member) => ({
     id: member.id,
     name: member.name,
-    description: redact(member.shortDescription ?? member.description),
+    description: redact(member.shortDescription ?? member.description, member.sourceUrl),
     categories: member.categories,
     city: member.address?.city,
     website: member.website,

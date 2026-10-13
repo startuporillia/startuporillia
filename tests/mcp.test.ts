@@ -42,6 +42,14 @@ describe("Chamber MCP", () => {
     expect(result.tools.every((tool) => tool.annotations?.readOnlyHint)).toBe(true);
   });
 
+  it("asks hosts to link every business and event to its Chamber listing", async () => {
+    const pair = await connected(); open.push(pair);
+    const { tools } = await pair.client.listTools();
+    for (const name of ["chamber.search_members", "chamber.get_member", "chamber.search_events", "chamber.get_event", "chamber.search_benefits", "chamber.search_deals"]) {
+      expect(tools.find((tool) => tool.name === name)?.description).toMatch(/link .*Chamber listing/i);
+    }
+  });
+
   it("returns exact/fuzzy search, freshness, and source provenance", async () => {
     const pair = await connected(); open.push(pair);
     const response = await pair.client.callTool({ name: "chamber.search_members", arguments: { query: "sign company" } });
