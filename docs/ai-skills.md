@@ -92,7 +92,7 @@ Tools:
 - `chamber.search_deals`
 - `chamber.snapshot_status`
 
-All are annotated read-only. Search is transparent weighted lexical/fuzzy matching across names, categories, descriptions, city, and a small plain-language synonym map. Limits are capped at 25; the default is 10. Results include snapshot freshness and source URLs.
+All are annotated read-only. Member phone numbers and emails are withheld from every result, and phone numbers or emails inside descriptions are replaced, until the Chamber approves sharing contact details through AI tools (`chamber/tools.ts`). The snapshot itself still stores them. Search is transparent weighted lexical/fuzzy matching across names, categories, descriptions, city, and a small plain-language synonym map. Limits are capped at 25; the default is 10. Results include snapshot freshness and source URLs.
 
 Local function testing can use the Vercel CLI after setting:
 

@@ -1,5 +1,20 @@
-import type { ChamberSnapshot } from "./schema.js";
+import type { ChamberEvent, ChamberMember, ChamberResource, ChamberSnapshot } from "./schema.js";
 import { searchEvents, searchMembers, searchResources, type MemberSearch } from "./search.js";
+
+// Contact details are withheld until the Chamber approves sharing them through AI tools.
+// Phone and email fields are dropped, and any that appear in free text are replaced.
+const EMAIL = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi;
+const PHONE = /(?:\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}(?:\s*(?:ext\.?|x)\s*\d+)?/gi;
+const WITHHELD = "[contact details on the Chamber listing]";
+const redact = (text?: string) => text?.replace(EMAIL, WITHHELD).replace(PHONE, WITHHELD);
+
+const publicMember = ({ phone: _phone, email: _email, ...member }: ChamberMember) => ({
+  ...member,
+  description: redact(member.description),
+  shortDescription: redact(member.shortDescription),
+});
+const publicEvent = (event: ChamberEvent) => ({ ...event, description: redact(event.description) });
+const publicResource = (resource: ChamberResource) => ({ ...resource, description: redact(resource.description) });
 
 export const freshness = (snapshot: ChamberSnapshot) => ({
   snapshotDate: snapshot.snapshotId,
@@ -13,7 +28,7 @@ export const memberSearchResult = (snapshot: ChamberSnapshot, input: MemberSearc
   results: searchMembers(snapshot, input).map((member) => ({
     id: member.id,
     name: member.name,
-    description: member.shortDescription ?? member.description,
+    description: redact(member.shortDescription ?? member.description),
     categories: member.categories,
     city: member.address?.city,
     website: member.website,
@@ -23,29 +38,35 @@ export const memberSearchResult = (snapshot: ChamberSnapshot, input: MemberSearc
 
 export const memberResult = (snapshot: ChamberSnapshot, id: string) => ({
   ...freshness(snapshot),
-  member: snapshot.members.find((member) => member.id === id || member.slug === id || member.sourceId === id) ?? null,
+  member: (() => {
+    const member = snapshot.members.find((entry) => entry.id === id || entry.slug === id || entry.sourceId === id);
+    return member ? publicMember(member) : null;
+  })(),
 });
 
 export const categoryResult = (snapshot: ChamberSnapshot) => ({ ...freshness(snapshot), categories: snapshot.categories });
 
 export const eventSearchResult = (snapshot: ChamberSnapshot, query?: string, limit?: number) => ({
   ...freshness(snapshot),
-  results: searchEvents(snapshot, query, limit),
+  results: searchEvents(snapshot, query, limit).map(publicEvent),
 });
 
 export const eventResult = (snapshot: ChamberSnapshot, id: string) => ({
   ...freshness(snapshot),
-  event: snapshot.events.find((event) => event.id === id || event.sourceUrl.endsWith(id)) ?? null,
+  event: (() => {
+    const event = snapshot.events.find((entry) => entry.id === id || entry.sourceUrl.endsWith(id));
+    return event ? publicEvent(event) : null;
+  })(),
 });
 
 export const benefitSearchResult = (snapshot: ChamberSnapshot, query?: string, limit?: number) => ({
   ...freshness(snapshot),
-  results: searchResources(snapshot.benefits, query, limit),
+  results: searchResources(snapshot.benefits, query, limit).map(publicResource),
 });
 
 export const dealSearchResult = (snapshot: ChamberSnapshot, query?: string, limit?: number) => ({
   ...freshness(snapshot),
-  results: searchResources(snapshot.deals, query, limit),
+  results: searchResources(snapshot.deals, query, limit).map(publicResource),
 });
 
 export const statusResult = (snapshot: ChamberSnapshot) => ({
