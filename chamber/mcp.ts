@@ -44,9 +44,10 @@ export const createChamberServer = () => {
 
   server.registerTool("chamber.search_members", {
     title: "Search Chamber members",
-    description: "Search publicly listed Orillia & District Chamber of Commerce members by business need, category, service, company name, description, or city. Useful for finding local suppliers, possible partners, prospects, services, and businesses relevant to a task. Chamber membership is not an endorsement or quality rating. Always link each business or event you mention to its Chamber listing (sourceUrl).",
+    description: "Search publicly listed Orillia & District Chamber of Commerce members by business need, category, service, company name, description, or city. Useful for finding local suppliers, possible partners, prospects, services, and businesses relevant to a task. A search term is required; category and city only narrow it. Run separate searches for different needs. Chamber membership is not an endorsement or quality rating. Always link each business or event you mention to its Chamber listing (sourceUrl).",
     inputSchema: z.object({
-      query: z.string().trim().max(200).default(""),
+      // A search term is required so the directory can't be listed wholesale by category or city.
+      query: z.string().trim().min(3, "Describe what you're looking for in at least 3 characters, e.g. \"accounting\" or \"sign printing\". Listing the directory without a search term isn't supported.").max(200),
       category: z.string().trim().max(120).nullable().optional(),
       city: z.string().trim().max(120).nullable().optional(),
       limit: z.number().int().min(1).max(25).default(10),

@@ -50,6 +50,16 @@ describe("Chamber MCP", () => {
     }
   });
 
+  it("refuses member searches without a search term, so the directory can't be listed wholesale", async () => {
+    const pair = await connected(); open.push(pair);
+    for (const args of [{}, { query: "" }, { query: "  " }, { query: "a" }, { query: "", category: "Bakeries" }, { query: "", city: "Orillia" }]) {
+      const response = await pair.client.callTool({ name: "chamber.search_members", arguments: args });
+      expect(response.isError).toBe(true);
+    }
+    const ok = await pair.client.callTool({ name: "chamber.search_members", arguments: { query: "bakery", category: "Bakeries" } });
+    expect(ok.isError).toBeFalsy();
+  });
+
   it("returns exact/fuzzy search, freshness, and source provenance", async () => {
     const pair = await connected(); open.push(pair);
     const response = await pair.client.callTool({ name: "chamber.search_members", arguments: { query: "sign company" } });
