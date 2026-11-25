@@ -843,7 +843,8 @@ async function main(): Promise<void> {
   // exists in Discord, but leave it alone: this script never deletes.
   for (const e of existingEvents) {
     const isoKey = new Date(e.scheduled_start_time).toISOString().slice(0, 10);
-    if (e.name === COWORKING_EVENT_NAME && isoKey in SKIPPED_COWORKING_DAYS) {
+    const upcoming = Date.parse(e.scheduled_start_time) > now.getTime();
+    if (e.name === COWORKING_EVENT_NAME && upcoming && isoKey in SKIPPED_COWORKING_DAYS) {
       plan("NOTE", `event ${isoKey}`, `skipped (${SKIPPED_COWORKING_DAYS[isoKey]}) — delete it in Discord by hand`);
     }
   }

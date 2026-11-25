@@ -14,16 +14,16 @@ const HolidayNotice = () => {
   const januaryDate = next?.startDate && next.startDate.getUTCMonth() === 0 ? next.date : null;
 
   return (
-    <div
-      role="status"
+    <aside
+      aria-label="Holiday schedule"
       className="relative max-w-sm mx-auto mb-10 rounded-2xl border border-brand-orange/25 bg-gradient-to-br from-brand-orange/10 via-card to-brand-teal/10 px-6 py-5 shadow-sm animate-scale-in"
       style={{ animationDelay: "0.3s" }}
     >
-      <div className="flex items-center justify-center gap-2 font-heading text-xl font-semibold text-primary">
+      <h2 className="flex items-center justify-center gap-2 text-xl md:text-xl leading-snug font-semibold text-primary">
         <Snowflake className="h-5 w-5 text-brand-teal" aria-hidden="true" />
         Happy holidays!
         <Snowflake className="h-5 w-5 text-brand-orange" aria-hidden="true" />
-      </div>
+      </h2>
       <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
         We're skipping the December meetup so everyone can enjoy the break.
         The next one is{" "}
@@ -36,7 +36,7 @@ const HolidayNotice = () => {
         )}
         . See you there!
       </p>
-    </div>
+    </aside>
   );
 };
 

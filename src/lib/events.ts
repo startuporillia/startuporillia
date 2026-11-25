@@ -26,7 +26,7 @@ const COWORKING_LUMA_URLS: Record<string, string> = {
  * skipped day as a Discord event.
  */
 export const SKIPPED_COWORKING_DAYS: Record<string, string> = {
-  "2026-12-29": "Holiday break",
+  "2026-12-29": "Holiday break", // also drives the front-page notice (getHolidayNotice)
 };
 
 export type EventType = "coworking" | "workshop" | "community" | "partner";
@@ -252,8 +252,11 @@ export const getNextMeetup = (): Event | null => {
  * itself at the start of January 1, 2027 (Eastern), so nobody has to remove it.
  * Safe to delete this block after that date.
  */
+const HOLIDAY_SKIPPED_DAY = "2026-12-29";
 const HOLIDAY_BREAK = {
-  skippedDay: new Date(Date.UTC(2026, 11, 29, 14, 0, 0)), // Tue Dec 29, 9 AM EST
+  // Start of the skipped day (midnight EST). Built from the same key as the
+  // SKIPPED_COWORKING_DAYS entry so the two can't drift apart.
+  skippedDay: new Date(`${HOLIDAY_SKIPPED_DAY}T05:00:00Z`),
   hideFrom: new Date(Date.UTC(2027, 0, 1, 5, 0, 0)), // Fri Jan 1, 12 AM EST
 };
 
@@ -264,6 +267,7 @@ export interface HolidayNotice {
 
 export const getHolidayNotice = (now: Date = new Date()): HolidayNotice | null => {
   if (now.getTime() >= HOLIDAY_BREAK.hideFrom.getTime()) return null;
+  if (!(HOLIDAY_SKIPPED_DAY in SKIPPED_COWORKING_DAYS)) return null;
   const [next] = generateUpcomingCoworkingDays(1, now);
   // Before the November meetup ends, it is still the next one: no notice yet.
   if (next?.startDate && next.startDate.getTime() < HOLIDAY_BREAK.skippedDay.getTime()) return null;
