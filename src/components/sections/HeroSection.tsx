@@ -9,9 +9,9 @@ const HolidayNotice = () => {
   const notice = getHolidayNotice();
   if (!notice) return null;
 
+  // Exact date only when the recurring rule puts the next meetup in January.
   const next = notice.nextMeetup;
-  const nextLabel =
-    next?.startDate && next.startDate.getUTCMonth() === 0 ? `on ${next.date}` : "in January";
+  const januaryDate = next?.startDate && next.startDate.getUTCMonth() === 0 ? next.date : null;
 
   return (
     <div
@@ -26,7 +26,15 @@ const HolidayNotice = () => {
       </div>
       <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
         We're skipping the December meetup so everyone can enjoy the break.
-        The next one is <span className="font-medium text-primary">{nextLabel}</span>. See you there!
+        The next one is{" "}
+        {januaryDate ? (
+          <>
+            on <span className="font-medium text-primary">{januaryDate}</span>
+          </>
+        ) : (
+          <span className="font-medium text-primary">in January</span>
+        )}
+        . See you there!
       </p>
     </div>
   );
