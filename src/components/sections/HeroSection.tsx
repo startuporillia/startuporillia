@@ -1,8 +1,36 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MessageCircle, Calendar, Clock, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, MessageCircle, Calendar, Clock, MapPin, Sparkles, Snowflake } from "lucide-react";
 import { Link } from "react-router-dom";
-import { getNextMeetup } from "../../lib/events";
+import { getNextMeetup, getHolidayNotice } from "../../lib/events";
 import AddToCalendarButton from "@/components/AddToCalendarButton";
+
+/** Festive "no December meetup" notice. Hides itself after Dec 31, 2026. */
+const HolidayNotice = () => {
+  const notice = getHolidayNotice();
+  if (!notice) return null;
+
+  const next = notice.nextMeetup;
+  const nextLabel =
+    next?.startDate && next.startDate.getUTCMonth() === 0 ? `on ${next.date}` : "in January";
+
+  return (
+    <div
+      role="status"
+      className="relative max-w-sm mx-auto mb-10 rounded-2xl border border-brand-orange/25 bg-gradient-to-br from-brand-orange/10 via-card to-brand-teal/10 px-6 py-5 shadow-sm animate-scale-in"
+      style={{ animationDelay: "0.3s" }}
+    >
+      <div className="flex items-center justify-center gap-2 font-heading text-xl font-semibold text-primary">
+        <Snowflake className="h-5 w-5 text-brand-teal" aria-hidden="true" />
+        Happy holidays!
+        <Snowflake className="h-5 w-5 text-brand-orange" aria-hidden="true" />
+      </div>
+      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+        We're skipping the December meetup so everyone can enjoy the break.
+        The next one is <span className="font-medium text-primary">{nextLabel}</span>. See you there!
+      </p>
+    </div>
+  );
+};
 
 const NextMeetupCard = () => {
   const nextMeetup = getNextMeetup();
@@ -97,6 +125,7 @@ const HeroSection = () => {
           </p>
 
           <div id="rsvp" className="mt-12">
+            <HolidayNotice />
             <NextMeetupCard />
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
