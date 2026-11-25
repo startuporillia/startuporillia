@@ -30,6 +30,7 @@ import {
   WELCOME_SCREEN_DESCRIPTION,
   type ChannelIds,
 } from "./content.js";
+import { SKIPPED_COWORKING_DAYS } from "../../src/lib/events.js";
 
 interface PinnedMessageSummary {
   id: string;
@@ -330,7 +331,10 @@ function upcomingCoworkingDays(count: number, now: Date): { start: Date; end: Da
   while (results.length < count) {
     const start = lastTuesdayUTC(year, month, 9);
     const end = lastTuesdayUTC(year, month, 13);
-    if (start.getTime() > now.getTime()) results.push({ start, end });
+    const isoKey = start.toISOString().slice(0, 10); // 9 AM ET is the same UTC date
+    if (start.getTime() > now.getTime() && !(isoKey in SKIPPED_COWORKING_DAYS)) {
+      results.push({ start, end });
+    }
     month += 1;
     if (month > 11) {
       month = 0;
@@ -832,6 +836,15 @@ async function main(): Promise<void> {
           entity_metadata: { location: COWORKING_LOCATION },
         });
       });
+    }
+  }
+
+  // Skipped days (src/lib/events.ts) are never created. Flag one that already
+  // exists in Discord, but leave it alone: this script never deletes.
+  for (const e of existingEvents) {
+    const isoKey = new Date(e.scheduled_start_time).toISOString().slice(0, 10);
+    if (e.name === COWORKING_EVENT_NAME && isoKey in SKIPPED_COWORKING_DAYS) {
+      plan("NOTE", `event ${isoKey}`, `skipped (${SKIPPED_COWORKING_DAYS[isoKey]}) — delete it in Discord by hand`);
     }
   }
 
