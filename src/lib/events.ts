@@ -15,6 +15,20 @@ const COWORKING_LUMA_URLS: Record<string, string> = {
   "2026-11-24": "https://lu.ma/ii6uysee",
 };
 
+/**
+ * Coworking days that are skipped, keyed by YYYY-MM-DD (Eastern Time) of the
+ * last Tuesday that would otherwise be generated. A skipped day is never
+ * generated, so it can't show up as upcoming anywhere on the site (hero card,
+ * /events, /meetup, add-to-calendar links), and the next real date takes its
+ * place. The value is a short reason, for humans reading this file.
+ *
+ * `scripts/discord/configure.ts` reads this too, so it won't recreate a
+ * skipped day as a Discord event.
+ */
+export const SKIPPED_COWORKING_DAYS: Record<string, string> = {
+  "2026-12-29": "Holiday break",
+};
+
 export type EventType = "coworking" | "workshop" | "community" | "partner";
 
 export interface Event {
@@ -69,8 +83,7 @@ function easternUtcOffset(month: number): number {
  * Generate the next `count` upcoming coworking day events
  * based on "last Tuesday of every month".
  */
-function generateUpcomingCoworkingDays(count: number): Event[] {
-  const now = new Date();
+export function generateUpcomingCoworkingDays(count: number, now: Date = new Date()): Event[] {
   const events: Event[] = [];
   let cursor = new Date(now.getFullYear(), now.getMonth(), 1);
 
@@ -89,8 +102,8 @@ function generateUpcomingCoworkingDays(count: number): Event[] {
     const endDate = new Date(Date.UTC(y, m, d, 13 + offset, 0, 0));
 
     // Keep today's coworking day listed until it actually ends at 1 PM.
-    if (endDate.getTime() >= now.getTime()) {
-      const isoKey = format(lastTuesday, "yyyy-MM-dd");
+    const isoKey = format(lastTuesday, "yyyy-MM-dd");
+    if (endDate.getTime() >= now.getTime() && !(isoKey in SKIPPED_COWORKING_DAYS)) {
       events.push({
         date: format(lastTuesday, "EEEE, MMMM d"),
         title: "Startup Orillia Coworking Day",
@@ -229,6 +242,32 @@ export const getNextMeetup = (): Event | null => {
     .filter((e) => e.type === "coworking")
     .sort((a, b) => (a.startDate?.getTime() ?? 0) - (b.startDate?.getTime() ?? 0));
   return meetups.length > 0 ? meetups[0] : null;
+};
+
+/**
+ * Front-page notice for the skipped December 2026 meetup.
+ *
+ * Date-driven like everything else here: it shows once the skipped day would
+ * have been the next meetup (i.e. after the November meetup ends) and hides
+ * itself at the start of January 1, 2027 (Eastern), so nobody has to remove it.
+ * Safe to delete this block after that date.
+ */
+const HOLIDAY_BREAK = {
+  skippedDay: new Date(Date.UTC(2026, 11, 29, 14, 0, 0)), // Tue Dec 29, 9 AM EST
+  hideFrom: new Date(Date.UTC(2027, 0, 1, 5, 0, 0)), // Fri Jan 1, 12 AM EST
+};
+
+export interface HolidayNotice {
+  /** The first real meetup after the break, from the recurring rule. */
+  nextMeetup: Event | null;
+}
+
+export const getHolidayNotice = (now: Date = new Date()): HolidayNotice | null => {
+  if (now.getTime() >= HOLIDAY_BREAK.hideFrom.getTime()) return null;
+  const [next] = generateUpcomingCoworkingDays(1, now);
+  // Before the November meetup ends, it is still the next one: no notice yet.
+  if (next?.startDate && next.startDate.getTime() < HOLIDAY_BREAK.skippedDay.getTime()) return null;
+  return { nextMeetup: next ?? null };
 };
 
 export const getEventsByType = (type: EventType): Event[] => {
